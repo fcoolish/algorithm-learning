@@ -1,0 +1,28 @@
+题目描述
+输入一个链表，输出该链表中倒数第k个结点。
+
+
+
+思路：快指针先往前走k步，注意判断边界，然后快慢一起走，
+当快指针为none的时候，慢指针走到了倒数第k个节点
+public class Solution {
+
+        public ListNode FindKthToTail(ListNode head,int k) {
+            if(head == null || k ==0){
+                return null;
+            }
+            ListNode slow = head;
+            ListNode fast = head;
+            for(int i=0;i<k;i++){
+                if(fast==null){
+                    return null;
+                }
+                fast = fast.next;
+            }
+            while (fast!=null){
+                slow = slow.next;
+                fast = fast.next;
+            }
+            return slow;
+        }
+}
