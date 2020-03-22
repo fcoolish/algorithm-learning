@@ -2,7 +2,15 @@
 
 输入一个链表，反转链表后，输出新链表的表头。
 
+/*
+public class ListNode {
+    int val;
+    ListNode next = null;
 
+    ListNode(int val) {
+        this.val = val;
+    }
+}*/
 
 public class Solution {
 
@@ -25,4 +33,8 @@ public class Solution {
         //当循环结束时，pre所指的就是反转链表的头结点
         return  pre;
     }
+
+
+
+
 }
