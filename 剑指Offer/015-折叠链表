@@ -1,0 +1,28 @@
+题目描述
+
+输入一个链表，反转链表后，输出新链表的表头。
+
+
+
+public class Solution {
+
+    public ListNode ReverseList(ListNode head) {
+        //初始化pre指针，用于记录当前结点的前一个结点地址
+        ListNode pre = null;
+        //初始化p指针，用于记录当前结点的下一个结点地址
+        ListNode p = null;
+        //head指向null时，循环终止
+        while(head != null){
+            //先用p指针记录当前结点的下一个结点地址。
+            p = head.next;
+            //让被当前结点与链表断开并指向前一个节点pre。
+            head.next = pre;
+            //pre指针指向当前结点
+            pre = head;
+            //head指向p（保存原链表中head的下一个结点地址）
+            head = p;
+        }
+        //当循环结束时，pre所指的就是反转链表的头结点
+        return  pre;
+    }
+}
