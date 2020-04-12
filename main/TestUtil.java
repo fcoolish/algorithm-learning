@@ -56,18 +56,18 @@ public class TestUtil {
     Stack<Integer> stack1 = new Stack<Integer>();
     Stack<Integer> stack2 = new Stack<Integer>();
 
-    public void push(int node) {
-        stack1.push(node);
-    }
-
-    public int pop() {
-        if(stack2.size()<=0){
-            while(stack1.size()!=0){
-                stack2.push(stack1.pop());
-            }
-        }
-        return stack2.pop();
-    }
+    //public void push(int node) {
+    //    stack1.push(node);
+    //}
+    //
+    //public int pop() {
+    //    if(stack2.size()<=0){
+    //        while(stack1.size()!=0){
+    //            stack2.push(stack1.pop());
+    //        }
+    //    }
+    //    return stack2.pop();
+    //}
 
 
 
@@ -309,6 +309,44 @@ public class TestUtil {
         }
         return list;
     }
+
+    private static Stack<Integer> stack = new Stack<Integer>();
+    private static  Integer minElement = Integer.MAX_VALUE;
+
+    public void push(int node){
+        if(stack.empty()){
+            minElement = node;
+            stack.push(node);
+        }else {
+            if (node <= minElement){
+                stack.push(minElement);
+                minElement = node;
+            }
+            stack.push(node);
+        }
+    }
+
+    public void pop(){
+        if(stack.size() == 0)return;
+        if(minElement == stack.peek()){
+            if(stack.size()>1){
+                stack.pop();
+                minElement = stack.peek();
+            }else{
+                minElement = Integer.MAX_VALUE;
+            }
+        }
+        stack.pop();
+    }
+
+    public int top(){
+        return  stack.peek();
+    }
+
+    public int min(){
+        return minElement;
+    }
+
 }
 
 
