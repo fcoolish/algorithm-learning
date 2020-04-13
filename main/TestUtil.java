@@ -8,11 +8,7 @@ import java.util.Stack;
 public class TestUtil {
 
 
-    public static void main(String[] args) {
 
-        //LocalDate
-
-    }
 
     public ArrayList<Integer> printListFromTailToHead(ListNode listNode) {
         ArrayList arr = new ArrayList<Integer>();
@@ -345,6 +341,29 @@ public class TestUtil {
 
     public int min(){
         return minElement;
+    }
+
+
+    public boolean IsPopOrder(int [] pushA,int [] popA) {
+        if(pushA.length == 0 || popA.length == 0 || popA.length != pushA.length){
+            return false;
+        }
+        Stack<Integer> stack = new Stack<Integer>();
+        int j = 0;
+        for(int i =0;i < pushA.length;i++){
+            stack.push(pushA[i]);
+            while(!stack.isEmpty() && stack.peek() == popA[j]){
+                stack.pop();
+                j++;
+            }
+        }
+        return stack.isEmpty();
+    }
+
+    public static void main(String[] args) {
+
+        //LocalDate
+
     }
 
 }
