@@ -1,8 +1,7 @@
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Stack;
+import jdk.nashorn.internal.ir.ReturnNode;
+
+import java.util.*;
 
 /**
  * Created by admin on 2018/3/16.
@@ -416,6 +415,46 @@ public class TestUtil {
         ArrayList<ArrayList<Integer>> reslt2  = FindPath(root.right,target);
         list.remove(list.size()-1);
         return result;
+    }
+
+    public RandomListNode Clone(RandomListNode pHead)
+    {
+        if(pHead == null)return  null;
+        RandomListNode newHead = null;
+        RandomListNode p = pHead;
+        RandomListNode q = null;
+        Map<RandomListNode,RandomListNode> map = new HashMap<>();
+        while(p != null){
+            if(newHead == null){
+                newHead = new RandomListNode(pHead.label);
+                q = newHead;
+                map.put(pHead,newHead);
+            }else{
+                if(p.next != null && map.containsKey(p.next)){
+                    q.next = map.get(p.next);
+                }else{
+                    if(p.next != null){
+                        RandomListNode temp = new RandomListNode(p.next.label);
+                        map.put(p.next,temp);
+                        q.next = temp;
+                    }
+                }
+                if(p.random != null && map.containsKey(p.random)){
+                    q.random = map.get(p.random);
+                }else {
+                    if (p.random !=null){
+                        RandomListNode temp = new RandomListNode(p.random.label);
+                        map.put(p.random,temp);
+                        q.random = temp;
+                    }
+                }
+
+                p = p.next;
+                q = q.next;
+            }
+
+        }
+        return newHead;
     }
 
     public static void main(String[] args) {
