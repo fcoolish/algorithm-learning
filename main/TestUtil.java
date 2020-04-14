@@ -401,9 +401,27 @@ public class TestUtil {
         return  helpVerify(sequence,start,i-1)&& helpVerify(sequence,i,root-1);
     }
 
+    private ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
+    private ArrayList<Integer> list = new ArrayList<Integer>();
+    public ArrayList<ArrayList<Integer>> FindPath(TreeNode root,int target) {
+        if(root == null){
+            return result;
+        }
+        list.add(root.val);
+        target -= root.val;
+        if(target == 0 && root.left == null && root.right == null){
+            result.add(new ArrayList<Integer>(list));
+        }
+        ArrayList<ArrayList<Integer>> result1 = FindPath(root.left,target);
+        ArrayList<ArrayList<Integer>> reslt2  = FindPath(root.right,target);
+        list.remove(list.size()-1);
+        return result;
+    }
+
     public static void main(String[] args) {
+        public ArrayList<ArrayList<Integer>> FindPath(TreeNode root,int target) {
 
-
+        }
 
     }
 
