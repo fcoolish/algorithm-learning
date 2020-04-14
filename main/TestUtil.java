@@ -1,5 +1,5 @@
 
-import jdk.nashorn.internal.ir.ReturnNode;
+
 
 import java.util.*;
 
@@ -457,10 +457,55 @@ public class TestUtil {
         return newHead;
     }
 
-    public static void main(String[] args) {
-        public ArrayList<ArrayList<Integer>> FindPath(TreeNode root,int target) {
+    TreeNode pre = null;
+    TreeNode root = null;
 
+    public TreeNode Convert(TreeNode pRootOfTree) {
+        if(pRootOfTree == null){
+            return null;
         }
+        Convert(pRootOfTree.left);
+        if(root==null){
+            root = pRootOfTree;
+        }
+        if(pre != null){
+            pRootOfTree.left = pre;
+            pre.right = pRootOfTree;
+        }
+        pre = pRootOfTree;
+        Convert(pRootOfTree.right);
+        return  root;
+    }
+
+    public TreeNode Convert(TreeNode pRootOfTree) {
+        if(pRootOfTree == null){
+            return null;
+        }
+        ArrayList<TreeNode> list = new ArrayList<TreeNode>();
+        Convert(pRootOfTree,list);
+        return Convert(list);
+    }
+    //中序遍历
+    public void Convert(TreeNode pRootOfTree,ArrayList<TreeNode> list) {
+        if (pRootOfTree.left != null) {
+            Convert(pRootOfTree.left, list);
+        }
+        list.add(pRootOfTree);
+        if (pRootOfTree.right != null) {
+            Convert(pRootOfTree.right, list);
+        }
+    }
+        //遍历list，修改指针
+    public TreeNode Convert(ArrayList<TreeNode> list){
+        for(int i=0;i <list.size()-1;i++){
+            list.get(i).right = list.get(i+1);
+            list.get(i+1).left = list.get(i);
+        }
+        return  list.get(0);
+    }
+
+    public static void main(String[] args) {
+
 
     }
 
