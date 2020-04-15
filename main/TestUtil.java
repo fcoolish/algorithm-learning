@@ -1,6 +1,7 @@
 
 
 
+import javax.xml.transform.Result;
 import java.util.*;
 
 /**
@@ -503,6 +504,52 @@ public class TestUtil {
         }
         return  list.get(0);
     }
+
+
+
+    public ArrayList<String> Permutation(String str) {
+        StringBuilder stringBuilder = new StringBuilder(str);
+        ArrayList<String> result = PermutationHelp(stringBuilder);
+        return result;
+    }
+
+    public ArrayList<String>PermutationHelp(StringBuilder str){
+        Set<String>result = new TreeSet<String>();
+        if(str.length() == 1)result.add(str.toString());
+        else{
+            for(int i = 0;i< str.length();i++){
+                if(i ==0 || str.charAt(i) != str.charAt(0)){
+                    char temp = str.charAt(i);
+                    str.setCharAt(i,str.charAt(0));
+                    str.setCharAt(0,temp);
+                    ArrayList<String>newResult = PermutationHelp(new StringBuilder(str.substring(1)));
+                    for(int j = 0;j<newResult.size();j++)
+                        result.add(str.substring(0,1)+newResult.get(j));
+                    //用完还是要放回去的
+                    temp = str.charAt(0);
+                    str.setCharAt(0,str.charAt(i));
+                    str.setCharAt(i,temp);
+                }
+            }
+            //Collections.sort(result, new Comparator<String>() {
+            //    @Override
+            //    public int compare(String arg0, String arg1) {
+            //        int i = 1;
+            //        if(arg0.compareTo(arg1)>0){
+            //            return 1;
+            //        }else if(arg0.compareTo(arg1)<0){
+            //            return -1;
+            //        }else{
+            //            return compare(arg0.substring(i++),arg1.substring(i++));
+            //        }
+            //    }
+            //});
+        }
+        return  new ArrayList<String>(result);
+    }
+
+
+
 
     public static void main(String[] args) {
 
