@@ -423,7 +423,7 @@ public class TestUtil {
         RandomListNode newHead = null;
         RandomListNode p = pHead;
         RandomListNode q = null;
-        Map<RandomListNode,RandomListNode> map = new HashMap<>();
+        Map<RandomListNode,RandomListNode> map = new HashMap<RandomListNode,RandomListNode>();
         while(p != null){
             if(newHead == null){
                 newHead = new RandomListNode(pHead.label);
@@ -476,33 +476,33 @@ public class TestUtil {
         Convert(pRootOfTree.right);
         return  root;
     }
-
-    public TreeNode Convert(TreeNode pRootOfTree) {
-        if(pRootOfTree == null){
-            return null;
-        }
-        ArrayList<TreeNode> list = new ArrayList<TreeNode>();
-        Convert(pRootOfTree,list);
-        return Convert(list);
-    }
-    //中序遍历
-    public void Convert(TreeNode pRootOfTree,ArrayList<TreeNode> list) {
-        if (pRootOfTree.left != null) {
-            Convert(pRootOfTree.left, list);
-        }
-        list.add(pRootOfTree);
-        if (pRootOfTree.right != null) {
-            Convert(pRootOfTree.right, list);
-        }
-    }
-        //遍历list，修改指针
-    public TreeNode Convert(ArrayList<TreeNode> list){
-        for(int i=0;i <list.size()-1;i++){
-            list.get(i).right = list.get(i+1);
-            list.get(i+1).left = list.get(i);
-        }
-        return  list.get(0);
-    }
+    //
+    //public TreeNode Convert(TreeNode pRootOfTree) {
+    //    if(pRootOfTree == null){
+    //        return null;
+    //    }
+    //    ArrayList<TreeNode> list = new ArrayList<TreeNode>();
+    //    Convert(pRootOfTree,list);
+    //    return Convert(list);
+    //}
+    ////中序遍历
+    //public void Convert(TreeNode pRootOfTree,ArrayList<TreeNode> list) {
+    //    if (pRootOfTree.left != null) {
+    //        Convert(pRootOfTree.left, list);
+    //    }
+    //    list.add(pRootOfTree);
+    //    if (pRootOfTree.right != null) {
+    //        Convert(pRootOfTree.right, list);
+    //    }
+    //}
+    //    //遍历list，修改指针
+    //public TreeNode Convert(ArrayList<TreeNode> list){
+    //    for(int i=0;i <list.size()-1;i++){
+    //        list.get(i).right = list.get(i+1);
+    //        list.get(i+1).left = list.get(i);
+    //    }
+    //    return  list.get(0);
+    //}
 
 
 
@@ -664,9 +664,23 @@ public class TestUtil {
         return result[index - 1];
     }
 
+
+    public static int FirstNotRepeatingChar(String str) {
+        if(str==null || str.length() ==0)return -1;
+        int[] count = new int[256];
+        for(int i=0;i<str.length();i++){
+            count[str.charAt(i)]++;
+        }
+        for(int i=0;i < str.length();i++){
+            if(count[str.charAt(i)]==1)
+                return  i;
+        }
+        return -1;
+    }
     public static void main(String[] args) {
-
-
+        //String str = "baccss";
+        //int i = FirstNotRepeatingChar(str);
+        //System.out.print(i);
     }
 
 }
