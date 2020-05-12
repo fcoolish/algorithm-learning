@@ -423,7 +423,7 @@ public class TestUtil {
         RandomListNode newHead = null;
         RandomListNode p = pHead;
         RandomListNode q = null;
-        Map<RandomListNode,RandomListNode> map = new HashMap<>();
+        Map<RandomListNode,RandomListNode> map = new HashMap<RandomListNode,RandomListNode>();
         while(p != null){
             if(newHead == null){
                 newHead = new RandomListNode(pHead.label);
@@ -476,33 +476,33 @@ public class TestUtil {
         Convert(pRootOfTree.right);
         return  root;
     }
-
-    public TreeNode Convert(TreeNode pRootOfTree) {
-        if(pRootOfTree == null){
-            return null;
-        }
-        ArrayList<TreeNode> list = new ArrayList<TreeNode>();
-        Convert(pRootOfTree,list);
-        return Convert(list);
-    }
-    //中序遍历
-    public void Convert(TreeNode pRootOfTree,ArrayList<TreeNode> list) {
-        if (pRootOfTree.left != null) {
-            Convert(pRootOfTree.left, list);
-        }
-        list.add(pRootOfTree);
-        if (pRootOfTree.right != null) {
-            Convert(pRootOfTree.right, list);
-        }
-    }
-        //遍历list，修改指针
-    public TreeNode Convert(ArrayList<TreeNode> list){
-        for(int i=0;i <list.size()-1;i++){
-            list.get(i).right = list.get(i+1);
-            list.get(i+1).left = list.get(i);
-        }
-        return  list.get(0);
-    }
+    //
+    //public TreeNode Convert(TreeNode pRootOfTree) {
+    //    if(pRootOfTree == null){
+    //        return null;
+    //    }
+    //    ArrayList<TreeNode> list = new ArrayList<TreeNode>();
+    //    Convert(pRootOfTree,list);
+    //    return Convert(list);
+    //}
+    ////中序遍历
+    //public void Convert(TreeNode pRootOfTree,ArrayList<TreeNode> list) {
+    //    if (pRootOfTree.left != null) {
+    //        Convert(pRootOfTree.left, list);
+    //    }
+    //    list.add(pRootOfTree);
+    //    if (pRootOfTree.right != null) {
+    //        Convert(pRootOfTree.right, list);
+    //    }
+    //}
+    //    //遍历list，修改指针
+    //public TreeNode Convert(ArrayList<TreeNode> list){
+    //    for(int i=0;i <list.size()-1;i++){
+    //        list.get(i).right = list.get(i+1);
+    //        list.get(i+1).left = list.get(i);
+    //    }
+    //    return  list.get(0);
+    //}
 
 
 
@@ -616,9 +616,108 @@ public class TestUtil {
         return max;
     }
 
+    public int NumberOf1Between1AndN_Solution(int n) {
+        int count = 0;
+        while(n > 0 ){
+            String str  = String.valueOf(n);
+            char[] chars = str.toCharArray();
+            for(int i = 0;i< chars.length;i++){
+                if(chars[i] == '1')
+                    count++;
+            }
+            n--;
+        }
+        return count;
+    }
+
+    public String PrintMinNumber(int [] numbers) {
+        if(numbers == null || numbers.length == 0)return "";
+        for(int i = 0;i < numbers.length;i++){
+            for(int j = i+1;j < numbers.length;j++){
+                int sum1 = Integer.valueOf(numbers[i]+""+numbers[j]);
+                int sum2 = Integer.valueOf(numbers[j]+""+numbers[i]);
+                if(sum1 > sum2){
+                    int temp = numbers[j];
+                    numbers[j] = numbers[i];
+                    numbers[i] = temp;
+                }
+            }
+        }
+        String str = new String("");
+        for(int i =0;i < numbers.length;i++) {
+            str = str +numbers[i];
+        }
+        return str;
+    }
+
+    public int GetUglyNumber_Solution(int index) {
+        if(index <=0)return 0;
+        int p2=0,p3=0,p5=0;
+        int[] result = new int[index];
+        result[0] = 1;
+        for(int i = 1;i < index;i++){
+            result[i] = Math.min(result[p2]*2,Math.min(result[p3]*3,result[p5]*5));
+            if(result[i] == result[p2]*2)p2++;
+            if(result[i] == result[p3]*3)p3++;
+            if(result[i] == result[p5]*5)p5++;
+        }
+        return result[index - 1];
+    }
+
+
+    public static int FirstNotRepeatingChar(String str) {
+        if(str==null || str.length() ==0)return -1;
+        int[] count = new int[256];
+        for(int i=0;i<str.length();i++){
+            count[str.charAt(i)]++;
+        }
+        for(int i=0;i < str.length();i++){
+            if(count[str.charAt(i)]==1)
+                return  i;
+        }
+        return -1;
+    }
+
+    private int cnt;
+    private void MergeSort(int[] array,int start,int end){
+        if(start >= end)return;
+        int mid = (start + end )/2;
+        MergeSort(array,start,mid);
+        MergeSort(array,mid+1,end);
+        MergeOne(array,start,mid,end);
+    }
+    private void MergeOne(int[] array,int start,int mid,int end){
+        int[] temp = new int[end - start+1];
+        int k = 0,i = start,j = mid + 1;
+        while(i <=mid && j <=end){
+            if(array[i] <= array[j])
+                temp[k++] = array[i++];
+            else{
+                temp[k++] = array[j++];
+                cnt = (cnt+(mid - i + 1))%1000000007;
+            }
+        }
+        while (i <= mid)
+            temp[k++] = array[i++];
+        while (j <= end)
+            temp[k++] = array[j++];
+        for (int l = 0;l<k;l++){
+            array[start+l] = temp[l];
+        }
+    }
+
+    public int InversePairs(int [] array) {
+        MergeSort(array,0,array.length - 1);
+        return cnt;
+    }
+
+
+
+
     public static void main(String[] args) {
-
-
+        //String str = "baccss";
+        //int i = FirstNotRepeatingChar(str);
+        System.out.print(i);
     }
 
 }
