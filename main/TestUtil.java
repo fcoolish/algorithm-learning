@@ -717,7 +717,7 @@ public class TestUtil {
     public static void main(String[] args) {
         //String str = "baccss";
         //int i = FirstNotRepeatingChar(str);
-        System.out.print(i);
+        //System.out.print(i);
     }
 
 }
