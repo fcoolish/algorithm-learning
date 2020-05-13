@@ -1,11 +1,11 @@
 
 
 
-import java.lang.reflect.Array;
+
 import java.util.*;
 
 /**
- * Created by admin on 2018/3/16.
+ * Created by fcoolish on 2020/3/16.
  */
 public class TestUtil {
 
@@ -738,7 +738,56 @@ public class TestUtil {
         return count;
     }
 
+//    public  int TreeDepth(TreeNode root) {
+//        if(root == null){
+//            return 0;
+//        }
+//        int left = TreeDepth(root.left);
+//        int right = TreeDepth(root.right);
+//        return Math.max(left,right) + 1;
+//    }
+
+    public int TreeDepth(TreeNode root){
+        if(root == null)return 0;
+        if(root.left == null && root.right == null)
+            return 1;
+        return 1+Math.max(TreeDepth(root.left),TreeDepth(root.right));
+    }
+
+    public boolean IsBalanced_Solution(TreeNode root) {
+        if(root == null )return true;
+        if(Math.abs(TreeDepth(root.left) - TreeDepth(root.right)) > 1)
+            return false;
+        return IsBalanced_Solution(root.left) && IsBalanced_Solution(root.right);
+    }
+
+    public void FindNumsAppearOnce(int [] array,int num1[] , int num2[]) {
+        if(array == null || array.length == 0)return;
+        Map<Integer,Integer> map = new HashMap<>();
+        for(int i = 0;i < array.length;i++){
+            if (map.containsKey(array[i])){
+                map.put(array[i],2);
+            }else{
+                map.put(array[i],1);
+            }
+        }
+        int count = 0;
+        for(int i = 0;i <array.length;i++){
+            if (map.get(array[i]) == 1){
+                if(count == 0){
+                    num1[0] = array[i];
+                    count++;
+                }else{
+                    num2[0] = array[i];
+                }
+            }
+        }
+
+    }
+
     public static void main(String[] args) {
+//        TreeNode node1 = new TreeNode(1);
+//        TreeDepth(node1);
         //String str = "baccss";
         //int i = FirstNotRepeatingChar(str);
         //System.out.print(i);
