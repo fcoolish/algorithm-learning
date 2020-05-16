@@ -832,6 +832,13 @@ public class TestUtil {
         return result;
     }
 
+    public String LeftRotateString(String str,int n) {
+        if(str == null ||str.length() < n){
+            return str;
+        }
+        return str.substring(n) + str.substring(0,n);
+    }
+
     public static void main(String[] args) {
 //        TreeNode node1 = new TreeNode(1);
 //        TreeDepth(node1);
