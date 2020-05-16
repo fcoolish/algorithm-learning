@@ -785,6 +785,33 @@ public class TestUtil {
 
     }
 
+    public ArrayList<ArrayList<Integer> > FindContinuousSequence(int sum) {
+        ArrayList<ArrayList<Integer>> resList = new ArrayList<ArrayList<Integer>>();
+        if(sum <= 0)return resList;
+        int left = 1,right = 2;
+        int sumValue = left + right;
+        while(sum > right){
+            if(sumValue < sum){
+                right++;
+                sumValue += right;
+            }else if(sumValue > sum){
+                sumValue -= left;
+                left++;
+            }else {
+                ArrayList<Integer> list = new ArrayList<Integer>();
+                for(int i = left;i <= right;i++){
+                    list.add(i);
+                }
+                resList.add(list);
+
+                right++;
+                sumValue +=right;
+            }
+        }
+        return resList;
+
+    }
+
     public static void main(String[] args) {
 //        TreeNode node1 = new TreeNode(1);
 //        TreeDepth(node1);
