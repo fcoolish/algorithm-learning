@@ -763,7 +763,7 @@ public class TestUtil {
 
     public void FindNumsAppearOnce(int [] array,int num1[] , int num2[]) {
         if(array == null || array.length == 0)return;
-        Map<Integer,Integer> map = new HashMap<>();
+        Map<Integer,Integer> map = new HashMap<Integer, Integer>();
         for(int i = 0;i < array.length;i++){
             if (map.containsKey(array[i])){
                 map.put(array[i],2);
@@ -812,12 +812,32 @@ public class TestUtil {
 
     }
 
+    public ArrayList<Integer> FindNumbersWithSum(int [] array,int sum) {
+        ArrayList<Integer> result = new ArrayList<Integer>();
+        if(array == null || array.length <=1){
+            return result;
+        }
+        int smallIndex = 0,bigIndex = array.length - 1;
+        while (smallIndex < bigIndex){
+            if(array[smallIndex] + array[bigIndex] == sum){
+                result.add(array[smallIndex]);
+                result.add(array[bigIndex]);
+                break;
+            }else if(array[smallIndex] + array[bigIndex] < sum){
+                smallIndex++;
+            }else{
+                bigIndex--;
+            }
+        }
+        return result;
+    }
+
     public static void main(String[] args) {
 //        TreeNode node1 = new TreeNode(1);
 //        TreeDepth(node1);
         //String str = "baccss";
         //int i = FirstNotRepeatingChar(str);
-        //System.out.print(i);
+        System.out.print("test");
     }
 
 }
