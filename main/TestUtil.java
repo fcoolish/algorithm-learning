@@ -839,11 +839,45 @@ public class TestUtil {
         return str.substring(n) + str.substring(0,n);
     }
 
+    public String ReverseSentence(String str) {
+        if(str == null || str.length() == 0){
+            return "";
+        }
+        StringBuilder str1 = new StringBuilder(str);
+        str1.reverse();
+        StringBuilder result = new StringBuilder();
+        int j = 0;
+        int blankNum = 0;
+        //空格数量为0时候直接返回
+        int index = str.indexOf(" ");
+        //空格数为0时，直接返回字符串
+        if(index == -1){
+            return  str;
+        }
+        for(int i = 0;i < str1.length();i++){
+            //1.当有空格，没有到达最后一个单词时候
+            if(str1.charAt(i) == ' '&&(i !=str1.length() - 1)){
+                blankNum++;
+                StringBuilder str2 = new StringBuilder(str1.substring(j,i));
+                result.append(str2.reverse().toString()).append(" ");
+                j = i + 1;
+            }
+            //2、当有空格，且到达最后一个单词时
+            if(blankNum != 0 &&i==(str1.length() - 1)){
+                StringBuilder str3 = new StringBuilder(str1.substring(j,i + 1));
+                result.append(str3.reverse());
+            }
+
+        }
+        return  result.toString();
+    }
+
+
     public static void main(String[] args) {
 //        TreeNode node1 = new TreeNode(1);
 //        TreeDepth(node1);
         //String str = "baccss";
-        //int i = FirstNotRepeatingChar(str);
+        //int i = FirstNotRepeatingChar(str);wa
         System.out.print("test");
     }
 
