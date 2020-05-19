@@ -894,6 +894,11 @@ public class TestUtil {
         return false;
     }
 
+    public int LastRemaining_Solution(int n, int m) {
+        if(n <= 0 || m <=0)return -1;
+        return  n == 1 ? 0 : (LastRemaining_Solution(n  - 1,m) + m) % n;
+    }
+
     public static void main(String[] args) {
 //        TreeNode node1 = new TreeNode(1);
 //        TreeDepth(node1);
