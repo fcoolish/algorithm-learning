@@ -949,6 +949,21 @@ public class TestUtil {
         return res*flag;
     }
 
+    public boolean duplicate(int numbers[],int length,int [] duplication) {
+        Set<Integer> set = new HashSet<Integer>();
+        for(int i = 0;i < length;i++){
+            if(set.contains(numbers[i])){
+                duplication[0] = numbers[i];
+                return true;
+            }else{
+                set.add(numbers[i]);
+            }
+        }
+        return false;
+    }
+
+
+
     public static void main(String[] args) {
 //        TreeNode node1 = new TreeNode(1);
 //        TreeDepth(node1);
