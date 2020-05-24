@@ -982,6 +982,32 @@ public class TestUtil {
 
     }
 
+    public boolean match(char[] str, char[] pattern) {
+        return matchStr(str,0,pattern,0);
+    }
+
+    public  boolean matchStr(char[] str,int i,char[] pattern,int j){
+        if(i == str.length && j == pattern.length){
+            return true;
+        }else if(j == pattern.length){
+            return false;
+        }
+        boolean next = (j + 1 < pattern.length && pattern[j + 1] == '*');
+        if(next){
+            if(i < str.length && (pattern[j] == '.' || str[i] == pattern[j])){
+                return matchStr(str,i,pattern,j+2) || matchStr(str,i+1,pattern,j);
+            }else{
+                return matchStr(str,i,pattern,j+2);
+            }
+        }else{
+            if(i < str.length && (pattern[j] == '.' || str[i] == pattern[j])){
+                return matchStr(str,i+1,pattern,j+1);
+            }else{
+                return false;
+            }
+        }
+
+    }
 
     public static void main(String[] args) {
 //        TreeNode node1 = new TreeNode(1);
