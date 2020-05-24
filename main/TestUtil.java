@@ -949,6 +949,7 @@ public class TestUtil {
         return res*flag;
     }
 
+
     public boolean duplicate(int numbers[],int length,int [] duplication) {
         Set<Integer> set = new HashSet<Integer>();
         for(int i = 0;i < length;i++){
@@ -962,6 +963,24 @@ public class TestUtil {
         return false;
     }
 
+    public int[] multiply(int[] A) {
+        if(A == null || A.length == 0)return null;
+        int length = A.length;
+        int[] B = new int[length];
+        //计算下三角形
+        B[0] = 1;
+        for(int i = 1;i<length;i++){
+            B[i] = B[i - 1]*A[i - 1];
+        }
+        //计算上三角
+        int temp = 1;
+        for(int i = length - 1;i>=0;i--){
+            B[i] = temp * B[i];
+            temp = A[i] * temp;
+        }
+        return B;
+
+    }
 
 
     public static void main(String[] args) {
