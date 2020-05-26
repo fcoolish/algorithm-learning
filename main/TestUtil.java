@@ -1059,6 +1059,30 @@ public class TestUtil {
         }
         return '#';
     }
+
+
+    public ListNode EntryNodeOfLoop(ListNode pHead)
+    {
+        if(pHead == null ||pHead.next == null){
+            return  null;
+        }
+        ListNode fast = pHead;
+        ListNode slow = pHead;
+        while (fast.next != null && fast.next.next != null){
+            fast = fast.next.next;
+            slow = slow.next;
+            if(fast == slow){
+                ListNode slow2 = pHead;
+                while (slow2  != slow){
+                    slow2 = slow2.next;
+                    slow = slow.next;
+                }
+                return slow2;
+            }
+        }
+        return  null;
+
+    }
     public static void main(String[] args) {
 //        TreeNode node1 = new TreeNode(1);
 //        TreeDepth(node1);
