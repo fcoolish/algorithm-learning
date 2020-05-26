@@ -1042,6 +1042,23 @@ public class TestUtil {
         return true;
     }
 
+    //Insert one char from stringstream
+    String str = "";
+    char[] hash = new char[256];
+    public void Insert(char ch)
+    {
+        str += ch;
+        hash[ch]++;
+    }
+    //return the first appearence once char in current stringstream
+    public char FirstAppearingOnce()
+    {
+        for(int i=0;i < str.length();i++) {
+            if(hash[str.charAt(i)] == 1)
+                return str.charAt(i);
+        }
+        return '#';
+    }
     public static void main(String[] args) {
 //        TreeNode node1 = new TreeNode(1);
 //        TreeDepth(node1);
