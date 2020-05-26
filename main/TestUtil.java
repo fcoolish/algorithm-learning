@@ -1083,12 +1083,46 @@ public class TestUtil {
         return  null;
 
     }
+
+    public static ListNode deleteDuplication(ListNode pHead)
+    {
+        if(pHead == null ||pHead.next == null){
+            return  null;
+        }
+        //构建辅助头结点
+        ListNode head = new ListNode(-1);
+        head.next = pHead;
+        ListNode pre = head;
+        ListNode cur = pHead;
+        while( cur != null){
+            if(cur.next != null && cur.next.val == cur.val){
+                //相同结点一直前进
+                while(cur.next != null && cur.next.val == cur.val){
+                    cur = cur.next;
+                }
+                //找到重复和不重复的边界
+                cur = cur.next;
+                pre.next = cur;
+            }else{
+                pre = cur;
+                cur = cur.next;
+            }
+
+        }
+        return  head.next;
+    }
+
+
     public static void main(String[] args) {
 //        TreeNode node1 = new TreeNode(1);
 //        TreeDepth(node1);
         //String str = "baccss";
-        //int i = FirstNotRepeatingChar(str);wa
-        System.out.print("test");
+        //int i = FirstNotRepeatingChar(str);
+        ListNode pHead = new ListNode(0);
+        ListNode p1 = new ListNode(1);
+        System.out.println("");
+
+
     }
 
 }
