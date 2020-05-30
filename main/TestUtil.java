@@ -1179,7 +1179,28 @@ public class TestUtil {
         return res;
     }
 
-
+    public ArrayList<ArrayList<Integer> > PrintTree(TreeNode pRoot) {
+        LinkedList<TreeNode> q = new LinkedList();
+        ArrayList<ArrayList<Integer>> res = new ArrayList<>();
+        q.add(pRoot);
+        while (!q.isEmpty()){
+            int size = q.size();
+            ArrayList<Integer> list = new ArrayList<>();
+            for(int i=0;i<size;i++){
+                TreeNode node = q.poll();
+                if(node == null){
+                    continue;
+                }
+                list.add(node.val);
+                q.offer(node.left);
+                q.offer(node.right);
+            }
+            if(list.size() != 0){
+                res.add(list);
+            }
+        }
+        return res;
+    }
 
     public static void main(String[] args) {
 //        TreeNode node1 = new TreeNode(1);
