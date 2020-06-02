@@ -1227,6 +1227,28 @@ public class TestUtil {
         return treeNode;
     }
 
+    ArrayList<TreeNode> treeList = new ArrayList<>();
+    TreeNode KthNode(TreeNode pRoot, int k)
+    {
+        addNode(pRoot);
+        if(k >= 1 && treeList.size() >= k){
+            return treeList.get(k - 1);
+        }
+        return null;
+    }
+
+
+    //中序遍历
+    void addNode(TreeNode cur){
+        if(cur != null){
+            addNode(cur.left);
+            treeList.add(cur);
+            addNode(cur.right);
+        }
+    }
+
+
+
     public static void main(String[] args) {
 //        TreeNode node1 = new TreeNode(1);
 //        TreeDepth(node1);
