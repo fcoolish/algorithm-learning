@@ -1246,6 +1246,41 @@ public class TestUtil {
             addNode(cur.right);
         }
     }
+    private int count  = 0;
+    private PriorityQueue<Integer> low = new PriorityQueue<>();
+    private PriorityQueue<Integer> high = new PriorityQueue<>(new Comparator<Integer>() {
+        @Override
+        public int compare(Integer o1, Integer o2) {
+            return o2.compareTo(o1);
+        }
+    });
+    public void Insert(Integer num) {
+        count++;
+        if((count & 1) == 1){
+            if(!low.isEmpty() && num > low.peek()){
+                low.offer(num);
+                num = low.poll();
+            }
+            high.offer(num);
+        }else {
+            if(!high.isEmpty() && num < high.peek()){
+                high.offer(num);
+                num = high.poll();
+            }
+            low.offer(num);
+        }
+    }
+
+    public Double GetMedian() {
+        double res = 0;
+        if((count & 1) == 1){
+            res = high.peek();
+        }else{
+            res = (high.peek() + low.peek()) / 2.0;
+        }
+        return res;
+    }
+
 
 
 
