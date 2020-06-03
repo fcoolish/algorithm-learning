@@ -1282,7 +1282,26 @@ public class TestUtil {
     }
 
 
-
+    public ArrayList<Integer> maxInWindows(int [] num, int size)
+    {
+        ArrayList<Integer> res = new ArrayList<>();
+        if(size < 1 ||num == null || num.length == 0) return res;
+        LinkedList<Integer> list = new LinkedList<>();
+        for(int i = 0;i < num.length;i++){
+            while (!list.isEmpty() && num[i] > num[list.peekLast()]){
+                list.pollLast();
+            }
+            list.add(i);
+            //判断左边是否失效
+            if(list.peekFirst() <= i - size){
+                list.pollFirst();
+            }
+            if(i >=size - 1){
+                res.add(num[list.peekFirst()]);
+            }
+        }
+        return  res;
+    }
 
     public static void main(String[] args) {
 //        TreeNode node1 = new TreeNode(1);
