@@ -1360,6 +1360,22 @@ public class TestUtil {
         return sum;
     }
 
+    public int cutRope(int target) {
+        if(target <= 0)return 0;
+        if(target == 1 || target ==2)return 1;
+        if(target == 3)return 2;
+        int m = target % 3;
+        switch (m){
+            case 0:
+                return  (int)Math.pow(3,target / 3);
+            case 1:
+                return  (int)Math.pow(3,target / 3 - 1) * 4;
+            case 2:
+                return  (int)Math.pow(3,target / 3) * 2;
+        }
+        return 0;
+    }
+
     public static void main(String[] args) {
 //        TreeNode node1 = new TreeNode(1);
 //        TreeDepth(node1);
