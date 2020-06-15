@@ -1152,12 +1152,12 @@ public class TestUtil {
 
     public ArrayList<ArrayList<Integer> > Print(TreeNode pRoot) {
         LinkedList<TreeNode> q = new LinkedList();
-        ArrayList<ArrayList<Integer>> res = new ArrayList<>();
+        ArrayList<ArrayList<Integer>> res = new ArrayList<ArrayList<Integer>>();
         boolean rev  = true;
         q.add(pRoot);
         while (!q.isEmpty()){
             int size = q.size();
-            ArrayList<Integer> list = new ArrayList<>();
+            ArrayList<Integer> list = new ArrayList<Integer>();
             for(int i=0;i<size;i++){
                 TreeNode node = q.poll();
                 if(node == null){
@@ -1181,11 +1181,11 @@ public class TestUtil {
 
     public ArrayList<ArrayList<Integer> > PrintTree(TreeNode pRoot) {
         LinkedList<TreeNode> q = new LinkedList();
-        ArrayList<ArrayList<Integer>> res = new ArrayList<>();
+        ArrayList<ArrayList<Integer>> res = new ArrayList<ArrayList<Integer>>();
         q.add(pRoot);
         while (!q.isEmpty()){
             int size = q.size();
-            ArrayList<Integer> list = new ArrayList<>();
+            ArrayList<Integer> list = new ArrayList<Integer>();
             for(int i=0;i<size;i++){
                 TreeNode node = q.poll();
                 if(node == null){
@@ -1227,7 +1227,7 @@ public class TestUtil {
         return treeNode;
     }
 
-    ArrayList<TreeNode> treeList = new ArrayList<>();
+    ArrayList<TreeNode> treeList = new ArrayList<TreeNode>();
     TreeNode KthNode(TreeNode pRoot, int k)
     {
         addNode(pRoot);
@@ -1247,8 +1247,8 @@ public class TestUtil {
         }
     }
     private int count  = 0;
-    private PriorityQueue<Integer> low = new PriorityQueue<>();
-    private PriorityQueue<Integer> high = new PriorityQueue<>(new Comparator<Integer>() {
+    private PriorityQueue<Integer> low = new PriorityQueue<Integer>();
+    private PriorityQueue<Integer> high = new PriorityQueue<Integer>(new Comparator<Integer>() {
         @Override
         public int compare(Integer o1, Integer o2) {
             return o2.compareTo(o1);
@@ -1284,9 +1284,9 @@ public class TestUtil {
 
     public ArrayList<Integer> maxInWindows(int [] num, int size)
     {
-        ArrayList<Integer> res = new ArrayList<>();
+        ArrayList<Integer> res = new ArrayList<Integer>();
         if(size < 1 ||num == null || num.length == 0) return res;
-        LinkedList<Integer> list = new LinkedList<>();
+        LinkedList<Integer> list = new LinkedList<Integer>();
         for(int i = 0;i < num.length;i++){
             while (!list.isEmpty() && num[i] > num[list.peekLast()]){
                 list.pollLast();
