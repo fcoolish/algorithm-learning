@@ -88,8 +88,8 @@ public class LeetCodeUtil {
             }
             //正常情况
             int half = k / 2;
-            int newIndex1 = Math.min(index1 + half,length1);
-            int newIndex2 = Math.min(index2 + half,length2);
+            int newIndex1 = Math.min(index1 + half,length1) - 1;
+            int newIndex2 = Math.min(index2 + half,length2) - 1;
             int pivot1 = nums1[newIndex1],pivot2 = nums2[newIndex2];
             if(pivot1 <= pivot2){
                 k -=(newIndex1 - index1 + 1);
