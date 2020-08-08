@@ -109,7 +109,7 @@ public class LeetCodeUtil {
         int maxLen = 1,begin = 0;
         boolean[][] dp = new boolean[len][len];
         char[] charArray = s.toCharArray();
-        for(int i =0;i < len;++){
+        for(int i =0;i < len;i++){
             dp[i][i] = true;
         }
         for(int j = 1;j < len;j++){
@@ -153,7 +153,23 @@ public class LeetCodeUtil {
         return  ret.toString();
     }
 
-    public static void main(String[] args) {
+    public static int reverse(int x) {
+       int res = 0;
+        while(x!=0){
+            int pop = x % 10;
+            if((Integer.MAX_VALUE/10 < res ) || (Integer.MIN_VALUE / 10) > res ){
+                return 0;
+            }
+            res = res * 10 + pop;
+            x = x / 10;
+        }
+       return res;
+    }
 
+
+
+    public static void main(String[] args) {
+        //int x = reverse(1534236469);
+        //System.out.println("res:"+x);
     }
 }
