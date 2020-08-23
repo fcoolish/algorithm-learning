@@ -241,6 +241,21 @@ public class LeetCodeUtil {
         return s.charAt(i - 1) == p.charAt(j - 1);
     }
 
+    public int maxArea(int[] height) {
+        int l = 0,r = height.length - 1;
+        int ans = 0;
+        while(l < r){
+            int area = Math.min(height[1],height[r]) * (r - l);
+            ans = Math.max(ans,area);
+            if(height[1] <= height[r]){
+                ++l;
+            }else{
+                --r;
+            }
+        }
+        return ans;
+    }
+
     public static void main(String[] args) {
 
         //System.out.println("list:");
