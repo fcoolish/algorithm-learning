@@ -321,7 +321,7 @@ public class LeetCodeUtil {
         Arrays.sort(nums);
         List<List<Integer>> ans = new ArrayList<List<Integer>>();
         //枚举a
-        for(int first = 0;first < n;++first){
+        for(int first = 0;first < n;first++){
             //需要和上一次枚举的数不相同
             if(first > 0&&nums[first] == nums[first - 1]){
                 continue;
@@ -329,7 +329,7 @@ public class LeetCodeUtil {
             int third = n - 1;
             int target  = -nums[first];
             //枚举b
-            for(int second = first + 1;second < n; ++second){
+            for(int second = first + 1;second < n; second++){
                 //需要和上一次不同
                 if(second > first + 1&& nums[second] == nums[second -1]){
                     continue;
