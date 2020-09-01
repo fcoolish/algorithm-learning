@@ -19,6 +19,7 @@ public class Solution {
     }
 
     public boolean helpVerify(int[] sequence,int start,int root){
+
         if(start >= root)return true;
         int key = sequence[root];
         int i;
@@ -27,12 +28,18 @@ public class Solution {
             if(sequence[i] > key){
                 break;
                 }
-        }
-            //在右子树中判断是否含有小于root的值，如果有返回false
-            for(int j =i;j< root;j++){
+           }
+        //在右子树中判断是否含有小于root的值，如果有返回false
+         for(int j =i;j< root;j++){
                 if(sequence[j] < key)
                     return false;
             }
+            //左子树中判断是否大于root的值，有则false
+         for(int j = start;j< i;j++){
+                 if(sequence[j] > key){
+                       return false;
+                       }
+             }
         return  helpVerify(sequence,start,i-1)&& helpVerify(sequence,i,root-1);
     }
 
