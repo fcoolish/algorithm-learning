@@ -355,6 +355,35 @@ public class LeetCodeUtil {
         return ans;
     }
 
+    public int threeSumClosest(int[] nums, int target) {
+        Arrays.sort(nums);
+        int n = nums.length;
+        int best = 10000000;
+        //枚举A
+        for(int i =0;i < n;i++){
+            if(i > 0&& nums[i] == nums[i - 1]){
+                    continue;
+            }
+            //使用双指针枚举b和c
+            int j = i + 1,k = n - 1;
+            while(j < k){
+                int sum = nums[i] + nums[j] + nums[k];
+                if(sum == target){
+                    return target;
+                }
+                if(Math.abs(sum - target) < Math.abs(best - target)){
+                    best = sum;
+                }
+                if(sum > target){
+                    k--;
+                }else{
+                    j++;
+                }
+            }
+        }
+        return best;
+    }
+
     public static void main(String[] args) {
 
         //System.out.println("list:");
