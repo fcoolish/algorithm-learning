@@ -462,6 +462,23 @@ public class LeetCodeUtil {
         return ans;
     }
 
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        if(head == null)return null;
+        ListNode pHead = new ListNode(0);
+        pHead.next = head;
+        ListNode fast = pHead;
+        ListNode slow = pHead;
+        for(int i = 0;i<= n;i++){
+            fast = fast.next;
+        }
+        while(fast != null){
+            fast = fast.next;
+            slow = slow.next;
+        }
+        slow.next = slow.next.next;
+        return pHead.next;
+    }
+
     public static void main(String[] args) {
 
         //System.out.println("list:");
