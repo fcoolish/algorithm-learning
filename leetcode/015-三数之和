@@ -33,10 +33,10 @@ public class Solution {
             if(first > 0&&nums[first] == nums[first - 1]){
                 continue;
             }
-            int third = n - 1;
             int target  = -nums[first];
             //枚举b
             for(int second = first + 1;second < n; second++){
+                int third = n - 1;
                 //需要和上一次不同
                 if(second > first + 1&& nums[second] == nums[second -1]){
                     continue;

@@ -418,6 +418,50 @@ public class LeetCodeUtil {
         }
     }
 
+    public List<List<Integer>> fourSum(int[] nums, int target) {
+        int n = nums.length;
+        Arrays.sort(nums);
+        List<List<Integer>> ans = new ArrayList<List<Integer>>();
+        //枚举a
+        for(int first = 0;first < n -3;first++){
+            //需要和上一次枚举的数不相同
+            if(first > 0&&nums[first] == nums[first - 1]){
+                continue;
+            }
+            //枚举b
+            for(int second = first + 1;second < n - 2; second++){
+                //需要和上一次不同
+                if(second >first+ 1 &&nums[second] == nums[second -1]){
+                    continue;
+                }
+                for(int third = second + 1;third < n -1;third++){
+                    if(third >second+ 1 &&nums[third] == nums[third -1]){
+                        continue;
+                    }
+                    int four = n - 1;
+                    //需要保证b的指针在c的左侧
+                    while(third < four && nums[first] + nums[second] + nums[four] + nums[third] > target){
+                        four--;
+                    }
+                    if(four == third){
+                        break;
+                    }
+                    if(nums[first] + nums[second] + nums[four] + nums[third] == target){
+                        List<Integer> list = new ArrayList<Integer>();
+                        list.add(nums[first]);
+                        list.add(nums[second]);
+                        list.add(nums[third]);
+                        list.add(nums[four]);
+                        ans.add(list);
+                    }
+
+                }
+
+            }
+        }
+        return ans;
+    }
+
     public static void main(String[] args) {
 
         //System.out.println("list:");
