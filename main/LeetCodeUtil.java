@@ -399,11 +399,11 @@ public class LeetCodeUtil {
             put('8', "tuv");
             put('9', "wxyz");
         }};
-        backtrack(combinations,phoneMap,digits,0,new StringBuffer());
+        backtracks(combinations,phoneMap,digits,0,new StringBuffer());
         return combinations;
     }
 
-    public void backtrack(List<String> combinations,Map<Character,String> phoneMap,String digits,int index,StringBuffer combination){
+    public void backtracks(List<String> combinations,Map<Character,String> phoneMap,String digits,int index,StringBuffer combination){
         if(index == digits.length()){
             combinations.add(combination.toString());
         }else{
@@ -412,7 +412,7 @@ public class LeetCodeUtil {
             int lettersCount = letters.length();
             for(int i = 0;i < lettersCount;i++){
                 combination.append(letters.charAt(i));
-                backtrack(combinations,phoneMap,digits,index + 1,combination);
+                backtracks(combinations,phoneMap,digits,index + 1,combination);
                 combination.deleteCharAt(index);
             }
         }
@@ -523,6 +523,30 @@ public class LeetCodeUtil {
         if(l2 !=null)temp.next = l2;
         return head.next;
     }
+
+    public List<String> generateParenthesis(int n) {
+        List<String> ans = new ArrayList<String>();
+        backtrace(ans,new StringBuilder(),0,0,n);
+        return ans;
+    }
+
+    public void backtrace(List<String> ans,StringBuilder cur,int open,int close,int max){
+        if(cur.length() == max * 2){
+            ans.add(cur.toString());
+            return;
+        }
+        if(open < max){
+            cur.append('(');
+            backtrace(ans,cur,open + 1,close,max);
+            cur.deleteCharAt(cur.length() - 1);
+        }
+        if(close < open){
+            cur.append(")");
+            backtrace(ans,cur,open,close +1,max);
+            cur.deleteCharAt(cur.length() - 1);
+        }
+    }
+
 
     public static void main(String[] args) {
 
