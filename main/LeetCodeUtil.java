@@ -507,6 +507,9 @@ public class LeetCodeUtil {
     }
 
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+        if(l1 == null || l2 == null){
+            return l1 == null ?l2:l1;
+        }
         ListNode head = new ListNode(0);
         ListNode temp = head;
         while(l1 !=null && l2!= null){
@@ -523,6 +526,19 @@ public class LeetCodeUtil {
         if(l2 !=null)temp.next = l2;
         return head.next;
     }
+
+    public ListNode mergeLists(ListNode[] lists,int left,int right) {
+        if(left == right) return lists[1];
+        if(left > right)return null;
+        int mid = (left + right)/2;
+        return mergeTwoLists(mergeLists(lists,left,mid),mergeLists(lists,mid + 1,right));
+    }
+
+    public ListNode mergeKLists(ListNode[] lists) {
+        if (lists == null ||lists.length == 0)return null;
+        return mergeLists(lists,0,lists.length - 1);
+    }
+
 
     public List<String> generateParenthesis(int n) {
         List<String> ans = new ArrayList<String>();
