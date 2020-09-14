@@ -8,71 +8,29 @@
 
 public class Solution {
 
-    public ArrayList<String> Permutation(String str) {
-        StringBuilder stringBuilder = new StringBuilder(str);
-        ArrayList<String> result = PermutationHelp(stringBuilder);
-        return result;
-    }
+	public ArrayList<String> Permutation(String str) {
+		Set<String> list = new HashSet<>();
+		backtrace(list,new StringBuilder(str),0);
+		ArrayList result = new ArrayList<>(list);
+		Collections.sort(result);
+		return result;
+	}
 
-    //排序思路1，比较器
-    public ArrayList<String>PermutationHelp(StringBuilder str){
-        ArrayList<String>result = new ArrayList<String>();
-        if(str.length() == 1)result.add(str.toString());
-        else{
-            for(int i = 0;i< str.length();i++){
-                if(i ==0 || str.charAt(i) != str.charAt(0)){
-                    char temp = str.charAt(i);
-                    str.setCharAt(i,str.charAt(0));
-                    str.setCharAt(0,temp);
-                    ArrayList<String>newResult = PermutationHelp(new StringBuilder(str.substring(1)));
-                    for(int j = 0;j<newResult.size();j++)
-                        result.add(str.substring(0,1)+newResult.get(j));
-                    //用完还是要放回去的
-                    temp = str.charAt(0);
-                    str.setCharAt(0,str.charAt(i));
-                    str.setCharAt(i,temp);
-                }
-            }
-            //实现字母排序
-            Collections.sort(result, new Comparator<String>() {
-                @Override
-                public int compare(String arg0, String arg1) {
-                    int i = 1;
-                    if(arg0.compareTo(arg1)>0){
-                        return 1;
-                    }else if(arg0.compareTo(arg1)<0){
-                        return -1;
-                    }else{
-                        return compare(arg0.substring(i++),arg1.substring(i++));
-                    }
-                }
-            });
-        }
-        return  result;
-    }
 
-    //排序思路2，直接用TreeSet
-        public ArrayList<String>PermutationHelp(StringBuilder str){
-            Set<String>result = new TreeSet<String>();
-            if(str.length() == 1)result.add(str.toString());
-            else{
-                for(int i = 0;i< str.length();i++){
-                    if(i ==0 || str.charAt(i) != str.charAt(0)){
-                        char temp = str.charAt(i);
-                        str.setCharAt(i,str.charAt(0));
-                        str.setCharAt(0,temp);
-                        ArrayList<String>newResult = PermutationHelp(new StringBuilder(str.substring(1)));
-                        for(int j = 0;j<newResult.size();j++)
-                            result.add(str.substring(0,1)+newResult.get(j));
-                        //用完还是要放回去的
-                        temp = str.charAt(0);
-                        str.setCharAt(0,str.charAt(i));
-                        str.setCharAt(i,temp);
-                    }
-                }
 
-            }
-            return  new ArrayList<String>(result);
-        }
-
+	public void backtrace(Set list,StringBuilder str,int index){
+		if(index + 1== str.length()){
+			list.add(str.toString());
+		}else{
+			for(int i = index;i < str.length();i++){
+				char temp = str.charAt(index);
+				str.setCharAt(index,str.charAt(i));
+				str.setCharAt(i,temp);
+				backtrace(list,str,index + 1);
+				temp = str.charAt(index);
+				str.setCharAt(index,str.charAt(i));
+				str.setCharAt(i,temp);
+			}
+		}
+	}
 }
