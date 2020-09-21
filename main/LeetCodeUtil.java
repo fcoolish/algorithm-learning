@@ -634,6 +634,59 @@ public class LeetCodeUtil {
         return i;
     }
 
+    public int strStr(String haystack, String needle) {
+        int n  = haystack.length();
+        int L = needle.length();
+        if(L == 0)return 0;
+        int pn = 0;
+        while(pn < n - L + 1){
+            while(pn < n - L + 1&&haystack.charAt(pn) != needle.charAt(0)){
+                    pn++;
+                }
+                int currLen = 0 ,pL = 0;
+                while (pL < L && pn <n && haystack.charAt(pn) == needle.charAt(pL)){
+                    pn++;
+                    pL++;
+                    currLen++;
+                }
+                if(currLen == L)return pn -L;
+                pn = pn - currLen + 1;
+        }
+        return -1;
+    }
+
+    public int divide(int dividend, int divisor) {
+        if(divisor == -1 && dividend == Integer.MIN_VALUE){
+            return Integer.MAX_VALUE;
+        }
+        if(dividend == 0)return 0;
+        if(divisor == 1) return dividend;
+        if(divisor == -1){
+            if(dividend >Integer.MIN_VALUE)return -dividend;
+            return Integer.MAX_VALUE;
+        }
+        int sign = 1;
+        if((dividend > 0&& divisor < 0) || (dividend < 0 && divisor > 0)){
+            sign = -1;
+        }
+        int a = dividend > 0 ? -dividend : dividend;
+        int b = divisor > 0 ? - divisor : divisor;
+        if(a > b)return 0;
+        int ans = calDiv(a,b);
+        return  sign == -1 ? -ans : ans;
+    }
+
+    int calDiv(int a,int b){
+        if(a > b) return 0;
+        int count = 1;
+        int tb = b;
+        while(tb + tb >= a && tb + tb < 0){
+            tb +=tb;
+            count += count;
+        }
+        return count+calDiv(a - tb,b);
+    }
+
     public static void main(String[] args) {
 
         //System.out.println("list:");
