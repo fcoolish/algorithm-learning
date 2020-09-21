@@ -8,22 +8,22 @@
 
 public class Solution {
     public String PrintMinNumber(int [] numbers) {
-        if(numbers == null || numbers.length == 0)return "";
-        for(int i = 0;i < numbers.length;i++){
-            for(int j = i+1;j < numbers.length;j++){
-                int sum1 = Integer.valueOf(numbers[i]+""+numbers[j]);
-                int sum2 = Integer.valueOf(numbers[j]+""+numbers[i]);
-                if(sum1 > sum2){
-                    int temp = numbers[j];
-                    numbers[j] = numbers[i];
-                    numbers[i] = temp;
-                }
-            }
-        }
-        String str = new String("");
-        for(int i =0;i < numbers.length;i++) {
-            str = str +numbers[i];
-        }
-        return str;
+		if(numbers == null || numbers.length == 0)return "";
+		for(int i = 0;i< numbers.length -1;i++){
+			for (int j = i + 1;j < numbers.length;j++){
+				String sumA = String.valueOf(numbers[i]) + numbers[j];
+				String sumB = String.valueOf(numbers[j]) + numbers[i];
+				if(sumA.compareTo(sumB) < 0){
+					int temp = numbers[i];
+					numbers[i] = numbers[j];
+					numbers[j] = temp;
+				}
+			}
+		}
+		StringBuilder sb = new StringBuilder();
+		for(int i =0;i < numbers.length;i++){
+			sb.append(numbers[i]);
+		}
+		return sb.toString();
     }
 }
