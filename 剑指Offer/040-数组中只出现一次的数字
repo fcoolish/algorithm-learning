@@ -30,4 +30,22 @@ public class Solution {
         }
 
     }
+
+    //更优解：异或 + 哈希
+	public void FindNumsAppearOnce(int [] array,int num1[] , int num2[]) {
+		if(array == null || array.length == 0)return;
+		int res = 0;
+		for(int i = 0;i < array.length;i++){
+			res  ^=array[i];
+		}
+		int index = res & (-res);
+		num1[0] = 0;num2[0] = 0;
+		for(int i = 0;i< array.length;i++){
+			if((index&array[i]) == 0){
+				num1[0] = num1[0] ^ array[i];
+			}else{
+				num2[0] = num2[0] ^array[i];
+			}
+		}
+	}
 }
