@@ -687,6 +687,103 @@ public class LeetCodeUtil {
         return count+calDiv(a - tb,b);
     }
 
+    public List<Integer> findSubstring(String s, String[] words) {
+        List<Integer> res = new ArrayList<Integer>();
+        if(s == null || s.length() == 0 || words == null || words.length == 0)return res;
+        HashMap<String,Integer> map  = new HashMap<String, Integer>();
+        int one_word = words[0].length();
+        int word_num = words.length;
+        int all_len = one_word * word_num;
+        for(String word:words){
+            map.put(word,map.getOrDefault(word,0)+1);
+        }
+        for(int i = 0;i <s.length() - all_len + 1;i++){
+            String tmp = s.substring(i,i+all_len);
+            HashMap<String,Integer> tmp_map = new HashMap<String, Integer>();
+            for(int j = 0;j < all_len;j +=one_word){
+                String w = tmp.substring(j,j + one_word);
+                tmp_map.put(w,tmp_map.getOrDefault(w,0) + 1);
+            }
+            if(map.equals(tmp_map))res.add(i);
+        }
+        return res;
+    }
+
+    public void nextPermutation(int[] nums) {
+        int i = nums.length -2;
+        while(i >=0 && nums[i + 1] <= nums[i]){
+            i--;
+        }
+        if(i >=0){
+            int j = nums.length - 1;
+            while(j >=0 && nums[j] <= nums[i]){
+                j--;
+            }
+            int temp = nums[i];
+            nums[i] = nums[j];
+            nums[j] = temp;
+        }
+        reverse(nums,i + 1);
+    }
+
+    public void reverse(int[] nums,int start){
+        int i = start,j = nums.length -1;
+        while(i < j){
+            int temp = nums[i];
+            nums[i] = nums[j];
+            nums[j] = temp;
+            i++;
+            j--;
+        }
+    }
+
+    public int longestValidParentheses(String s) {
+        if(s == null || s.length() ==0)return 0;
+        Stack<Integer> stack = new Stack<Integer>();
+        stack.push(-1);
+        int max = 0;
+        for(int i =0;i<s.length();i++){
+            if(s.charAt(i) == '('){
+                stack.push(i);
+            }else{
+                stack.pop();
+                if(stack.isEmpty()){
+                    stack.push(i);
+                }else {
+                    max = Math.max(max,i - stack.peek());
+                }
+            }
+        }
+        return max;
+    }
+
+    public int search(int[] nums, int target) {
+        if(nums == null || nums.length == 0)return -1;
+        int n = nums.length;
+        if(n == 1){
+            return nums[0] == target?0:-1;
+        }
+        int l = 0,r = n -1;
+        while(l <=r){
+            int mid = (l + r)/2;
+            if(nums[mid] == target)return mid;
+            if(nums[0] <= nums[mid]){
+                if(nums[0] <= target && target < nums[mid]){
+                    r = mid - 1;
+                }else{
+                    l = mid + 1;
+                }
+            }else{
+                if(nums[mid] < target&&target <=nums[n - 1]){
+                    l = mid +1;
+                }else{
+                    r = mid - 1;
+                }
+            }
+        }
+        return -1;
+    }
+
     public static void main(String[] args) {
 
         //System.out.println("list:");
