@@ -784,8 +784,37 @@ public class LeetCodeUtil {
         return -1;
     }
 
-    public static void main(String[] args) {
+    public static int[] searchRange(int[] nums, int target) {
+        int[] res = new int[]{-1,-1};
+        if(nums == null || nums.length==0)return res;
+        if(nums.length == 1 && nums[0] == target){
+            return new int[]{0,0};
+        }
+        int low = 0,high = nums.length - 1;
+        while (low <= high){
+            int mid = (low + high)>>1;
+            if(nums[mid] < target){
+                low = mid + 1;
+            }else if(nums[mid] > target){
+                high = mid - 1;
+            }else{
+                int left=mid,right = mid;
+                while(right + 1<nums.length&&nums[right + 1] == target){
+                    right++;
+                }
+                while(left - 1>=0&&nums[left - 1] == target){
+                    left--;
+                }
+                res[0] = left;res[1] = right;
+                return res;
+            }
+        }
+        return res;
+    }
 
+    public static void main(String[] args) {
+        int[] array = new int[]{5,7,7,8,8,10};
+        //searchRange(array,8);
         //System.out.println("list:");
     }
 }
