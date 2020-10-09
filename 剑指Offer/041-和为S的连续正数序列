@@ -10,7 +10,7 @@ public class Solution {
 
 	public ArrayList<ArrayList<Integer> > FindContinuousSequence(int sum) {
 		ArrayList<ArrayList<Integer>> res = new ArrayList<>();
-		int left = 1,right = left;
+		int left = 1,right = 1;
 		int temp = 0;
 		while(left <= sum/2){
 			if(temp < sum){
