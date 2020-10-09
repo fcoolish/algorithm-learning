@@ -784,8 +784,56 @@ public class LeetCodeUtil {
         return -1;
     }
 
-    public static void main(String[] args) {
+    public int searchInsert(int[] nums, int target) {
+        if(nums == null || nums.length ==0)return 0;
+        int low = 0,high = nums.length - 1;
+        int res = nums.length;
+        while(low <=high){
+            int mid = (low + high)>>1;
+            if(nums[mid] >= target){
+                res = mid;
+                high = mid - 1;
+            }else{
+                low = mid + 1;
+            }
 
+        }
+        return res;
+    }
+
+
+    public boolean isValidSudoku(char[][] board) {
+        if(board == null ||board.length == 0 || board[0].length ==0){
+            return false;
+        }
+        HashMap<Integer,Integer>[] rows = new HashMap[9];
+        HashMap<Integer,Integer>[] columns = new HashMap[9];
+        HashMap<Integer,Integer>[] boxes = new HashMap[9];
+        for(int i = 0;i<9;i++){
+            rows[i] = new HashMap<Integer, Integer>();
+            columns[i] = new HashMap<Integer, Integer>();
+            boxes[i] = new HashMap<Integer, Integer>();
+        }
+        for(int i = 0;i<9;i++){
+            for(int j = 0;j<9;j++){
+                char num = board[i][j];
+                if(num !='.'){
+                    int n = (int)num;
+                    int box_index =(i/3)*3+j/3;
+                    rows[i].put(n,rows[i].getOrDefault(n,0)+1);
+                    columns[j].put(n,columns[j].getOrDefault(n,0)+1);
+                    boxes[box_index].put(n,boxes[box_index].getOrDefault(n,0)+1);
+                    if(rows[i].get(n) >1||columns[j].get(n)>1||boxes[box_index].get(n)>1)
+                        return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public static void main(String[] args) {
+        int[] array = new int[]{5,7,7,8,8,10};
+        //searchRange(array,8);
         //System.out.println("list:");
     }
 }
