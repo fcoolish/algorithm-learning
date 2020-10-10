@@ -8,36 +8,37 @@
 
 public class Solution {
 
-    public String ReverseSentence(String str) {
-        if(str == null || str.length() == 0){
-            return "";
-        }
-        StringBuilder str1 = new StringBuilder(str);
-        str1.reverse();
-        StringBuilder result = new StringBuilder();
-        int j = 0;
-        int blankNum = 0;
-        //空格数量为0时候直接返回
-        int index = str.indexOf(" ");
-        //空格数为0时，直接返回字符串
-        if(index == -1){
-            return  str;
-        }
-        for(int i = 0;i < str1.length();i++){
-            //1.当有空格，没有到达最后一个单词时候
-            if(str1.charAt(i) == ' '&&(i !=str1.length() - 1)){
-                blankNum++;
-                StringBuilder str2 = new StringBuilder(str1.substring(j,i));
-                result.append(str2.reverse().toString()).append(" ");
-                j = i + 1;
-            }
-            //2、当有空格，且到达最后一个单词时
-            if(blankNum != 0 &&i==(str1.length() - 1)){
-                StringBuilder str3 = new StringBuilder(str1.substring(j,i + 1));
-                result.append(str3.reverse());
-            }
+    //解法1：借助库函数split
+	public static String  ReverseSentence(String str) {
+		if(str == null || str.length() ==0)return str;
+		String[] strings = str.split(" ");
+		if(strings.length == 0)return str;
+		StringBuilder res = new StringBuilder();
+		for(int i = strings.length - 1;i>=0;i--){
+			res.append(strings[i]).append(" ");
+		}
+		return res.toString().trim();
+	}
 
-        }
-        return  result.toString();
-    }
+	//解法2：自己实现库函数split功能
+		public  static String  ReverseSentence(String str) {
+    		if(str == null || str.length() ==0 ||"".equals(str.trim()))return str;
+    		ArrayList<String> list = new ArrayList<>();
+    		StringBuilder res = new StringBuilder();
+    		StringBuilder sb = new StringBuilder();
+    		for(int i = 0;i<str.length();i++){
+    			if(str.charAt(i) == ' '||(i == str.length() - 1)){
+    				list.add(sb.append(str.charAt(i)==' '?"":str.charAt(i)).toString());
+    				sb = new StringBuilder("");
+    			}else{
+    				sb.append(str.charAt(i));
+    			}
+    		}
+    		String[] result = new String[list.size()];
+    		result =  (String[])list.subList(0, list.size()).toArray(result);
+    		for(int i = result.length - 1;i>=0;i--){
+    			res.append(result[i]).append(" ");
+    		}
+    		return res.toString().trim();
+    	}
 }
