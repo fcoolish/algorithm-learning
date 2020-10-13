@@ -12,24 +12,19 @@ LL决定去买体育彩票啦。 现在,要求你使用这幅牌模拟上面的�
 public class Solution {
 
     public boolean isContinuous(int [] numbers) {
-        if(numbers == null || numbers.length != 5){
-            return false;
-        }
-        int num = 0;
-        TreeSet<Integer> set = new TreeSet<Integer>();
-        for(int i = 0;i < numbers.length;i++){
-            if(numbers[i] == 0){
-                num++;
-            }else{
-                set.add(numbers[i]);
-            }
-        }
-        if((num + set.size() != 5)){
-            return false;
-        }
-        if((set.last() - set.first()) < 5){
-            return true;
-        }
-        return false;
+		if(numbers == null || numbers.length == 0 ||numbers.length != 5)return false;
+		TreeSet<Integer> set = new TreeSet<>();
+		int num = 0;
+		for(int i = 0;i<numbers.length;i++){
+			if(numbers[i] == 0){
+				num++;
+			}else{
+				set.add(numbers[i]);
+			}
+		}
+		if(num + set.size()!=5){
+			return false;
+		}
+		return set.last() - set.first() < 5;
     }
 }
