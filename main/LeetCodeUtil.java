@@ -867,6 +867,23 @@ public class LeetCodeUtil {
         }
     }
 
+    public String countAndSay(int n) {
+        if(n == 1)return "1";
+        String str = countAndSay(n - 1);
+        StringBuilder res = new StringBuilder();
+        int start = 0;
+        for(int i = 1;i<=str.length();i++){
+            if(i == str.length()){
+                res.append(i - start).append(str.charAt(start));
+            }else if(str.charAt(i) != str.charAt(start)){
+                res.append(i -start).append(str.charAt(start));
+                start = i;
+            }
+
+        }
+        return res.toString();
+    }
+
     public static void main(String[] args) {
         int[] array = new int[]{5,7,7,8,8,10};
         //searchRange(array,8);
