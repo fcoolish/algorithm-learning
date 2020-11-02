@@ -963,6 +963,32 @@ public class LeetCodeUtil {
         return n + 1;
     }
 
+    public int trap(int[] height) {
+        if(height == null || height.length == 0)return 0;
+        int left = 0,right = height.length - 1;
+        int ans = 0;
+        int left_max = 0,right_max = 0;
+        while(left < right){
+            if(height[left] < height[right]){
+                if(height[left] >= left_max){
+                    left_max = height[left];
+                }else{
+                    ans += (left_max - height[left]);
+                }
+                left++;
+            }else{
+                if(height[right] >= right_max){
+                    right_max = height[right];
+                }else{
+                    ans += (right_max - height[right]);
+
+                }
+                right--;
+            }
+        }
+        return ans;
+    }
+
     public static void main(String[] args) {
         int[] array = new int[]{5,7,7,8,8,10};
         //searchRange(array,8);
