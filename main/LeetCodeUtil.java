@@ -831,6 +831,164 @@ public class LeetCodeUtil {
         return true;
     }
 
+    boolean[][] line = new boolean[9][9];
+    boolean[][] column = new boolean[9][9];
+    boolean[][][] block = new boolean[3][3][9];
+    boolean valid = false;
+    List<int[]> spaces = new ArrayList<int[]>();
+    public void solveSudoku(char[][] board) {
+        for(int i = 0;i < 9;i++){
+            for(int j = 0;j < 9;j++){
+              if(board[i][j] =='.'){
+                  spaces.add(new int[]{i,j});
+              }else{
+                  int digit = board[i][j] - '0' - 1;
+                  line[i][digit] = column[j][digit] = block[i/3][j/3][digit] = true;
+              }
+            }
+        }
+        dfs(board,0);
+    }
+
+    public void dfs(char[][] board,int pos){
+        if(pos == spaces.size()){
+            valid = true;
+            return;
+        }
+        int[] spece = spaces.get(pos);
+        int i = spece[0],j = spece[1];
+        for(int digit = 0;digit < 9&&!valid;digit++){
+            if(!line[i][digit] && !column[j][digit]&&!block[i/3][j/3][digit]){
+                line[i][digit] = column[j][digit] = block[i/3][j/3][digit] = true;
+                board[i][j] = (char)(digit + '0' + 1);
+                dfs(board,pos + 1);
+                line[i][digit] = column[j][digit] = block[i/3][j/3][digit] = false;
+            }
+        }
+    }
+
+    public String countAndSay(int n) {
+        if(n == 1)return "1";
+        String str = countAndSay(n - 1);
+        StringBuilder res = new StringBuilder();
+        int start = 0;
+        for(int i = 1;i<=str.length();i++){
+            if(i == str.length()){
+                res.append(i - start).append(str.charAt(start));
+            }else if(str.charAt(i) != str.charAt(start)){
+                res.append(i -start).append(str.charAt(start));
+                start = i;
+            }
+
+        }
+        return res.toString();
+    }
+
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        List<List<Integer>>ans = new ArrayList<List<Integer>>();
+        List<Integer> combine = new ArrayList<Integer>();
+        dfss(candidates,target,ans,combine,0);
+        return ans;
+    }
+
+    public void dfss(int[] candidates,int target,List<List<Integer>> ans,List<Integer> combine,int idx){
+        if(idx == candidates.length){
+            return;
+        }
+        if(target == 0){
+            ans.add(new ArrayList<Integer>(combine));
+            return;
+        }
+        dfs(candidates,target,ans,combine,idx +1);
+        if(target - candidates[idx] >=0){
+            combine.add(candidates[idx]);
+            dfs(candidates,target - candidates[idx],ans,combine,idx);
+            combine.remove(combine.size() - 1);
+        }
+    }
+
+
+    List<int[]> freq = new ArrayList<int[]>();
+    List<List<Integer>> ans = new ArrayList<List<Integer>>();
+    List<Integer> sequence = new ArrayList<Integer>();
+
+    public List<List<Integer>> combinationSum2(int[] candidates, int target) {
+        Arrays.sort(candidates);
+        for(int num:candidates){
+            int size = freq.size();
+            if(freq.isEmpty() || num != freq.get(size - 1)[0]){
+                freq.add(new int[]{num,1});
+            }else{
+                ++freq.get(size - 1)[1];
+            }
+        }
+        dfs(0,target);
+        return ans;
+    }
+
+    public void dfs(int pos,int rest){
+        if(rest == 0){
+            ans.add(new ArrayList<Integer>(sequence));
+            return;
+        }
+        if(pos == freq.size() || rest < freq.get(pos)[0]){
+         return;
+        }
+        dfs(pos +1,rest);
+        int most = Math.min(rest / freq.get(pos)[0],freq.get(pos)[1]);
+        for(int i = 1;i <= most;i++){
+            sequence.add(freq.get(pos)[0]);
+            dfs(pos + 1,rest - i * freq.get(pos)[0]);
+        }
+        for(int i = 1;i <= most;i++){
+            sequence.remove(sequence.size() - 1);
+        }
+    }
+
+    public int firstMissingPositive(int[] nums) {
+        if(nums == null || nums.length == 0)return 1;
+        int n = nums.length;
+        for(int i = 0;i < n;i++){
+            while(nums[i] >0&& nums[i] < n && nums[nums[i] - 1] != nums[i]){
+                int temp = nums[nums[i] - 1];
+                nums[nums[i] - 1] = nums[i];
+                nums[i] = temp;
+            }
+        }
+        for(int i = 0;i < n;i++){
+            if(nums[i] != i +1){
+                return i + 1;
+            }
+        }
+        return n + 1;
+    }
+
+    public int trap(int[] height) {
+        if(height == null || height.length == 0)return 0;
+        int left = 0,right = height.length - 1;
+        int ans = 0;
+        int left_max = 0,right_max = 0;
+        while(left < right){
+            if(height[left] < height[right]){
+                if(height[left] >= left_max){
+                    left_max = height[left];
+                }else{
+                    ans += (left_max - height[left]);
+                }
+                left++;
+            }else{
+                if(height[right] >= right_max){
+                    right_max = height[right];
+                }else{
+                    ans += (right_max - height[right]);
+
+                }
+                right--;
+            }
+        }
+        return ans;
+    }
+
     public static void main(String[] args) {
         int[] array = new int[]{5,7,7,8,8,10};
         //searchRange(array,8);
