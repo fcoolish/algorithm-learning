@@ -899,10 +899,10 @@ public class LeetCodeUtil {
             ans.add(new ArrayList<Integer>(combine));
             return;
         }
-        dfs(candidates,target,ans,combine,idx +1);
+        dfss(candidates,target,ans,combine,idx +1);
         if(target - candidates[idx] >=0){
             combine.add(candidates[idx]);
-            dfs(candidates,target - candidates[idx],ans,combine,idx);
+            dfss(candidates,target - candidates[idx],ans,combine,idx);
             combine.remove(combine.size() - 1);
         }
     }
