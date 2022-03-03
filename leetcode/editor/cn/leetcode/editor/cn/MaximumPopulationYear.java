@@ -47,30 +47,26 @@ public class MaximumPopulationYear {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        public int maximumPopulation2(int[][] logs) {
-            int length = logs.length;
-            Map<Integer, Integer> map = new HashMap<>();
-            for (int i = 0; i < length; i++) {
-                int start = logs[i][0];
-                int end = logs[i][1];
-                for (int j = start; j < end; j++) {
-                    map.put(j, map.getOrDefault(j, 0) + 1);
-                }
-            }
-            int max = 0, year = 2051;
-            for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
-                if (entry.getValue() >= max && entry.getKey() < year) {
-                    max = entry.getValue();
-                    year = entry.getKey();
-                }else if(entry.getValue() > max){
-                    max = entry.getValue();
-                    year = entry.getKey();
-                }
-            }
-            return year;
-        }
 
         public int maximumPopulation(int[][] logs) {
+            int length = logs.length;
+            int[] year = new int[101];
+            for (int i = 0; i < length; i++) {
+                year[logs[i][0] - 1950]++;
+                year[logs[i][1] - 1950]--;
+            }
+            int max = 0, res = 2051, sum = 0;
+            for (int i = 0; i < year.length; i++) {
+                sum += year[i];
+                if (sum > max) {
+                    res = i;
+                    max = sum;
+                }
+            }
+            return res + 1950;
+        }
+
+        public int maximumPopulation2(int[][] logs) {
             int length = logs.length;
             int[] num = new int[101];
             for (int i = 0; i < length; i++) {
@@ -81,8 +77,8 @@ public class MaximumPopulationYear {
                 }
             }
             int max = 0, year = 2051;
-            for (int i =0;i < 101;i++) {
-                if(num[i] > max){
+            for (int i = 0; i < 101; i++) {
+                if (num[i] > max) {
                     max = num[i];
                     year = i + 1950;
                 }
