@@ -65,8 +65,19 @@ public class SortIntegersByTheNumberOf1Bits{
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    public int[] sortByBits(int[] arr) {
-        Map<Integer,List<Integer>> map = new LinkedHashMap<>();
+
+        public int[] sortByBits(int[] arr) {
+            for(int i=0;i < arr.length;i++){
+                arr[i] = Integer.bitCount(arr[i]) * 100000 + arr[i];
+            }
+            Arrays.sort(arr);
+            for(int i =0;i < arr.length;i++){
+                arr[i] = arr[i] % 100000;
+            }
+            return arr;
+        }
+
+    public int[] sortByBits2(int[] arr) {
         int[] bit = new int[10001];
         List<Integer> list =new ArrayList<>();
         for(int num:arr){
