@@ -47,7 +47,34 @@ public class ZeroH97ZC{
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    public int[] relativeSortArray(int[] arr1, int[] arr2) {
+
+        public int[] relativeSortArray(int[] arr1, int[] arr2) {
+            List<Integer>listA = new ArrayList<>();
+            int max = 0;
+            for(int num:arr1){
+                max = Math.max(max,num);
+            }
+            int[] count = new int[max + 1];
+            for(int num:arr1){
+                count[num]++;
+            }
+            int[] res = new int[arr1.length];
+            int index = 0;
+            for(int num:arr2){
+                for(int j =0;j < count[num];j++){
+                    res[index++] = num;
+                }
+                count[num] = 0;
+            }
+            for(int i =0;i <= max;i++){
+                for(int j =0;j < count[i];j++){
+                    count[index++] = i;
+                }
+            }
+            return res;
+        }
+
+        public int[] relativeSortArray2(int[] arr1, int[] arr2) {
         Map<Integer,Integer>map = new HashMap<>();
         List<Integer>listA = new ArrayList<>();
         List<Integer>listB = new ArrayList<>();
