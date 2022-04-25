@@ -76,29 +76,27 @@ public class TheKWeakestRowsInAMatrix{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int[] kWeakestRows(int[][] mat, int k) {
-        Map<Integer,Integer>map = new HashMap();
         int len = mat.length;
-        Integer[] res = new Integer[len];
+        Integer[][] res = new Integer[len][2];
         for(int i = 0;i < len;i++){
             int temp = 0;
             for(int j =0;j < mat[i].length;j++){
                 if(mat[i][j] == 1)temp++;
             }
-            map.put(i,temp);
-            res[i] = i;
+            res[i] = new Integer[]{i,temp};
         }
-        Arrays.sort(res, new Comparator<Integer>() {
+        Arrays.sort(res, new Comparator<Integer[]>() {
             @Override
-            public int compare(Integer o1, Integer o2) {
-                if(map.get(o2).intValue() == map.get(o1.intValue())){
-                    return o2 - o1;
+            public int compare(Integer[] o1, Integer[] o2) {
+                if(o1[1].intValue() == o2[1].intValue()){
+                    return o2[0] - o1[0];
                 }
-                return map.get(o2).intValue() - map.get(o1.intValue());
+                return o2[1] - o1[1];
             }
         });
         int[] arr = new int[k];
         for(int i = 0;i < k;i++){
-            arr[i] = res[len - i - 1];
+            arr[i] = res[len - i - 1][0];
         }
         return arr;
     }
