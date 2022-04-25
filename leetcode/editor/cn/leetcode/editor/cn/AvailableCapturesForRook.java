@@ -72,8 +72,40 @@ public class AvailableCapturesForRook{
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+        int[] dx = new int[]{0,0,-1,1};
+        int[] dy = new int[]{-1,1,0,0};
+        public int numRookCaptures(char[][] board) {
+            int len = board.length;
+            int x = 0,y = 0;
+            for(int i=0;i < len;i++){
+                for(int j =0;j < len;j++){
+                    if(board[i][j] == 'R'){
+                        x = i;
+                        y = j;
+                        break;
+                    }
+                }
+            }
+            int sum = 0;
+            for(int i =0;i <4;i++){
+                int index = 1;
+                while(true){
+                    int tx = x + index * dx[i];
+                    int ty = y + index * dy[i];
+                    if(tx < 0 || tx >= len || ty < 0 || ty >= len || board[tx][ty] == 'B'){
+                        break;
+                    }
+                    if(board[tx][ty] == 'p'){
+                        sum++;
+                        break;
+                    }
+                    index++;
+                }
+            }
+            return sum;
+        }
 
-    public int numRookCaptures(char[][] board) {
+        public int numRookCaptures2(char[][] board) {
         int len = board.length;
         int[] index = new int[2];
         for(int i=0;i < len;i++){
