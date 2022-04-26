@@ -40,6 +40,7 @@
 package leetcode.editor.cn;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ShortestDistanceToACharacter{
@@ -50,7 +51,29 @@ public class ShortestDistanceToACharacter{
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    public int[] shortestToChar(String s, char c) {
+        public int[] shortestToChar(String s, char c) {
+            List<Integer> list = new ArrayList<>();
+            int n = s.length();
+            int[] res = new int[n];
+            Arrays.fill(res,n);
+            int index = -n;
+            for(int i =0;i < n;i++){
+                if(s.charAt(i) == c){
+                    index = i;
+                }
+                res[i] = i - index;
+            }
+            index = 2 * n;
+            for(int i =n - 1;i >=0 ;i--){
+                if(s.charAt(i) == c){
+                    index = i;
+                }
+                res[i] = Math.min(res[i],index - i);
+            }
+            return res;
+        }
+
+        public int[] shortestToChar2(String s, char c) {
         List<Integer> list = new ArrayList<>();
         int n = s.length();
         for(int i =0;i < n;i++){
@@ -63,7 +86,7 @@ class Solution {
             if(s.charAt(i) == c){
                 res[i] = 0;
             }else{
-                int dis = Integer.MAX_VALUE;
+                int dis = 10001;
                 for(int num:list){
                     dis = Math.min(dis,Math.abs(num - i));
                 }
