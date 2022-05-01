@@ -49,11 +49,7 @@ class Solution {
         int[][] res = new int[n][m];
         for(int i =0;i < m;i++){
             for(int j =0;j < n;j++){
-                if(j > i ){
-                    res[j][i] = matrix[i][j];
-                }else{
-                    res[j][i] = matrix[i][j];
-                }
+                res[j][i] = matrix[i][j];
             }
         }
         return res;
