@@ -49,7 +49,20 @@ public class TimeNeededToBuyTickets{
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    public int timeRequiredToBuy(int[] tickets, int k) {
+
+        public int timeRequiredToBuy(int[] tickets, int k) {
+            int ans = 0;
+            for(int i =0;i < tickets.length;i++){
+                if(i <= k){
+                    ans += Math.min(tickets[i],tickets[k]);
+                }else{
+                    ans += Math.min(tickets[i],tickets[k] - 1);
+                }
+            }
+            return ans;
+        }
+
+        public int timeRequiredToBuy2(int[] tickets, int k) {
         int ans = 0;
         int index = 0,n = tickets.length - 1;
         while (tickets[k] > 0){
