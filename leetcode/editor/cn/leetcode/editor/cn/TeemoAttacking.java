@@ -47,11 +47,19 @@ package leetcode.editor.cn;
 public class TeemoAttacking{
     public static void main(String[] args){
         Solution solution = new TeemoAttacking().new Solution();
+        int[] num = new int[]{1,4};
+        solution.findPoisonedDuration(num,2);
+
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int findPoisonedDuration(int[] timeSeries, int duration) {
-        return 0;
+        int sum = duration,sub = 0;
+        for(int i = 1;i < timeSeries.length;i++){
+            sum +=duration;
+            sub +=Math.max(timeSeries[i - 1] + duration - timeSeries[i],0);
+        }
+        return sum -sub;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
