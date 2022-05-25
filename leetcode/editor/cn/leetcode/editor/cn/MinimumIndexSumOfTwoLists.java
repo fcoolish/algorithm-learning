@@ -59,6 +59,7 @@ class Solution {
         }
         int min = 10000;
         for(int i =0;i < list2.length;i++){
+            if(i > min)break;
             if(!map.containsKey(list2[i])){
                 continue;
             }
