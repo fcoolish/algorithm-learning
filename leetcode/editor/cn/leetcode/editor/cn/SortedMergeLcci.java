@@ -18,16 +18,34 @@
 // Related Topics 数组 双指针 排序 👍 143 👎 0
 
 package leetcode.editor.cn;
-public class SortedMergeLcci{
-    public static void main(String[] args){
-        Solution solution = new SortedMergeLcci().new Solution();
-    }
-    //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
-    public void merge(int[] A, int m, int[] B, int n) {
 
+public class SortedMergeLcci {
+    public static void main(String[] args) {
+        Solution solution = new SortedMergeLcci().new Solution();
+        int[] num = new int[]{1,2,3,0,0,0};
+        int[] num2 = new int[]{2,5,6};
+        solution.merge(num,3,num2,3);
     }
-}
+
+    //leetcode submit region begin(Prohibit modification and deletion)
+    class Solution {
+        public void merge(int[] A, int m, int[] B, int n) {
+            int i = m - 1,j = n - 1;
+            while(i >=0 && j >=0){
+                if(A[i] > B[j]){
+                    A[i + j + 1] = A[i];
+                    i--;
+                }else{
+                    A[i + j + 1] = B[j];
+                    j--;
+                }
+            }
+            while (j >=0){
+                A[j] = B[j];
+                j--;
+            }
+        }
+    }
 //leetcode submit region end(Prohibit modification and deletion)
 
 }
