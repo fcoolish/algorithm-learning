@@ -59,8 +59,6 @@ class Solution {
             return -1;
         }
 
-
-
         public int findKthPositive3(int[] arr, int k) {
             boolean[] map = new boolean[2022];
             int n = arr.length;
@@ -75,7 +73,6 @@ class Solution {
             }
             return -1;
         }
-
 
         public int findKthPositive2(int[] arr, int k) {
         int index = 1,count = 0;
