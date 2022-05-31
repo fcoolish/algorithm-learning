@@ -32,8 +32,8 @@
 
 package leetcode.editor.cn;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 public class KthMissingPositiveNumber{
     public static void main(String[] args){
@@ -44,14 +44,14 @@ public class KthMissingPositiveNumber{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
 
-        public int findKthPositive(int[] arr, int k) {
-            Set<Integer> set = new HashSet<>();
+        public int findKthPositive1(int[] arr, int k) {
+            List<Integer> list = new ArrayList<>();
             int n = arr.length;
             for (int num : arr) {
-                set.add(num);
+                list.add(num);
             }
             for(int i = 1;i < Integer.MAX_VALUE;i++){
-                if(!set.contains(i)){
+                if(!list.contains(i)){
                     k--;
                     if(0 == k)return i;
                 }
@@ -59,7 +59,7 @@ class Solution {
             return -1;
         }
 
-        public int findKthPositive3(int[] arr, int k) {
+        public int findKthPositive2(int[] arr, int k) {
             boolean[] map = new boolean[2022];
             int n = arr.length;
             for (int num : arr) {
@@ -74,7 +74,7 @@ class Solution {
             return -1;
         }
 
-        public int findKthPositive2(int[] arr, int k) {
+        public int findKthPositive(int[] arr, int k) {
         int index = 1,count = 0;
         int n = arr.length;
         for(int num:arr){
