@@ -64,7 +64,7 @@ class Solution {
             arr[trust[i][1]]++;
             arr[trust[i][0]]--;
         }
-        for(int i = 1;i < n + 1;i++){
+        for(int i = 1;i <= n;i++){
             if(arr[i] == n - 1){
                 return i;
             }
