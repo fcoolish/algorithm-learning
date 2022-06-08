@@ -44,7 +44,7 @@ class Solution {
 
         public int findLengthOfLCIS(int[] nums) {
             int max = 1;
-            int l =0,r = 0;
+            int l =0;
             int n = nums.length;
             for(int i =0;i < n;i++){
                 if(i == n - 1 || nums[i] >= nums[i + 1]){
