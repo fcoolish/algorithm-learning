@@ -68,24 +68,17 @@ class Solution {
     public int searchInsert(int[] nums, int target) {
         int n = nums.length - 1;
         int l = 0, r= n;
-        int index = 0;
         while (l <= r){
             int mid = (l + r) >> 1;
             if(nums[mid] > target){
                 r = mid - 1;
-                index = r;
             }else if(nums[mid] < target){
                 l = mid + 1;
-                index = l;
             }else{
                 return mid;
             }
         }
-        if(index > n){
-            return index;
-        }
-        if(index < 0)return 0;
-        return nums[index] > target ? index:index + 1;
+        return l;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
