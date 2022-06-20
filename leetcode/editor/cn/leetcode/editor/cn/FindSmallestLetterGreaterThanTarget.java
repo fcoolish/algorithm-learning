@@ -60,7 +60,7 @@ class Solution {
                     l = mid + 1;
                 }
             }
-            return letters[r] > target ? letters[r] : letters[0];
+            return letters[l] > target ? letters[l] : letters[0];
         }
 
         public char nextGreatestLetter2(char[] letters, char target) {
