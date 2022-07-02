@@ -50,7 +50,6 @@
 package leetcode.editor.cn;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class AddToArrayFormOfInteger{
@@ -71,12 +70,11 @@ class Solution {
                 k++;
                 sum -= 10;
             }
-            ans.add(sum);
+            ans.add(0,sum);
         }
         for(;k > 0;k /= 10){
-            ans.add(k % 10);
+            ans.add(0,k % 10);
         }
-        Collections.reverse(ans);
         return ans;
     }
 }
