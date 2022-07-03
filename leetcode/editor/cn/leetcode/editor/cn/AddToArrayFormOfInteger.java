@@ -60,7 +60,7 @@ public class AddToArrayFormOfInteger{
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    public List<Integer> addToArrayForm(int[] num, int k) {
+    public List<Integer> addToArrayForm2(int[] num, int k) {
         List<Integer> ans = new ArrayList<>();
         int n = num.length;
         for(int i =n - 1;i >= 0;i--){
@@ -77,7 +77,20 @@ class Solution {
         }
         return ans;
     }
-}
+
+    public List<Integer> addToArrayForm(int[] num, int k) {
+            List<Integer> ans = new ArrayList<>();
+            int n = num.length;
+            for(int i =n - 1;i >= 0 || k > 0;i--,k /=10){
+                if(i >= 0){
+                    k += num[i];
+                }
+                ans.add(0,k %10);
+            }
+            return ans;
+        }
+
+    }
 //leetcode submit region end(Prohibit modification and deletion)
 
 }
