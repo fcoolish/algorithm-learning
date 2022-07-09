@@ -48,7 +48,6 @@ public class LargestNumberAtLeastTwiceOfOthers {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int dominantIndex(int[] nums) {
-            if (nums.length <= 1) return 0;
             int m1 = -1, index = -1;
             int m2 = -1;
             for (int i = 0; i < nums.length; i++) {
