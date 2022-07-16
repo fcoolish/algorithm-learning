@@ -61,8 +61,8 @@ public class UEcfPD {
             return maxAns;
         }
 
-        public void dfs(int[] materials, int[][] cookbooks, int[][] attribute, int limit, boolean[] exists, int sumx, int sumy) {
-            if (sumy >= limit) maxAns = Math.max(maxAns, sumx);
+        private void dfs(int[] materials, int[][] cookbooks, int[][] attribute, int limit, boolean[] exists, int sumx, int sumy) {
+            if (sumy >= limit) maxAns = Math.max(sumx, maxAns);
             int len = cookbooks.length;
             for (int i = 0; i < len; i++) {
                 if (exists[i]) continue;
@@ -86,8 +86,9 @@ public class UEcfPD {
                     exists[i] = false;
                 }
             }
+        }
+
     }
-}
 //leetcode submit region end(Prohibit modification and deletion)
 
 }
