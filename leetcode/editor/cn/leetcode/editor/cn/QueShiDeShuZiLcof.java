@@ -25,10 +25,27 @@ package leetcode.editor.cn;
 public class QueShiDeShuZiLcof{
     public static void main(String[] args){
         Solution solution = new QueShiDeShuZiLcof().new Solution();
+        int[] nums = new int[]{0,1,3};
+        solution.missingNumber(nums);
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+
     public int missingNumber(int[] nums) {
+        int n = nums.length;
+        int l = 0,r = n - 1;
+        while (l <= r){
+            int mid = l + (r - l)/2;
+            if(nums[mid] == mid){
+                l = mid + 1;
+            }else{
+                r = mid - 1;
+            }
+        }
+        return l;
+    }
+
+    public int missingNumber2(int[] nums) {
         int index = 0;
         for(int n:nums){
             if(index == n){
