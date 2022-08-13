@@ -35,20 +35,37 @@
 // Related Topics 数组 哈希表 滑动窗口 👍 491 👎 0
 
 package leetcode.editor.cn;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class ContainsDuplicateIi{
     public static void main(String[] args){
         Solution solution = new ContainsDuplicateIi().new Solution();
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    public boolean containsNearbyDuplicate(int[] nums, int k) {
-        int n = nums.length;
-        for(int i =0;i < n - 1;i++){
-            for(int j =i + 1;j < n;j++){
-                if(nums[i] == nums[j] && Math.abs(i - j) <= k){
+
+        public boolean containsNearbyDuplicate(int[] nums, int k) {
+            Map<Integer,Integer> map = new HashMap<>();
+            for(int i =0;i < nums.length;i++){
+                int num = nums[i];
+                if(map.containsKey(num) && i - map.get(num) <= k){
                     return true;
                 }
+                map.put(num,i);
             }
+            return false;
+        }
+
+        public boolean containsNearbyDuplicateII(int[] nums, int k) {
+        Map<Integer,Integer> map = new HashMap<>();
+        for(int i =0;i < nums.length;i++){
+            int num = nums[i];
+            if(map.containsKey(num) && i - map.get(num) <= k){
+                return true;
+            }
+            map.put(num,i);
         }
         return false;
     }
