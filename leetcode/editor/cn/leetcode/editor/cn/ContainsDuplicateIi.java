@@ -37,7 +37,9 @@
 package leetcode.editor.cn;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 public class ContainsDuplicateIi{
     public static void main(String[] args){
@@ -47,13 +49,14 @@ public class ContainsDuplicateIi{
 class Solution {
 
         public boolean containsNearbyDuplicate(int[] nums, int k) {
-            Map<Integer,Integer> map = new HashMap<>();
+            Set<Integer> set = new HashSet<>();
             for(int i =0;i < nums.length;i++){
-                int num = nums[i];
-                if(map.containsKey(num) && i - map.get(num) <= k){
+                if(i > k){
+                    set.remove(nums[i - k - 1]);
+                }
+                if(!set.add(nums[i])){
                     return true;
                 }
-                map.put(num,i);
             }
             return false;
         }
