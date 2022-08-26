@@ -41,9 +41,6 @@
 
 package leetcode.editor.cn;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class GoalParserInterpretation{
     public static void main(String[] args){
         Solution solution = new GoalParserInterpretation().new Solution();
@@ -54,20 +51,16 @@ public class GoalParserInterpretation{
 class Solution {
     public String interpret(String command) {
         StringBuilder ans = new StringBuilder();
-        Map<String,String> map = new HashMap<>();
-        map.put("G","G");
-        map.put("()","o");
-        map.put("(al)","al");
-        int l = command.length();
-        int i =0;
-        StringBuilder sb = new StringBuilder();
-        while(i < l){
-            sb.append(command.charAt(i));
-            if(map.containsKey(sb.toString())){
-                ans.append(map.get(sb.toString()));
-                sb.delete(0, sb.length());
+        for(int i =0;i < command.length();i++){
+            if(command.charAt(i) == 'G'){
+                ans.append("G");
+            }else if(command.charAt(i) == '(' && command.charAt(i + 1) == ')'){
+                ans.append("o");
+                i++;
+            }else {
+                ans.append("al");
+                i +=3;
             }
-            i++;
         }
         return ans.toString();
     }
