@@ -44,18 +44,17 @@ public class CountPrefixesOfAGivenString{
 class Solution {
     public int countPrefixes(String[] words, String s) {
         int count = 0;
+        int sl = s.length();
         for(String str:words){
-            boolean match = true;
-            int sl = s.length();
             int wl = str.length();
-            if(wl > sl )continue;
+            if(wl > sl) continue;
+            boolean match = true;
             for(int i =0;i < wl;i++){
                 if(str.charAt(i) != s.charAt(i)){
                     match = false;
-                    break;
                 }
             }
-            if (match){
+            if(match){
                 count++;
             }
         }
