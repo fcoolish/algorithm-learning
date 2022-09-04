@@ -48,19 +48,19 @@ public class DiStringMatch{
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    public int[] diStringMatch(String s) {
-        int length = s.length();
-        int low = 0,high = length;
-        int[] res = new int[ length+ 1];
-        for(int i = 0;i < length;i++){
+    public int[] diStringMatch(String s){
+        int low = 0,high = s.length();
+        int[] ans = new int[high + 1];
+        int index = 0;
+        for(int i = 0;i < s.length();i++){
             if(s.charAt(i) == 'I'){
-                res[i] = low++;
+                ans[index++] = low++;
             }else{
-                res[i] = high--;
+                ans[index++] = high--;
             }
         }
-        res[length] = low;
-        return res;
+        ans[index] = low++;
+        return ans;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
