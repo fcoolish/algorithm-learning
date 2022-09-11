@@ -49,16 +49,36 @@
 
 package leetcode.editor.cn;
 
-import java.util.Arrays;
-
 public class TruncateSentence {
     public static void main(String[] args) {
         Solution solution = new TruncateSentence().new Solution();
+        solution.truncateSentence("chopper is not a tanuki",5);
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public String truncateSentence(String s, int k) {
+            StringBuilder ans = new StringBuilder();
+            int count = 0;
+            int n = s.length() - 1;
+            for(int i =0;i < s.length();i++){
+                char ch = s.charAt(i);
+                ans.append(ch);
+                if(i == n || ch == ' '){
+                    count++;
+                    if(count == k){
+                        if(ch == ' '){
+                            ans.deleteCharAt(ans.length() - 1);
+                        }
+                        return ans.toString();
+                    }
+                }
+            }
+            return "";
+        }
+
+
+        public String truncateSentence2(String s, int k) {
             int count = 0, index = 0;
             int n = s.length();
             for (int i = 1; i <= n; i++) {
@@ -73,7 +93,8 @@ public class TruncateSentence {
             return s.substring(0, index);
         }
 
-        public String truncateSentence2(String s, int k) {
+
+        public String truncateSentence3(String s, int k) {
             String[] arr = s.split(" ");
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < k; i++) {
