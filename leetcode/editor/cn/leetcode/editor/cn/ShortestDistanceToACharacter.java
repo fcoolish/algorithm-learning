@@ -40,7 +40,6 @@
 package leetcode.editor.cn;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class ShortestDistanceToACharacter{
@@ -55,7 +54,6 @@ class Solution {
             List<Integer> list = new ArrayList<>();
             int n = s.length();
             int[] res = new int[n];
-            Arrays.fill(res,n);
             int index = -n;
             for(int i =0;i < n;i++){
                 if(s.charAt(i) == c){
