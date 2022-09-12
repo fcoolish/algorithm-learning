@@ -43,22 +43,20 @@ public class FindCommonCharacters {
     class Solution {
         public List<String> commonChars(String[] words) {
             int[] minCount = new int[26];
+            List<String> res = new ArrayList<>();
             Arrays.fill(minCount,Integer.MAX_VALUE);
-            for (String str:words) {
+            for(String str:words){
                 int[] count = new int[26];
                 for(int i =0;i < str.length();i++){
-                    int num = str.charAt(i) - 'a';
-                    count[num]++;
+                    count[str.charAt(i) - 'a']++;
                 }
                 for(int i =0;i < 26;i++){
-                    minCount[i] = Math.min(minCount[i],count[i]);
+                    minCount[i] = Math.min(count[i],minCount[i]);
                 }
             }
-            List<String> res =new LinkedList<>();
-            for(int i=0;i < 26;i++){
+            for(int i = 0;i < 26;i++){
                 for(int j =0;j < minCount[i];j++){
                     res.add(String.valueOf((char)(i + 'a')));
-
                 }
             }
             return res;
