@@ -64,7 +64,7 @@ class Solution {
             for(Map.Entry<Character,Integer> entry:count.entrySet()){
                 Character key = entry.getKey();
                 int value  = entry.getValue();
-                if(!map.containsKey(key) || (map.containsKey(key) && map.get(key) < value)){
+                if(!map.containsKey(key) || map.get(key) < value){
                     match = false;
                     break;
                 }
