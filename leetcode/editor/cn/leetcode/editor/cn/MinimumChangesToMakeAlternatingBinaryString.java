@@ -40,9 +40,6 @@
 
 package leetcode.editor.cn;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class MinimumChangesToMakeAlternatingBinaryString{
     public static void main(String[] args){
         Solution solution = new MinimumChangesToMakeAlternatingBinaryString().new Solution();
@@ -50,8 +47,15 @@ public class MinimumChangesToMakeAlternatingBinaryString{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int minOperations(String s) {
-        List<Integer> ans = new ArrayList<>();
-        return 0;
+        int cnt1 = 0,cnt2 = 0;
+        for(int i =0;i < s.length();i++){
+            if(Integer.valueOf(s.charAt(i) - '0') %2 != i % 2){
+                cnt1++;
+            }else{
+                cnt2++;
+            }
+        }
+        return Math.min(cnt1,cnt2);
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
