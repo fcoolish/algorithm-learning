@@ -40,7 +40,24 @@ public class ReverseStringIi{
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    public String reverseStr(String s, int k) {
+        public String reverseStr(String s, int k) {
+            char[] chars = s.toCharArray();
+            int l = s.length();
+            for(int i =0;i < l;i+=2 *k){
+                int right = Math.min(i + k,l) - 1;
+                int left = i;
+                while (left < right){
+                    char temp = chars[left];
+                    chars[left] = chars[right];
+                    chars[right] = temp;
+                    left++;
+                    right--;
+                }
+            }
+            return new String(chars);
+        }
+
+        public String reverseStr2(String s, int k) {
         StringBuilder ans = new StringBuilder();
         int l = s.length();
         for(int i =0;i < l;i+=2 *k){
