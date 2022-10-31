@@ -42,6 +42,9 @@
 
 package leetcode.editor.cn;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class VerifyingAnAlienDictionary{
     public static void main(String[] args){
         Solution solution = new VerifyingAnAlienDictionary().new Solution();
@@ -75,18 +78,22 @@ class Solution {
         }
 
     public boolean isAlienSorted2(String[] words, String order) {
+        Map<Character,Integer> map = new HashMap<>();
+        for(int i =0;i < order.length();i++){
+            map.put(order.charAt(i),i);
+        }
         for(int i =0;i < words.length - 1;i++){
-            if(!isSort(words[i],words[i + 1],order)){
+            if(!isSort(words[i],words[i + 1],map)){
                 return false;
             }
         }
         return true;
     }
 
-    public boolean isSort(String a,String b,String order){
+    public boolean isSort(String a,String b,Map<Character,Integer> map){
         int len = a.length() > b.length() ? b.length() : a.length();
         for(int i = 0;i < len;i++){
-            int res = getIndex(a.charAt(i),order) - getIndex(b.charAt(i),order);
+            int res = map.get(a.charAt(i)) - map.get(b.charAt(i));
             if(res > 0){
                 return false;
             }else if(res < 0){
@@ -97,12 +104,6 @@ class Solution {
         return true;
     }
 
-    public int getIndex(char c,String order){
-        for(int i =0;i < order.length();i++){
-            if(order.charAt(i) == c)return i;
-        }
-        return -1;
-    }
 }
 //leetcode submit region end(Prohibit modification and deletion)
 
