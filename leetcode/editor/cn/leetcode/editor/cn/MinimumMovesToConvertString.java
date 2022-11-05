@@ -54,7 +54,7 @@ class Solution {
          int count = 0;
          while (i < s.length()){
             if(s.charAt(i) == 'X'){
-                i+=2;
+                i+=3;
                 count++;
             }else{
                 i++;
