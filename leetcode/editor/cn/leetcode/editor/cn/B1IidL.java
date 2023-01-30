@@ -76,6 +76,8 @@ package leetcode.editor.cn;
 public class B1IidL {
     public static void main(String[] args) {
         Solution solution = new B1IidL().new Solution();
+        int[] arr = {1,3,5,4,2};
+        solution.peakIndexInMountainArray(arr);
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
