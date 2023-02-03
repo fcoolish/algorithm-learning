@@ -67,7 +67,35 @@ public class FindTheDistanceValueBetweenTwoArrays{
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    public int findTheDistanceValue(int[] arr1, int[] arr2, int d) {
+
+        public int findTheDistanceValue(int[] arr1, int[] arr2, int d) {
+            int res = 0;
+            Arrays.sort(arr2);
+            for(int i = 0;i < arr1.length;i++){
+                int low = arr1[i] - d;
+                int high = arr1[i] + d;
+                boolean match = binarySearch(arr2,low,high);
+                if(!match){
+                    res++;
+                }
+            }
+            return res;
+        }
+        public boolean binarySearch(int[] arr,int low,int high){
+            int l = 0,r = arr.length - 1;
+            while (l <= r){
+                int mid = l + (r - l)/2;
+                if(low <= arr[mid] && high >= arr[mid]){
+                    return true;
+                }else if(arr[mid] < low){
+                    l = mid + 1;
+                }else if(arr[mid] > high){
+                    r = mid - 1;
+                }
+            }
+            return false;
+        }
+        public int findTheDistanceValue2(int[] arr1, int[] arr2, int d) {
         int res = 0;
         for(int i =0;i < arr1.length;i++){
             boolean match = true;
