@@ -51,9 +51,9 @@
 
 package leetcode.editor.cn;
 
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 public class FairCandySwap{
     public static void main(String[] args){
@@ -65,21 +65,41 @@ class Solution {
         public int[] fairCandySwap(int[] aliceSizes, int[] bobSizes) {
             int asum = Arrays.stream(aliceSizes).sum();
             int bsum = Arrays.stream(bobSizes).sum();
-            int diff = (asum - bsum) /2;
-            Set<Integer> set = new HashSet<>();
+            int diff  =  (asum - bsum) /2;
+            Arrays.sort(aliceSizes);
+            Arrays.sort(bobSizes);
+            int l1 = 0,l2 = 0;
+            while (l1 < aliceSizes.length && l2 < bobSizes.length){
+                if(aliceSizes[l1] - bobSizes[l2] == diff){
+                    return new int[]{aliceSizes[l1],bobSizes[l2]};
+                }else if(aliceSizes[l1] - bobSizes[l2] > diff){
+                    l2++;
+                }else{
+                    l1++;
+                }
+            }
+            return new int[0];
+        }
+
+
+        public int[] fairCandySwap2(int[] aliceSizes, int[] bobSizes) {
+            int asum = Arrays.stream(aliceSizes).sum();
+            int bsum = Arrays.stream(bobSizes).sum();
+            int diff  =  (asum - bsum) /2;
+            List<Integer> list = new ArrayList<>();
             for(int num:aliceSizes){
-                set.add(num);
+                list.add(num);
             }
             for(int num:bobSizes){
                 int x = num + diff;
-                if(set.contains(x)){
+                if(list.contains(x)){
                     return new int[]{x,num};
                 }
             }
             return new int[0];
         }
 
-        public int[] fairCandySwap2(int[] aliceSizes, int[] bobSizes) {
+        public int[] fairCandySwap3(int[] aliceSizes, int[] bobSizes) {
         int asum = Arrays.stream(aliceSizes).sum();
         int bsum = Arrays.stream(bobSizes).sum();
         for(int i =0;i < aliceSizes.length;i++){

@@ -31,6 +31,8 @@ package leetcode.editor.cn;
 public class BinarySearch{
     public static void main(String[] args){
         Solution solution = new BinarySearch().new Solution();
+        int[] nums = {1,2,3,4,5,6,7,8,9};
+        solution.search(nums,2);
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
