@@ -39,15 +39,40 @@
 package leetcode.editor.cn;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class IntersectionOfTwoArraysIi{
     public static void main(String[] args){
         Solution solution = new IntersectionOfTwoArraysIi().new Solution();
+        int[] nums1 = {1,2,2,1};
+        int[] nums2 = {2,2};
+        solution.intersect(nums1,nums2);
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    public int[] intersect(int[] nums1, int[] nums2) {
+    public int[] intersect(int[] nums1, int[] nums2){
+        Arrays.sort(nums1);
+        Arrays.sort(nums2);
+        int l1 = 0,l2 = 0;
+        int len = nums1.length > nums2.length ? nums2.length:nums1.length;
+        int[] res = new int[len];
+        int index = 0;
+        while (l1 < nums1.length && l2 < nums2.length){
+            if(nums1[l1] == nums2[l2]){
+                res[index++] = nums1[l1];
+                l1++;
+                l2++;
+            }else if(nums1[l1] < nums2[l2]){
+                l1++;
+            }else{
+                l2++;
+            }
+        }
+        return Arrays.copyOfRange(res,0,index);
+    }
+
+    public int[] intersect2(int[] nums1, int[] nums2) {
         int[] count = new int[1001];
         List<Integer> res = new ArrayList<>();
         for(int i =0;i < nums1.length;i++){
