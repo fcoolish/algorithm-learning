@@ -35,28 +35,31 @@ package leetcode.editor.cn;
 public class ZaiPaiXuShuZuZhongChaZhaoShuZiLcof{
     public static void main(String[] args){
         Solution solution = new ZaiPaiXuShuZuZhongChaZhaoShuZiLcof().new Solution();
+        int[] nums = {2,2};
+        solution.search(nums,2);
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int search(int[] nums, int target) {
         if(nums == null || nums.length == 0)return 0;
-        int l=0,r = nums.length - 1;
-        while (l < r){
+        int n = nums.length - 1;
+        int l= 0,r = nums.length - 1;
+        while (l <= r){
             int mid = (l + r) >>1;
             if(nums[mid] >= target){
-                r = mid;
+                r = mid - 1;
             }else{
                 l = mid + 1;
             }
         }
-        if(nums[l] != target) return  0;
+        if(l > n || nums[l] != target) return  0;
         int t = l;
         l = 0;
         r = nums.length - 1;
-        while (l < r){
-            int mid = (l + r + 1) >>1 ;
+        while (l <= r){
+            int mid = (l + r) >>1 ;
             if(nums[mid] <= target){
-                l = mid;
+                l = mid + 1;
             }else{
                 r = mid - 1;
             }

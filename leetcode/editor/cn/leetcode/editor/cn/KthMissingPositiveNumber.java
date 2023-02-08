@@ -61,7 +61,6 @@ class Solution {
 
         public int findKthPositive2(int[] arr, int k) {
             boolean[] map = new boolean[2022];
-            int n = arr.length;
             for (int num : arr) {
                 map[num] = true;
             }
