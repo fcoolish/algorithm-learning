@@ -58,7 +58,7 @@
 package leetcode.editor.cn;
 public class GuessNumberHigherOrLower{
     public static void main(String[] args){
-        Solution solution = new GuessNumberHigherOrLower().new Solution();
+        //Solution solution = new GuessNumberHigherOrLower().new Solution();
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 /** 
@@ -70,22 +70,22 @@ public class GuessNumberHigherOrLower{
  * int guess(int num);
  */
 
-public class Solution extends GuessGame {
-    public int guessNumber(int n) {
-          int l = 1,r = n;
-          while (l <= r){
-              int mid = l + (r - l)/2;
-              if(guess(mid) == 0){
-                  return mid;
-              }else if(guess(mid) < 0){
-                  r = mid - 1;
-              }else{
-                  l = mid + 1;
-              }
-          }
-          return -1;
-    }
-}
+//public class Solution extends GuessGame {
+//    public int guessNumber(int n) {
+//          int l = 1,r = n;
+//          while (l <= r){
+//              int mid = l + (r - l)/2;
+//              if(guess(mid) == 0){
+//                  return mid;
+//              }else if(guess(mid) < 0){
+//                  r = mid - 1;
+//              }else{
+//                  l = mid + 1;
+//              }
+//          }
+//          return -1;
+//    }
+//}
 //leetcode submit region end(Prohibit modification and deletion)
 
 }
