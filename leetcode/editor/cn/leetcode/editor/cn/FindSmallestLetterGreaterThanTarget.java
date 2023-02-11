@@ -46,6 +46,8 @@ package leetcode.editor.cn;
 public class FindSmallestLetterGreaterThanTarget{
     public static void main(String[] args){
         Solution solution = new FindSmallestLetterGreaterThanTarget().new Solution();
+        char[] chars = {'c', 'f', 'j'};
+        solution.nextGreatestLetter(chars,'c');
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
@@ -64,12 +66,16 @@ class Solution {
         }
 
         public char nextGreatestLetter2(char[] letters, char target) {
-        for(char c:letters){
-            if(c > target){
-                return c;
+        int l = 0, r = letters.length - 1;
+        while (l <= r){
+            int mid = l + (r - l)/2;
+            if(letters[mid] < target){
+                l = mid + 1;
+            }else{
+                r = mid - 1;
             }
         }
-        return letters[0];
+        return letters[l];
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
