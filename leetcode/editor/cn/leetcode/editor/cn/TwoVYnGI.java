@@ -53,13 +53,13 @@ class Solution {
         Arrays.sort(staple);
         Arrays.sort(drinks);
         int i =0,j = drinks.length - 1;
-        while (i < staple.length &&j >= 0){
+        while (i < staple.length && j >= 0){
             int sum = staple[i] + drinks[j];
             if(sum <= x){
-                i++;
-                count += j + 1;
+                count =count + j + 1;
                 count %= mod;
-            }else {
+                i++;
+            }else{
                 j--;
             }
         }
