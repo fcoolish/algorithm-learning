@@ -31,7 +31,7 @@ public class QueShiDeShuZiLcof{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
 
-    public int missingNumber(int[] nums) {
+    public int missingNumber2(int[] nums) {
         int n = nums.length;
         int l = 0,r = n - 1;
         while (l <= r){
@@ -45,16 +45,17 @@ class Solution {
         return l;
     }
 
-    public int missingNumber2(int[] nums) {
-        int index = 0;
-        for(int n:nums){
-            if(index == n){
-                index++;
-                continue;
+    public int missingNumber(int[] nums) {
+        int l = 0,r = nums.length - 1;
+        while (l <= r){
+            int mid = l + (r- l)/2;
+            if(mid < nums[mid]){
+                r = mid - 1;
+            }else{
+                l = mid + 1;
             }
-            return index;
         }
-        return nums.length;
+        return l;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
