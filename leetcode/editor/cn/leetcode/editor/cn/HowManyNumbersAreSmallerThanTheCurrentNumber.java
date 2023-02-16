@@ -43,10 +43,6 @@
 
 package leetcode.editor.cn;
 
-import java.util.EnumSet;
-import java.util.LinkedHashMap;
-import java.util.Map;
-
 public class HowManyNumbersAreSmallerThanTheCurrentNumber{
     public static void main(String[] args){
         Solution solution = new HowManyNumbersAreSmallerThanTheCurrentNumber().new Solution();
@@ -54,16 +50,17 @@ public class HowManyNumbersAreSmallerThanTheCurrentNumber{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int[] smallerNumbersThanCurrent(int[] nums) {
-        int[] count = new int[101];
-        for(int i = 0;i < nums.length;i++){
-            count[nums[i]]++;
+        int n = nums.length;
+        int[] cnt = new int[101];
+        for(int i = 0;i < n;i++){
+            cnt[nums[i]]++;
         }
-        int[] res = new int[nums.length];
-        for(int i = 1;i <=100;i++){
-            count[i] += count[i - 1];
+        for (int i = 1;i < 101;i++){
+            cnt[i] += cnt[i - 1];
         }
-        for(int i = 0;i < nums.length;i++){
-            res[i] = nums[i] == 0 ? 0 :count[nums[i] - 1];
+        int[] res = new int[n];
+        for(int i = 0;i < n;i++){
+            res[i] = nums[i] == 0 ? 0: cnt[nums[i] - 1];
         }
         return res;
     }
