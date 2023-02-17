@@ -56,16 +56,14 @@ public class MakeTwoArraysEqualByReversingSubArrays{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public boolean canBeEqual(int[] target, int[] arr) {
-        int[] targetF = new int[1001];
-        int[] arrF = new int[1001];
-        for(int num:target){
-            targetF[num]++;
-        }
-        for(int num:arr){
-            arrF[num]++;
+        int l = target.length;
+        int[] nums = new int[1001];
+        for(int i = 0;i< l;i++){
+            nums[target[i]]++;
+            nums[arr[i]]--;
         }
         for(int i =0;i < 1001;i++){
-            if(targetF[i] != arrF[i]){
+            if(nums[i] != 0){
                 return false;
             }
         }
