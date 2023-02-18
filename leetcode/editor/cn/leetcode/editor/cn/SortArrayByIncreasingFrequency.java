@@ -46,29 +46,31 @@ public class SortArrayByIncreasingFrequency{
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+
     public int[] frequencySort(int[] nums) {
-        Map<Integer,Integer> map = new HashMap<>();
-        List<Integer> list = new ArrayList<>();
-        for(int num:nums){
-            map.put(num,map.getOrDefault(num,0) + 1);
-            list.add(num);
-        }
-        Collections.sort(list, new Comparator<Integer>() {
-            @Override
-            public int compare(Integer o1, Integer o2) {
-                if(map.get(o1).equals(map.get(o2))){
-                    return  o2.intValue() - o1.intValue();
-                }
-                return map.get(o1).intValue() - map.get(o2).intValue();
+            Map<Integer,Integer> map = new HashMap<>();
+            List<Integer> list = new ArrayList<>();
+            for(int num:nums){
+                map.put(num,map.getOrDefault(num,0) + 1);
+                list.add(num);
             }
-        });
-        int index = 0;
-        for(int num:list){
-            nums[index++] = num;
+            Collections.sort(list, new Comparator<Integer>() {
+                @Override
+                public int compare(Integer o1, Integer o2) {
+                    if(map.get(o1).equals(map.get(o2))){
+                        return  o2.intValue() - o1.intValue();
+                    }
+                    return map.get(o1).intValue() - map.get(o2).intValue();
+                }
+            });
+            int index = 0;
+            for(int num:list){
+                nums[index++] = num;
+            }
+            return nums;
         }
-        return nums;
+
     }
-}
 //leetcode submit region end(Prohibit modification and deletion)
 
 }

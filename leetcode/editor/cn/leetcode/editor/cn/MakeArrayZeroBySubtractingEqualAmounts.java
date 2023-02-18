@@ -45,6 +45,8 @@ import java.util.Set;
 public class MakeArrayZeroBySubtractingEqualAmounts{
     public static void main(String[] args){
         Solution solution = new MakeArrayZeroBySubtractingEqualAmounts().new Solution();
+        int[] nums = {1,5,0,3,5};
+        solution.minimumOperations(nums);
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
