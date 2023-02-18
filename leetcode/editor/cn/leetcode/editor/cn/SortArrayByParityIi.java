@@ -52,36 +52,14 @@ public class SortArrayByParityIi {
     class Solution {
 
         public int[] sortArrayByParityII(int[] nums) {
-            int length = nums.length;
+            int n = nums.length;
             int j = 1;
-            for (int i = 0; i < length; i = i+2) {
-                if (nums[i] % 2 != 0) {
-                    while (nums[j] % 2 != 0){
-                        j +=2;
-                    }
-                    swap(nums,i,j);
+            for(int i =0;i < n;i+= 2){
+                if(nums[i] %2 == 0)continue;
+                while (nums[j] % 2 != 0){
+                    j+= 2;
                 }
-            }
-            return nums;
-        }
-
-
-        public int[] sortArrayByParityII2(int[] nums) {
-            int length = nums.length;
-            for (int i = 0; i < length - 1; i++) {
-                if (i % 2 == 0 && nums[i] % 2 != 0) {
-                    for (int j = i + 1; j < length; j++) {
-                        if (j % 2 != 0 && nums[j] % 2 == 0) {
-                            swap(nums,i,j);
-                        }
-                    }
-                } else if (i % 2 != 0 && nums[i] % 2 == 0) {
-                    for (int j = i + 1; j < length; j++) {
-                        if (j % 2 == 0 && nums[j] % 2 != 0) {
-                            swap(nums,i,j);
-                        }
-                    }
-                }
+                swap(nums,i,j);
             }
             return nums;
         }
@@ -90,31 +68,6 @@ public class SortArrayByParityIi {
             nums[i] = nums[i] ^ nums[j];
             nums[j] = nums[j] ^ nums[i];
             nums[i] = nums[i] ^ nums[j];
-        }
-
-        public int[] sortArrayByParityII3(int[] nums) {
-            int length = nums.length;
-            int[] sin = new int[length / 2];
-            int[] dou = new int[length / 2];
-            int m = 0, n = 0;
-            for (int i = 0; i < nums.length; i++) {
-                if (nums[i] % 2 == 0) {
-                    dou[n] = nums[i];
-                    n++;
-                } else {
-                    sin[m] = nums[i];
-                    m++;
-                }
-            }
-            m = 0;
-            n = 0;
-            for (int i = 0; i < length; i = i + 2) {
-                nums[i] = dou[m];
-                nums[i + 1] = sin[n];
-                m++;
-                n++;
-            }
-            return nums;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
