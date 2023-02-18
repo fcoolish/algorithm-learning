@@ -35,8 +35,6 @@
 
 package leetcode.editor.cn;
 
-import com.sun.imageio.plugins.common.I18N;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -45,27 +43,34 @@ public class MinimumAbsoluteDifference{
     public static void main(String[] args){
         Solution solution = new MinimumAbsoluteDifference().new Solution();
         int[] arr = new int[]{4,2,1,3};
-        solution.minimumAbsDifference(arr);
+        //solution.minimumAbsDifference(arr);
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public List<List<Integer>> minimumAbsDifference(int[] arr) {
         Arrays.sort(arr);
-        int min =3000001;
+        int min =1000001;
         List<List<Integer>> res = new ArrayList<>();
         for(int i = 0;i < arr.length - 1;i++){
-            min = Math.min(min,arr[i + 1] -arr[i]);
-        }
-        for(int i = 0;i < arr.length - 1;i++){
-            if(arr[i + 1] -arr[i] == min){
+            if(arr[i + 1] -arr[i] > min){
+                continue;
+            }else if(arr[i + 1] -arr[i] == min){
                 List<Integer> temp = new ArrayList<>();
                 temp.add(arr[i]);
-                temp.add(arr[i  +1]);
+                temp.add(arr[i + 1]);
+                res.add(temp);
+            }else{
+                min = arr[i + 1] -arr[i];
+                res.clear();
+                List<Integer> temp = new ArrayList<>();
+                temp.add(arr[i]);
+                temp.add(arr[i + 1]);
                 res.add(temp);
             }
         }
         return res;
     }
+
 }
 //leetcode submit region end(Prohibit modification and deletion)
 

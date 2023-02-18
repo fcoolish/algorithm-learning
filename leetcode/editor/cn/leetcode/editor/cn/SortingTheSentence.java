@@ -40,6 +40,10 @@
 // Related Topics 字符串 排序 👍 15 👎 0
 
 package leetcode.editor.cn;
+
+import java.util.Arrays;
+import java.util.Comparator;
+
 public class SortingTheSentence{
     public static void main(String[] args){
         Solution solution = new SortingTheSentence().new Solution();
@@ -47,24 +51,16 @@ public class SortingTheSentence{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public String sortSentence(String s) {
-        String[] str = new String[10];
+        String[] str = s.split(" ");
+        Arrays.sort(str, Comparator.comparingInt(a -> a.charAt(a.length() - 1)));
         StringBuilder ans = new StringBuilder();
-        StringBuilder temp = new StringBuilder();
-        for(int i =0;i < s.length();i++){
-            if(s.charAt(i) == ' ')continue;
-            if(s.charAt(i) <= '9' && s.charAt(i) >= '0'){
-                str[s.charAt(i) - '0'] = temp.toString();
-                temp.delete(0,temp.length());
-            }else{
-                temp.append(s.charAt(i));
+        int n = str.length;
+        for(int i =0;i < n;i++){
+            ans.append(str[i], 0, str[i].length() - 1);
+            if(i != n -1){
+                ans.append(" ");
             }
         }
-        for(int i =0;i < str.length;i++){
-            if(str[i] != null){
-                ans.append(str[i]).append(" ");
-            }
-        }
-        ans.delete(ans.length() - 1,ans.length());
         return ans.toString();
     }
 }
