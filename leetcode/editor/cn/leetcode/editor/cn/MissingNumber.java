@@ -51,13 +51,39 @@
 // 👍 601 👎 0
 
 package leetcode.editor.cn;
+
+import java.util.Arrays;
+
 public class MissingNumber{
     public static void main(String[] args){
         Solution solution = new MissingNumber().new Solution();
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    public int missingNumber(int[] nums) {
+
+        public int missingNumber(int[] nums) {
+            int n = nums.length;
+            for(int i =0;i < n;i++){
+                if(nums[i] != i){
+                    return i;
+                }
+            }
+            return n;
+        }
+
+
+        public int missingNumber2(int[] nums) {
+            Arrays.sort(nums);
+            int n = nums.length;
+            for(int i =0;i < n;i++){
+                if(nums[i] != i){
+                    return i;
+                }
+            }
+            return n;
+        }
+
+        public int missingNumber3(int[] nums) {
         int n = nums.length;
         int[] arr = new int[n + 1];
         for(int num:nums){

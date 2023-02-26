@@ -57,6 +57,7 @@ public class MatrixCellsInDistanceOrder{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int[][] allCellsDistOrder(int rows, int cols, int rCenter, int cCenter) {
+        //可以用map
         int maxDist = Math.max(rCenter,rows - 1-rCenter) + Math.max(cCenter,cols - 1- cCenter);
         List<List<int[]>> bucket = new ArrayList<>();
         for(int i =0;i <=maxDist;i++){

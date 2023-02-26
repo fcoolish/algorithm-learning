@@ -54,31 +54,32 @@
 
 package leetcode.editor.cn;
 
-import java.util.Arrays;
+import java.util.*;
 
-public class MinimumCostOfBuyingCandiesWithDiscount{
-    public static void main(String[] args){
+public class MinimumCostOfBuyingCandiesWithDiscount {
+    public static void main(String[] args) {
         Solution solution = new MinimumCostOfBuyingCandiesWithDiscount().new Solution();
-        int[] cost = new int[]{6,5,7,9,2,2};
+        int[] cost = new int[]{6, 5, 7, 9, 2, 2};
         solution.minimumCost(cost);
     }
+
     //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
-    public int minimumCost(int[] cost) {
-        int money = 0;
-        int index = 1;
-        Arrays.sort(cost);
-        for(int i = cost.length - 1;i >=0;i--){
-            if(index % 3 ==0){
-               index++;
-               continue;
+    class Solution {
+        public int minimumCost(int[] cost) {
+            int money = 0;
+            int index = 1;
+            Arrays.sort(cost);
+            for (int i = cost.length - 1; i >= 0; i--) {
+                if (index % 3 == 0) {
+                    index++;
+                    continue;
+                }
+                money += cost[i];
+                index++;
             }
-            money +=cost[i];
-            index++;
+            return money;
         }
-        return money;
     }
-}
 //leetcode submit region end(Prohibit modification and deletion)
 
 }

@@ -32,9 +32,6 @@
 
 package leetcode.editor.cn;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class SortArrayByParity{
     public static void main(String[] args){
         Solution solution = new SortArrayByParity().new Solution();
@@ -42,7 +39,26 @@ public class SortArrayByParity{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
 
-    public int[] sortArrayByParity(int[] nums) {
+        public int[] sortArrayByParity(int[] nums) {
+            int length = nums.length;
+            int l = 0,r = length - 1;
+            while (l < r){
+                while (l < r && nums[l] % 2 == 0){
+                    l++;
+                }
+                while (l < r && nums[r] % 2 == 1){
+                    r--;
+                }
+                if(l < r){
+                    int temp = nums[l];
+                    nums[l] = nums[r];
+                    nums[r] = temp;
+                }
+            }
+            return nums;
+        }
+
+        public int[] sortArrayByParity2(int[] nums) {
         int length = nums.length;
         int[] res = new int[length];
         int left = 0,right = length - 1;
