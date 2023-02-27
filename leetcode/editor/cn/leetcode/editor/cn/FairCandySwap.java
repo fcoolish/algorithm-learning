@@ -65,14 +65,15 @@ class Solution {
         public int[] fairCandySwap(int[] aliceSizes, int[] bobSizes) {
             int asum = Arrays.stream(aliceSizes).sum();
             int bsum = Arrays.stream(bobSizes).sum();
-            int diff  =  (asum - bsum) /2;
+            int diff = (asum - bsum)/2;
             Arrays.sort(aliceSizes);
             Arrays.sort(bobSizes);
             int l1 = 0,l2 = 0;
             while (l1 < aliceSizes.length && l2 < bobSizes.length){
-                if(aliceSizes[l1] - bobSizes[l2] == diff){
+                int num = aliceSizes[l1] - bobSizes[l2];
+                if(num == diff){
                     return new int[]{aliceSizes[l1],bobSizes[l2]};
-                }else if(aliceSizes[l1] - bobSizes[l2] > diff){
+                }else if(num > diff){
                     l2++;
                 }else{
                     l1++;
