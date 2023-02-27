@@ -55,14 +55,16 @@ import java.util.Arrays;
 public class MinimumAmountOfTimeToFillCups{
     public static void main(String[] args){
         Solution solution = new MinimumAmountOfTimeToFillCups().new Solution();
+        int[] arr = {1,4,2};
+        solution.fillCups(arr);
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    public int fillCups(int[] amount) {
-        Arrays.sort(amount);
-        if(amount[0] + amount[1] <= amount[2])return amount[2];
-        return (amount[0] + amount[1] - amount[2] + 1) / 2 + amount[2];
-    }
+        public int fillCups(int[] amount) {
+            Arrays.sort(amount);
+            if(amount[0] + amount[1] <= amount[2])return amount[2];
+            return (amount[0] + amount[1] - amount[2] + 1) / 2 + amount[2];
+        }
 }
 //leetcode submit region end(Prohibit modification and deletion)
 
