@@ -49,31 +49,53 @@
 // Related Topics 数组 二分查找 排序 👍 57 👎 0
 
 package leetcode.editor.cn;
-public class SpecialArrayWithXElementsGreaterThanOrEqualX{
-    public static void main(String[] args){
+
+import java.util.Arrays;
+
+public class SpecialArrayWithXElementsGreaterThanOrEqualX {
+    public static void main(String[] args) {
         Solution solution = new SpecialArrayWithXElementsGreaterThanOrEqualX().new Solution();
-        int[] arr = new int[]{3,5};
+        int[] arr = new int[]{3, 6,7,7,0};
         solution.specialArray(arr);
     }
+
     //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
-    public int specialArray(int[] nums) {
-        int n = nums.length;
-        for(int i =1;i < 101;i++){
-            int count = 0;
-            for(int j = 0;j < n;j++){
-                if(nums[j] >= i)count++;
-                if(count > i){
-                    break;
+    class Solution {
+
+        public int specialArray1(int[] nums) {
+            Arrays.sort(nums);
+            int n = nums.length;
+            int l = 0, r = n - 1;
+            while (l < r) {
+                int temp = nums[l];
+                nums[l] = nums[r];
+                nums[r] = temp;
+                l++;
+                r--;
+            }
+            for (int i = 1; i <= n; i++) {
+                if (nums[i - 1] >= i && (i == n || nums[i] < i)) {
+                    return i;
                 }
             }
-            if (count == i){
-                return i;
-            }
+            return -1;
         }
-        return -1;
+
+        public int specialArray(int[] nums) {
+            int[] cnt = new int[1001];
+            for (int num : nums) {
+                cnt[num]++;
+            }
+            int sum = 0;
+            for (int i = 1000; i >0 ; i--) {
+                sum += cnt[i];
+                if(sum == i){
+                    return i;
+                }
+            }
+            return -1;
+        }
     }
-}
 //leetcode submit region end(Prohibit modification and deletion)
 
 }
