@@ -53,7 +53,24 @@ public class RankTransformOfAnArray{
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    public int[] arrayRankTransform(int[] arr) {
+
+        //此解法仅使用无重复数字
+        public int[] arrayRankTransform1(int[] arr) {
+            int n = arr.length;
+            int[][] sArr = new int[n][2];
+            for(int i =0;i < n;i++){
+                sArr[i][0] = arr[i];
+                sArr[i][1] = i;
+            }
+            int[] res = new int[n];
+            Arrays.sort(sArr,(a,b) -> a[0] - b[0]);
+            for(int i = 0;i < n;i++){
+                res[sArr[i][1]] = i + 1;
+            }
+            return res;
+        }
+
+        public int[] arrayRankTransform(int[] arr) {
         int n = arr.length;
         int[] sorted = new int[n];
         System.arraycopy(arr,0,sorted,0,n);
