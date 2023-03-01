@@ -82,12 +82,16 @@ public class SpecialArrayWithXElementsGreaterThanOrEqualX {
         }
 
         public int specialArray(int[] nums) {
-            int[] cnt = new int[1001];
+            int[] cnt = new int[101];
+            int sum = 0;
             for (int num : nums) {
+                if(num > 100){
+                    sum++;
+                    continue;
+                }
                 cnt[num]++;
             }
-            int sum = 0;
-            for (int i = 1000; i >0 ; i--) {
+            for (int i = 100; i > 0 ; i--) {
                 sum += cnt[i];
                 if(sum == i){
                     return i;
