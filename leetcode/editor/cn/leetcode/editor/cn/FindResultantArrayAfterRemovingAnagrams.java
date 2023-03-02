@@ -63,12 +63,12 @@ class Solution {
         List<String> res = new ArrayList<>();
         String pre = "";
         for(int i =0;i < words.length;i++){
-            char[] arr = words[i].toCharArray();
-            Arrays.sort(arr);
-            String str  = String.valueOf(arr);
-            if(str.equals(pre))continue;
-            pre = str;
+            char[] chars = words[i].toCharArray();
+            Arrays.sort(chars);
+            String str = String.valueOf(chars);
+            if(pre.equals(str))continue;
             res.add(words[i]);
+            pre = str;
         }
         return res;
     }

@@ -32,13 +32,33 @@
 // Related Topics 数组 排序 👍 10 👎 0
 
 package leetcode.editor.cn;
+
+import java.util.Arrays;
+
 public class CountElementsWithStrictlySmallerAndGreaterElements{
     public static void main(String[] args){
         Solution solution = new CountElementsWithStrictlySmallerAndGreaterElements().new Solution();
+        int[] arr = {11,7,2,15};
+        solution.countElements(arr);
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    public int countElements(int[] nums) {
+
+        public int countElements(int[] nums) {
+            Arrays.sort(nums);
+            int n = nums.length;
+            int i = 0;
+            while (i < n && nums[i] == nums[0]){
+                i++;
+            }
+            int j = n - 1;
+            while (j >= 0 && nums[j] == nums[n - 1]){
+                j--;
+            }
+            return Math.max(0,j - i + 1);
+        }
+
+        public int countElements1(int[] nums) {
         int max = -100001,min = 100001;
         int count = 0;
         for(int num:nums){
