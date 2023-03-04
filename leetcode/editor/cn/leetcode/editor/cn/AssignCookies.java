@@ -50,7 +50,27 @@ public class AssignCookies{
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    public int findContentChildren(int[] g, int[] s) {
+
+        //O(n)即可
+        public int findContentChildren(int[] g, int[] s) {
+            Arrays.sort(g);
+            Arrays.sort(s);
+            int ans = 0;
+            int gl = g.length - 1;
+            int sl = s.length - 1;
+                while (gl >= 0 && sl >= 0){
+                    if(s[sl] >= g[gl]){
+                        ans++;
+                        gl--;
+                        sl--;
+                    }else{
+                        gl--;
+                    }
+                }
+            return ans;
+        }
+
+        public int findContentChildren1(int[] g, int[] s) {
         Arrays.sort(g);
         Arrays.sort(s);
         int ans = 0;
