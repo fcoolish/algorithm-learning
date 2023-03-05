@@ -47,24 +47,23 @@ public class TwoVYnGI{
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    public int breakfastNumber(int[] staple, int[] drinks, int x) {
+
+    public int breakfastNumber(int[] staple, int[] drinks, int x){
         int mod = 1_000_000_007;
-        int count = 0;
         Arrays.sort(staple);
         Arrays.sort(drinks);
         int i =0,j = drinks.length - 1;
-        while (i < staple.length && j >= 0){
-            int sum = staple[i] + drinks[j];
-            if(sum <= x){
-                count =count + j + 1;
-                count %= mod;
+        int sum = 0;
+        while (i < staple.length && j >=0){
+            if(staple[i] + drinks[j] <= x){
+                sum += j + 1;
+                sum %= mod;
                 i++;
             }else{
                 j--;
             }
         }
-        return count % mod;
-
+        return sum % mod;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

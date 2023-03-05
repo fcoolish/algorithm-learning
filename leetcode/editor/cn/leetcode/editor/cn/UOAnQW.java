@@ -34,7 +34,7 @@ public class UOAnQW{
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    public int maxmiumScore(int[] cards, int cnt) {
+        public int maxmiumScore(int[] cards, int cnt) {
         int n = cards.length;
         Arrays.sort(cards);
         int sum = 0;

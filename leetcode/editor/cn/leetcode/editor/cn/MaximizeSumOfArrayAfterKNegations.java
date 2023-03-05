@@ -59,9 +59,8 @@ public class MaximizeSumOfArrayAfterKNegations{
 class Solution {
     public int largestSumAfterKNegations(int[] nums, int k) {
         Arrays.sort(nums);
-        int n = nums.length;
         int sum = 0;
-        for(int i =0;i < n;i++){
+        for(int i = 0;i < nums.length;i++){
             if(nums[i] < 0 && k > 0){
                 nums[i] = -nums[i];
                 k--;
@@ -69,7 +68,7 @@ class Solution {
             sum += nums[i];
         }
         Arrays.sort(nums);
-        return k % 2 == 0 ?  sum: (sum -  2 * nums[0]);
+        return k %2 == 0 ? sum : (sum - 2 * nums[0]);
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
