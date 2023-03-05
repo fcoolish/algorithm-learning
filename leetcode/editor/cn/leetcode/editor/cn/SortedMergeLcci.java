@@ -24,12 +24,28 @@ public class SortedMergeLcci {
         Solution solution = new SortedMergeLcci().new Solution();
         int[] num = new int[]{1,2,3,0,0,0};
         int[] num2 = new int[]{2,5,6};
-        solution.merge(num,3,num2,3);
+        //solution.merge(num,3,num2,3);
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        public void merge(int[] A, int m, int[] B, int n) {
+
+        public void merge(int[] A, int m, int[] B, int n){
+            int index = m + n - 1;
+            int i = m - 1,j = n - 1;
+            while (i >= 0 && j >= 0){
+                if(A[i] > B[j]){
+                    A[index--] = A[i--];
+                }else{
+                    A[index--] = B[j--];
+                }
+            }
+            while (j >= 0){
+                A[index--] = B[j--];
+            }
+        }
+
+        public void merge1(int[] A, int m, int[] B, int n) {
             int i = m - 1,j = n - 1;
             while(i >=0 && j >=0){
                 if(A[i] > B[j]){
@@ -47,5 +63,4 @@ public class SortedMergeLcci {
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
-
 }

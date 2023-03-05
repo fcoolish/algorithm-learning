@@ -52,17 +52,17 @@ public class LongestHarmoniousSubsequence{
 class Solution {
     public int findLHS(int[] nums) {
         Arrays.sort(nums);
-        int max = 0;
         int start = 0;
+        int ans = 0;
         for(int end = 0;end < nums.length;end++){
-            while (nums[end]  - nums[start] > 1){
+            while (nums[end] - nums[start] > 1){
                 start++;
             }
             if(nums[end] - nums[start] == 1){
-                max = Math.max(max,end - start  +1);
+                ans = Math.max(ans,end - start + 1);
             }
         }
-        return max;
+        return ans;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
