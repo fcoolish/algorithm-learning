@@ -71,6 +71,7 @@ public class IncreasingDecreasingString{
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+
     public String sortString(String s) {
         StringBuilder ans = new StringBuilder();
         int len = s.length();
@@ -80,7 +81,7 @@ class Solution {
         }
         while (ans.length() != len){
             for(int i =0;i < 26;i++){
-                if(map[i] > 0){
+                if(map[i] == 0){
                     ans.append((char)(i + 'a'));
                     map[i]--;
                 }
