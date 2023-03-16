@@ -30,16 +30,41 @@
 
 package leetcode.editor.cn;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
 public class IntersectionOfTwoArrays{
     public static void main(String[] args){
         Solution solution = new IntersectionOfTwoArrays().new Solution();
+        int[] nums1 = {1,2,2,1};
+        int[] num2 = {2,2};
+        solution.intersection(nums1,num2);
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    public int[] intersection(int[] nums1, int[] nums2) {
+
+    public int[] intersection(int[] nums1, int[] nums2){
+        Arrays.sort(nums1);
+        Arrays.sort(nums2);
+        int n1 = nums1.length;
+        int n2 = nums2.length;
+        int[] res = new int[n1 + n2 - 1];
+        int l1 = 0,l2 = 0,index = 0;
+        while (l1 < n1 && l2 < n2){
+            if(nums1[l1] == nums2[l2] && (index == 0 || nums1[l1] != res[index - 1])){
+                res[index++] = nums1[l1];
+                l1++;
+                l2++;
+            }else if(nums1[l1] > nums2[l2]){
+                l2++;
+            }else{
+                l1++;
+            }
+        }
+        return Arrays.copyOfRange(res,0,index);
+    }
+    public int[] intersection1(int[] nums1, int[] nums2) {
         int[] compare = new int[1001];
         List<Integer> res = new LinkedList<>();
         for(int num:nums1){
