@@ -37,17 +37,16 @@ public class CheckIfAllCharactersHaveEqualNumberOfOccurrences{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public boolean areOccurrencesEqual(String s) {
-        int[] map = new int[26];
+        int[] cnt = new int[26];
         for(int i =0;i < s.length();i++){
-            map[s.charAt(i) - 'a']++;
+            cnt[s.charAt(i) - 'a']++;
         }
         int count = 0;
         for(int i =0;i < 26;i++){
-            if(count==0 && map[i] != 0){
-                count = map[i];
-                continue;
-            }
-            if(map[i] > 0 && count != map[i]){
+            if(cnt[i] == 0)continue;
+            if(count == 0){
+                count = cnt[i];
+            }else if(count != cnt[i]){
                 return false;
             }
         }
