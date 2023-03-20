@@ -30,10 +30,7 @@
 
 package leetcode.editor.cn;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 public class TwoSumIvInputIsABst{
     public static void main(String[] args){
@@ -76,7 +73,6 @@ class Solution {
         }
         return false;
     }
-
 }
 //leetcode submit region end(Prohibit modification and deletion)
 

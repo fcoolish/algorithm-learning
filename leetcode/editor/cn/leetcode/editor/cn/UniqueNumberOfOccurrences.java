@@ -58,24 +58,6 @@ public class UniqueNumberOfOccurrences {
             }
             return map.size() == set.size();
         }
-
-        public boolean uniqueOccurrences2(int[] arr) {
-            Map<Integer, Integer> map = new HashMap<>();
-            for (int num : arr) {
-                map.put(num, map.getOrDefault(num, 0) + 1);
-            }
-            for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
-                int value = entry.getValue();
-                for (Map.Entry<Integer, Integer> innerEntry : map.entrySet()) {
-                    if (innerEntry.getValue() == value && innerEntry.getKey() != entry.getKey()) {
-                        return false;
-                    }
-
-                }
-            }
-            return true;
-        }
-
     }
 //leetcode submit region end(Prohibit modification and deletion)
 
