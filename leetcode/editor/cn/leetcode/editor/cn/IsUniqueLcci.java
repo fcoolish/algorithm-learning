@@ -31,12 +31,12 @@ public class IsUniqueLcci{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public boolean isUnique(String astr) {
-        int[] map = new int[26];
+        boolean[] cnt = new boolean[26];
         for(int i =0;i < astr.length();i++){
-            if(map[astr.charAt(i) - 'a'] > 0){
+            if(cnt[astr.charAt(i) - 'a']){
                 return false;
             }
-            map[astr.charAt(i) - 'a']++;
+            cnt[astr.charAt(i) - 'a'] = true;
         }
         return true;
     }

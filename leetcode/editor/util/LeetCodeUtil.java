@@ -1017,9 +1017,15 @@ public class LeetCodeUtil {
         return ans.toString();
     }
 
+
     public static void main(String[] args) {
+        Queue<Integer> queue1 = new ArrayDeque<>();
+        Queue<Integer> queue2 = new ArrayDeque<>();
         int[] array = new int[]{5,7,7,8,8,10};
         //searchRange(array,8);
         //System.out.println("list:");
     }
+
+
+
 }
