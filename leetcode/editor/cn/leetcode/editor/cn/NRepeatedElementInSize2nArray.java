@@ -59,17 +59,17 @@ public class NRepeatedElementInSize2nArray{
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    public int repeatedNTimes(int[] nums) {
-        Set<Integer> set = new HashSet<>();
-        for(int num:nums){
-            if(!set.add(num)){
-                return num;
+        public int repeatedNTimes(int[] nums) {
+            Set<Integer> set = new HashSet<>();
+            for (int num : nums) {
+                if (!set.add(num)) {
+                    return num;
+                }
+                set.add(num);
             }
-            set.add(num);
+            return -1;
         }
-        return -1;
     }
-}
 //leetcode submit region end(Prohibit modification and deletion)
 
 }
