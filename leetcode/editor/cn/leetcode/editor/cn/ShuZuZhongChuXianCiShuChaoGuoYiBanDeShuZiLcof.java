@@ -27,10 +27,6 @@
 
 package leetcode.editor.cn;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-
 public class ShuZuZhongChuXianCiShuChaoGuoYiBanDeShuZiLcof{
     public static void main(String[] args){
         Solution solution = new ShuZuZhongChuXianCiShuChaoGuoYiBanDeShuZiLcof().new Solution();
@@ -39,20 +35,20 @@ public class ShuZuZhongChuXianCiShuChaoGuoYiBanDeShuZiLcof{
 class Solution {
 
         public int majorityElement(int[] nums) {
-            Arrays.sort(nums);
-            return nums[nums.length/2];
+            int znum = nums[0],cnt = 1;
+            for(int i = 1;i < nums.length;i++){
+                if(znum == nums[i]){
+                    cnt++;
+                }else{
+                    cnt--;
+                    if(cnt == 0){
+                        znum = nums[i];
+                        cnt++;
+                    }
+                }
+            }
+            return znum;
         }
-
-        public int majorityElement2(int[] nums) {
-        Map<Integer,Integer> map = new HashMap<>();
-        if(nums.length ==1)return nums[0];
-        int length = nums.length /2;
-        for(int num:nums){
-            if(map.containsKey(num) && map.get(num)+1 >length)return num;
-            map.put(num,map.getOrDefault(num,0) + 1);
-        }
-        return -1;
-    }
 }
 //leetcode submit region end(Prohibit modification and deletion)
 

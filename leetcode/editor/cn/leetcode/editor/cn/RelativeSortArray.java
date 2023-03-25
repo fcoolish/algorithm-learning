@@ -42,7 +42,31 @@ public class RelativeSortArray{
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-        public int[] relativeSortArray(int[] arr1, int[] arr2) {
+        public int[] relativeSortArray(int[] arr1, int[] arr2){
+            Map<Integer,Integer> map = new HashMap<>();
+            for(int i = 0;i < arr2.length;i++){
+                map.put(arr2[i],i);
+            }
+            Integer[] res = new Integer[arr1.length];
+            for(int i = 0;i < arr1.length;i++){
+                res[i] = arr1[i];
+            }
+            Arrays.sort(res, new Comparator<Integer>() {
+                @Override
+                public int compare(Integer o1, Integer o2) {
+                    if(map.containsKey(o1) || map.containsKey(o2)){
+                        return map.getOrDefault(o1,1001) - map.getOrDefault(o2,1001);
+                    }else{
+                        return o1 - o2;
+                    }
+                }
+            });
+            return Arrays.stream(res).mapToInt(Integer::valueOf).toArray();
+        }
+
+
+
+        public int[] relativeSortArray1(int[] arr1, int[] arr2) {
             Map<Integer,Integer> map = new HashMap<>();
             List<Integer> listA = new ArrayList<>();
             List<Integer>listB = new ArrayList<>();

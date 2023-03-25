@@ -29,30 +29,27 @@
 
 package leetcode.editor.cn;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-
 public class MajorityElement{
     public static void main(String[] args){
         Solution solution = new MajorityElement().new Solution();
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-        public int majorityElement(int[] nums) {
-            Arrays.sort(nums);
-            return nums[nums.length/2];
-        }
 
-        public int majorityElement2(int[] nums) {
-            Map<Integer,Integer> map = new HashMap<>();
-            if(nums.length ==1)return nums[0];
-            int length = nums.length /2;
-            for(int num:nums){
-                if(map.containsKey(num) && map.get(num)+1 >length)return num;
-                map.put(num,map.getOrDefault(num,0) + 1);
+        public int majorityElement(int[] nums) {
+            int znum = nums[0],cnt = 1;
+            for(int i = 1;i < nums.length;i++){
+                if(znum == nums[i]){
+                    cnt++;
+                }else{
+                    cnt--;
+                    if(cnt == 0){
+                        znum = nums[i];
+                        cnt++;
+                    }
+                }
             }
-            return -1;
+            return znum;
         }
 }
 //leetcode submit region end(Prohibit modification and deletion)
