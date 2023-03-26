@@ -67,7 +67,27 @@ public class UniqueEmailAddresses{
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    public int numUniqueEmails(String[] emails) {
+
+        public int numUniqueEmails(String[] emails) {
+            Set<String> set = new HashSet<>();
+            for(int i =0;i < emails.length; i++){
+                StringBuilder sb = new StringBuilder();
+                int index = emails[i].indexOf('@');
+                String pre = emails[i].substring(0,index);
+                char[] chars = pre.toCharArray();
+                StringBuilder newPre = new StringBuilder();
+                for(char ch:chars){
+                    if(ch == '.')continue;
+                    if(ch == '+')break;
+                    newPre.append(ch);
+                }
+                sb.append(newPre).append(emails[i].substring(index)).toString();
+                set.add(sb.toString());
+            }
+            return set.size();
+        }
+
+    public int numUniqueEmails1(String[] emails) {
         Set<String> set = new HashSet<>();
         for(int i =0;i < emails.length; i++){
             int n = emails[i].length();
