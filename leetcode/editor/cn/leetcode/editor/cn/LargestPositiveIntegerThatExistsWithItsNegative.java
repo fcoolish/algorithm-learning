@@ -78,7 +78,8 @@ class Solution {
         }
         return max == -1001 ? -1:max;
     }
-}
+
+    }
 //leetcode submit region end(Prohibit modification and deletion)
 
 }
