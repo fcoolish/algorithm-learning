@@ -63,6 +63,7 @@ public class NumberOfDistinctAverages{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int distinctAverages(int[] nums) {
+        if(nums.length == 0)return 0;
         Set<Double> set = new HashSet<>();
         Arrays.sort(nums);
         int l = 0,r = nums.length - 1;
