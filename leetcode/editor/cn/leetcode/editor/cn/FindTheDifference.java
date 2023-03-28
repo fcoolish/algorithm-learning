@@ -41,11 +41,15 @@ public class FindTheDifference{
 class Solution {
     public char findTheDifference(String s, String t) {
         int ans = 0;
-        for(int i = 0;i < s.length();i++){
-            ans ^= s.charAt(i);
-        }
-        for(int i = 0;i < t.length();i++){
-            ans ^= t.charAt(i);
+        int len = s.length();
+        for(int i = 0;i <= len;i++){
+            if(i == len){
+                ans ^= t.charAt(i);
+            }else{
+                ans ^= s.charAt(i);
+                ans ^= t.charAt(i);
+            }
+
         }
         return (char)ans;
     }
