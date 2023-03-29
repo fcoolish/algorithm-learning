@@ -59,7 +59,7 @@ public class ShortestCompletingWord{
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    public String shortestCompletingWord(String licensePlate, String[] words) {
+        public String shortestCompletingWord(String licensePlate, String[] words) {
         Map<Character,Integer> map = new HashMap<>();
         licensePlate = licensePlate.toLowerCase();
         for(int i =0;i < licensePlate.length();i++){
@@ -68,9 +68,10 @@ class Solution {
             }
             map.put(licensePlate.charAt(i),map.getOrDefault(licensePlate.charAt(i),0) + 1);
         }
-        int len = 1001;
+        int len = 15;
         String str ="";
         for(int j =0;j < words.length;j++){
+            if(words[j].length() >= len)continue;
             Map<Character,Integer> temp = new HashMap<>();
             for(int i =0;i < words[j].length();i++){
                 temp.put(words[j].charAt(i),temp.getOrDefault(words[j].charAt(i),0) + 1);
@@ -84,7 +85,7 @@ class Solution {
                     break;
                 }
             }
-            if(match && words[j].length() < len){
+            if(match){
                 len = words[j].length();
                 str = words[j];
             }

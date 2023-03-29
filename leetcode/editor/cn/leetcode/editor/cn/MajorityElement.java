@@ -36,7 +36,7 @@ public class MajorityElement{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
 
-        public int majorityElement(int[] nums) {
+        public int majorityElement1(int[] nums) {
             int znum = nums[0],cnt = 1;
             for(int i = 1;i < nums.length;i++){
                 if(znum == nums[i]){
@@ -51,7 +51,7 @@ class Solution {
             }
             return znum;
         }
-}
+    }
 //leetcode submit region end(Prohibit modification and deletion)
 
 }
