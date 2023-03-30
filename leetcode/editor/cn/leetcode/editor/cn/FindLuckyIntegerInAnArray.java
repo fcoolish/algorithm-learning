@@ -55,9 +55,6 @@
 
 package leetcode.editor.cn;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class FindLuckyIntegerInAnArray{
     public static void main(String[] args){
         Solution solution = new FindLuckyIntegerInAnArray().new Solution();
@@ -65,15 +62,13 @@ public class FindLuckyIntegerInAnArray{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int findLucky(int[] arr) {
-        Map<Integer,Integer> map = new HashMap<>();
+       int[] cnt = new int[501];
         for(int index = 0;index < arr.length;index++){
-            map.put(arr[index],(map.getOrDefault(arr[index],0))+1);
+            cnt[arr[index]]++;
         }
         int res= -1;
-        for(int index = 0;index < arr.length;index++){
-            if(arr[index] == map.get(arr[index])){
-                res = Math.max(arr[index],res);
-            }
+        for(int index = 500;index >= 1;index--){
+            if(index == cnt[index])return index;
         }
         return res;
     }

@@ -67,18 +67,6 @@ class Solution {
         }
         return ans;
     }
-    public int maxLengthBetweenEqualCharacters2(String s) {
-            int ans = -1;
-            for(int i = 0;i < s.length();i++){
-                for(int j =i;j < s.length();j++){
-                    if(s.charAt(i) == s.charAt(j)){
-                        ans = Math.max(ans,j - i - 1);
-                    }
-                }
-            }
-            return ans;
-        }
-
 }
 //leetcode submit region end(Prohibit modification and deletion)
 

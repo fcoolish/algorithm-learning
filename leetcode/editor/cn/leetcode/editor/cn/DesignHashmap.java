@@ -45,28 +45,92 @@
 // 👍 296 👎 0
 
 package leetcode.editor.cn;
+
+import java.util.Iterator;
+import java.util.LinkedList;
+
 public class DesignHashmap{
     public static void main(String[] args){
         MyHashMap solution = new DesignHashmap().new MyHashMap();
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class MyHashMap {
+    private class Pair{
+        public int getKey() {
+            return key;
+        }
 
-    Integer[] arr;
+        public void setKey(int key) {
+            this.key = key;
+        }
+
+        public int getValue() {
+            return value;
+        }
+
+        public void setValue(int value) {
+            this.value = value;
+        }
+
+
+        public Pair(int key, int value) {
+            this.key = key;
+            this.value = value;
+        }
+
+        private int key;
+        private int value;
+
+    }
+    private int BASE = 769;
+    LinkedList[] data;
+
     public MyHashMap() {
-        arr = new Integer[1000001];
+        data = new LinkedList[BASE];
+        for(int i =0;i < BASE;i++){
+            data[i] = new LinkedList<Pair>();
+        }
     }
     
     public void put(int key, int value) {
-        arr[key] = value;
+        int h = hash(key);
+        Iterator<Pair> iterator = data[h].iterator();
+        while (iterator.hasNext()){
+            Pair pair = iterator.next();
+            if(pair.getKey() == key){
+                pair.setValue(value);
+                return;
+            }
+        }
+        data[h].offerLast(new Pair(key,value));
     }
     
     public int get(int key) {
-        return arr[key] == null ? -1:arr[key];
+        int h = hash(key);
+        Iterator<Pair> iterator = data[h].iterator();
+        while (iterator.hasNext()){
+            Pair pair = iterator.next();
+            if(pair.getKey() == key){
+                return pair.getValue();
+            }
+        }
+        return -1;
     }
     
     public void remove(int key) {
-        arr[key] = null;
+        int h = hash(key);
+        Iterator<Pair> iterator = data[h].iterator();
+        while (iterator.hasNext()){
+            Pair pair = iterator.next();
+            if(pair.getKey() == key){
+                data[h].remove(pair);
+                return;
+            }
+        }
+    }
+
+    public int hash(int key){
+        return key % BASE;
     }
 }
 

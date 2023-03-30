@@ -61,7 +61,6 @@ public class FairCandySwap{
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-
         public int[] fairCandySwap(int[] aliceSizes, int[] bobSizes) {
             int asum = Arrays.stream(aliceSizes).sum();
             int bsum = Arrays.stream(bobSizes).sum();
