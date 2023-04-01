@@ -44,40 +44,66 @@
 // 👍 40 👎 0
 
 package leetcode.editor.cn;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class CheckArrayFormationThroughConcatenation{
     public static void main(String[] args){
         Solution solution = new CheckArrayFormationThroughConcatenation().new Solution();
         int[] arr = new int[]{91,4,64,78};
         int[][] pieces = new int[][]{{78},{4,64},{91}};
-        solution.canFormArray(arr,pieces);
+       boolean val = solution.canFormArray(arr,pieces);
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    public boolean canFormArray(int[] arr, int[][] pieces) {
-        int n = arr.length;
-        for(int i =0;i < pieces.length;i++){
-            int len = pieces[i].length;
-            for(int j =0;j < len;j++){
-                int index = 0;
-                for(int k =0;k < n;k++){
-                    if(pieces[i][j] != arr[k]){
-                        continue;
-                    }else {
-                        index = k;
-                    }
+
+        public boolean canFormArray(int[] arr, int[][] pieces){
+        Map<Integer,Integer> map = new HashMap<>();
+        int len = pieces.length;
+        for(int i =0;i < len;i++){
+            map.put(pieces[i][0],i);
+        }
+        for(int i= 0;i < arr.length;){
+                if(!map.containsKey(arr[i])){
+                    return false;
                 }
-                for(int k =index;k < index + len;k++){
-                    if(k >= n ||pieces[i][j] != arr[k]){
+                int index = map.get(arr[i]);
+                int l = pieces[index].length;
+                for (int k =0;k < l;k++){
+                    if(arr[i + k] != pieces[index][k]){
                         return false;
-                    }else {
-                        j++;
                     }
                 }
-            }
+                i += l;
         }
         return true;
     }
-}
+        public boolean canFormArray1(int[] arr, int[][] pieces) {
+            int n = arr.length;
+            for (int i = 0; i < pieces.length; i++) {
+                int len = pieces[i].length;
+                for (int j = 0; j < len; j++) {
+                    int index = 0;
+                    for (int k = 0; k < n; k++) {
+                        if (pieces[i][j] != arr[k]) {
+                            continue;
+                        } else {
+                            index = k;
+                        }
+                    }
+                    for (int k = index; k < index + len; k++) {
+                        if (k >= n || pieces[i][j] != arr[k]) {
+                            return false;
+                        } else {
+                            j++;
+                        }
+                    }
+                }
+            }
+            return true;
+        }
+    }
 //leetcode submit region end(Prohibit modification and deletion)
 
 }
