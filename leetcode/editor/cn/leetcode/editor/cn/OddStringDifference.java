@@ -67,7 +67,7 @@ class Solution {
             StringBuilder str = new StringBuilder();
             for(int j = 1;j < words[i].length();j++){
                 int d = words[i].charAt(j) - words[i].charAt(j - 1);
-                str.append(d).append("｜");//任意字符做标志区分单个差值
+                str.append(d).append("_");//任意字符做标志区分单个差值
             }
             List<Integer> list = map.getOrDefault(str.toString(),new ArrayList<>());
             list.add(i);

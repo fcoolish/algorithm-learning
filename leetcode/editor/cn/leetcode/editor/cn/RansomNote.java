@@ -38,28 +38,40 @@
 // Related Topics 哈希表 字符串 计数 👍 525 👎 0
 
 package leetcode.editor.cn;
-public class RansomNote{
-    public static void main(String[] args){
+
+public class RansomNote {
+    public static void main(String[] args) {
         Solution solution = new RansomNote().new Solution();
+        int[] nums1 = {1,1,3,4};
+        int[] nums2 = {4,4,1,1};
     }
+
     //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
-    public boolean canConstruct(String ransomNote, String magazine) {
-        int r = ransomNote.length();
-        int m = magazine.length();
-        int[] arr = new int[26];
-        for(int i = 0;i < r;i++){
-            arr[ransomNote.charAt(i) - 'a']--;
+    class Solution {
+        public boolean canConstruct(String ransomNote, String magazine) {
+            int r = ransomNote.length();
+            int m = magazine.length();
+            int[] arr = new int[26];
+            for (int i = 0; i < r; i++) {
+                arr[ransomNote.charAt(i) - 'a']--;
+            }
+            for (int i = 0; i < m; i++) {
+                arr[magazine.charAt(i) - 'a']++;
+            }
+            for (int i = 0; i < 26; i++) {
+                if (arr[i] < 0) return false;
+            }
+            return true;
         }
-        for(int i = 0;i < m;i++){
-            arr[magazine.charAt(i) - 'a']++;
-        }
-        for(int i =0;i < 26;i++){
-            if(arr[i] < 0)return false;
-        }
-        return true;
+
+
+
+
+
+
+
+
     }
-}
 //leetcode submit region end(Prohibit modification and deletion)
 
 }

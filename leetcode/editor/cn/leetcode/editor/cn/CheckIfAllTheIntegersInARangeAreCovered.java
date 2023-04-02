@@ -39,14 +39,27 @@
 // Related Topics 数组 哈希表 前缀和 👍 117 👎 0
 
 package leetcode.editor.cn;
+
+import java.util.Arrays;
+
 public class CheckIfAllTheIntegersInARangeAreCovered{
     public static void main(String[] args){
         Solution solution = new CheckIfAllTheIntegersInARangeAreCovered().new Solution();
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-
-        public boolean isCovered(int[][] ranges, int left, int right) {
+      public boolean isCovered(int[][] ranges, int left, int right){
+          Arrays.sort(ranges,(a,b) -> a[0] - b[0]);
+          for(int[] range:ranges){
+              int l = range[0];
+              int r = range[1];
+              if(l <= left && left <= r){
+                  left = r + 1;
+              }
+          }
+          return left > right;
+      }
+      public boolean isCovered3(int[][] ranges, int left, int right) {
             int[] diff = new int[52];
             for(int i= 0;i < ranges.length;i++){
                 diff[ranges[i][0]]++;
@@ -62,7 +75,7 @@ class Solution {
             return true;
         }
 
-        public boolean isCovered2(int[][] ranges, int left, int right) {
+      public boolean isCovered2(int[][] ranges, int left, int right) {
       boolean[] arr = new boolean[51];
       for(int i=0;i < ranges.length;i++){
           for(int j = ranges[i][0];j <= ranges[i][1];j++){
