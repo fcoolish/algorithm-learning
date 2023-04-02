@@ -64,7 +64,37 @@ public class Finding3DigitEvenNumbers{
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    public int[] findEvenNumbers(int[] digits) {
+
+    public int[] findEvenNumbers(int[] digits){
+        int[] cnt = new int[10];
+        for(int num:digits){
+            cnt[num]++;
+        }
+        List<Integer> res = new ArrayList<>();
+        for(int i = 100;i < 999;i+=2){
+            String str = String.valueOf(i);
+            cnt[str.charAt(0) - '0']--;
+            cnt[str.charAt(1) - '0']--;
+            cnt[str.charAt(2) - '0']--;
+            boolean match = true;
+            if(cnt[str.charAt(0) - '0'] < 0 || cnt[str.charAt(1) - '0'] < 0
+                    || cnt[str.charAt(2) - '0'] < 0){
+                match = false;
+            }
+            cnt[str.charAt(0) - '0']++;
+            cnt[str.charAt(1) - '0']++;
+            cnt[str.charAt(2) - '0']++;
+            if(match)res.add(i);
+        }
+        int[] ans = new int[res.size()];
+        int index = 0;
+        for(int num:res){
+            ans[index++] = num;
+        }
+        return ans;
+    }
+
+    public int[] findEvenNumbers1(int[] digits) {
         Set<Integer> set = new HashSet<>();
         int n = digits.length;
         for(int i =0;i < n;i++){

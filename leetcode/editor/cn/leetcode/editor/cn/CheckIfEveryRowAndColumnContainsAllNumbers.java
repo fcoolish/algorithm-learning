@@ -38,6 +38,10 @@
 // Related Topics 数组 哈希表 矩阵 👍 8 👎 0
 
 package leetcode.editor.cn;
+
+import java.util.HashSet;
+import java.util.Set;
+
 public class CheckIfEveryRowAndColumnContainsAllNumbers{
     public static void main(String[] args){
         Solution solution = new CheckIfEveryRowAndColumnContainsAllNumbers().new Solution();
@@ -49,19 +53,37 @@ class Solution {
     public boolean checkValid(int[][] matrix) {
         int n = matrix.length;
         for(int i = 0;i < n;i++){
-            boolean[] row = new boolean[n+1];
-            boolean[] col = new boolean[n+1];
+            Set<Integer> row = new HashSet<>(n);
+            Set<Integer> col = new HashSet<>(n);
             for(int j = 0;j < n;j++){
-                row[matrix[i][j]] = true;
-                col[matrix[j][i]] = true;
+                row.add(matrix[i][j]);
+                col.add(matrix[j][i]);
             }
-            for(int k = 1;k <=n;k++){
-                if(!(row[k] && col[k]))return false;
+            if(row.size() != n || col.size() != n){
+                return false;
             }
         }
         return true;
     }
-}
+
+
+        public boolean checkValid1(int[][] matrix) {
+            int n = matrix.length;
+            for(int i = 0;i < n;i++){
+                boolean[] row = new boolean[n+1];
+                boolean[] col = new boolean[n+1];
+                for(int j = 0;j < n;j++){
+                    row[matrix[i][j]] = true;
+                    col[matrix[j][i]] = true;
+                }
+                for(int k = 1;k <=n;k++){
+                    if(!(row[k] && col[k]))return false;
+                }
+            }
+            return true;
+        }
+
+    }
 //leetcode submit region end(Prohibit modification and deletion)
 
 }

@@ -41,7 +41,7 @@ class Solution {
             sb.append(guess.charAt(i));
         }
         for(int i =0;i < sb.length();i++){//找出伪猜中
-            if(solution.contains(String.valueOf(sb.charAt(i))) && arr[sb.charAt(i) - 'A'] > 0){
+            if(arr[sb.charAt(i) - 'A'] > 0){
                 n++;
                 arr[sb.charAt(i) - 'A']--;
             }

@@ -70,28 +70,6 @@ class Solution {
             }
             return ans;
         }
-
-        public int minimumSwitchingTimes2(int[][] source, int[][] target) {
-        int[] map = new int[10001];
-        int n = source.length;
-        int m = source[0].length;
-        int ans = 0;
-        for(int i=0;i < n;i++){
-            for(int j =0;j < m;j++){
-                map[source[i][j]]++;
-            }
-        }
-        for(int i =0;i < n;i++){
-            for(int j =0;j < m;j++){
-                if(map[target[i][j]] > 0){
-                    map[target[i][j]]--;
-                }else{
-                    ans++;
-                }
-            }
-        }
-        return ans;
-    }
 }
 //leetcode submit region end(Prohibit modification and deletion)
 

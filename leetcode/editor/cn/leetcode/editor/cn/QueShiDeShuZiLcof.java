@@ -26,10 +26,20 @@ public class QueShiDeShuZiLcof{
     public static void main(String[] args){
         Solution solution = new QueShiDeShuZiLcof().new Solution();
         int[] nums = new int[]{0,1,3};
-        solution.missingNumber(nums);
+        //solution.missingNumber(nums);
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+
+        public int missingNumber(int[] nums) {
+            int n = nums.length;
+            for (int i = 0; i < n; i++) {
+                if (nums[i] != i) {
+                    return i;
+                }
+            }
+            return n;
+        }
 
     public int missingNumber2(int[] nums) {
         int n = nums.length;
@@ -45,7 +55,7 @@ class Solution {
         return l;
     }
 
-    public int missingNumber(int[] nums) {
+    public int missingNumber3(int[] nums) {
         int l = 0,r = nums.length - 1;
         while (l <= r){
             int mid = l + (r- l)/2;

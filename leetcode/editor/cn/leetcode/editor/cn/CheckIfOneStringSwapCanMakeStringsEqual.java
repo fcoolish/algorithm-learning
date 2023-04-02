@@ -65,9 +65,6 @@ class Solution {
                     }
                 }
             }
-            if(list.size() == 0){
-                return true;
-            }
             if(list.size()!= 2){
                 return false;
             }

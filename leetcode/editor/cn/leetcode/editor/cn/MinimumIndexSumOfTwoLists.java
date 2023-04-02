@@ -57,7 +57,7 @@ class Solution {
         for(int i =0;i < list1.length;i++){
             map.put(list1[i],i);
         }
-        int min = 10000;
+        int min = 2001;
         for(int i =0;i < list2.length;i++){
             if(i > min)break;
             if(!map.containsKey(list2[i])){

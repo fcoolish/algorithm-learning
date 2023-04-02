@@ -58,10 +58,7 @@ class Solution {
         for(int i = 0;i < arr.length;i++){
             Double numA = 1.0 *arr[i] * 2;
             Double numB = 1.0 * arr[i] / 2;
-            if(map.containsKey(numA) && map.get(numA) != i){
-                return true;
-            }
-            if(map.containsKey(numB) && map.get(numB) != i){
+            if(map.containsKey(numA) || map.containsKey(numB)){
                 return true;
             }
             map.put(arr[i] * 1.0,i);

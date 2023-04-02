@@ -43,13 +43,13 @@ import java.util.*;
 public class RemoveLetterToEqualizeFrequency{
     public static void main(String[] args){
         Solution solution = new RemoveLetterToEqualizeFrequency().new Solution();
-        solution.equalFrequency("abcc");
+        //solution.equalFrequency("abcc");
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
         // 1.只有一种次数: 只有一种字母 || n种字母，每种字母的出现次数都为1
         // 2.只有两种次数: 只有一种字母的出现次数为1 || 1种字母的出现次数为n + 1，其他字母出现次数为n && n + 1次数的只有一种字母
-        public boolean equalFrequency3(String word) {
+        public boolean equalFrequency1(String word) {
             Map<Character,Integer> charMap = new HashMap<>();
             for(int i =0;i < word.length();i++){
                 charMap.put(word.charAt(i),charMap.getOrDefault(word.charAt(i),0) + 1);
@@ -68,62 +68,27 @@ class Solution {
                     || (countMap.lastEntry().getValue() == 1 && countMap.lastKey() - countMap.firstKey() == 1);
         }
 
-        public boolean equalFrequency2(String word) {
-        int[] arr  = new int[26];
-        for(int i =0;i < word.length();i++){
-            arr[word.charAt(i) - 'a']++;
-        }
-        List<Integer> set = new ArrayList<>();
-        List<Integer> list = new ArrayList<>();
-        for(int i =0;i < 26;i++){
-            if(arr[i] > 0){
-                list.add(arr[i]);
-            }
-        }
-        for (int i =0;i < list.size();i++){
-            for(int j = 0;j < list.size();j++){
-                int num = list.get(j);
-                if(j == i){
-                    num -= 1;
-                }
-                if(num > 0 && !set.contains(num)){
-                    set.add(num);
-                    if(set.size() > 1){
-                        break;
-                    }
-                }
-            }
-            if(set.size() == 1){
-                return true;
-            }
-            set.clear();
-        }
-        return false;
-    }
-
-        public boolean equalFrequency(String word) {
-            int[] arr  = new int[26];
+        //暴力是唯一的优雅
+        public boolean equalFrequency(String word){
+            int[] cnt = new int[26];
+            List<Character> list = new ArrayList<>();
             for(int i =0;i < word.length();i++){
-                arr[word.charAt(i) - 'a']++;
-            }
-            List<Integer> list = new ArrayList<>();
-            for(int i =0;i < 26;i++){
-                if(arr[i] > 0){
-                    list.add(arr[i]);
+                cnt[word.charAt(i) - 'a']++;
+                if(!list.contains(word.charAt(i))){
+                    list.add(word.charAt(i));
                 }
             }
-            boolean match = true;
-            int flag = -1;//暴力枚举
-            for (int i =0;i < list.size();i++){
-                for(int j = 0;j < list.size();j++){
-                    int count = list.get(j);
-                    if(j == i){
-                        count -= 1;
+            for(int i =0;i < list.size();i++){
+                cnt[list.get(i) - 'a']--;
+                int same = -1;
+                boolean match = true;
+                for(int j = 0;j < 26;j++){
+                    if(cnt[j] == 0){
+                        continue;
                     }
-                    if(count > 0 && flag == -1){
-                        flag = count;
-                    }
-                    if(count > 0 && flag != count){
+                    if(same == - 1){
+                        same = cnt[j];
+                    }else if(same != cnt[j]){
                         match = false;
                         break;
                     }
@@ -131,12 +96,10 @@ class Solution {
                 if(match){
                     return true;
                 }
-                match = true;
-                flag = -1;
+                cnt[list.get(i) - 'a']++;
             }
             return false;
         }
-
     }
 //leetcode submit region end(Prohibit modification and deletion)
 
