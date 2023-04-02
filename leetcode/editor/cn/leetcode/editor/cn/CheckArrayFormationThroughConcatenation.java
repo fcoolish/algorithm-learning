@@ -48,56 +48,55 @@ package leetcode.editor.cn;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CheckArrayFormationThroughConcatenation{
-    public static void main(String[] args){
+public class CheckArrayFormationThroughConcatenation {
+    public static void main(String[] args) {
         Solution solution = new CheckArrayFormationThroughConcatenation().new Solution();
-        int[] arr = new int[]{91,4,64,78};
-        int[][] pieces = new int[][]{{78},{4,64},{91}};
-       boolean val = solution.canFormArray(arr,pieces);
+        int[] arr = new int[]{91, 4, 64, 78};
+        int[][] pieces = new int[][]{{78}, {4, 64}, {91}};
+        boolean val = solution.canFormArray(arr, pieces);
     }
-    //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
 
-        public boolean canFormArray(int[] arr, int[][] pieces){
-        Map<Integer,Integer> map = new HashMap<>();
-        int len = pieces.length;
-        for(int i =0;i < len;i++){
-            map.put(pieces[i][0],i);
-        }
-        for(int i= 0;i < arr.length;){
-                if(!map.containsKey(arr[i])){
+    //leetcode submit region begin(Prohibit modification and deletion)
+    class Solution {
+
+        public boolean canFormArray1(int[] arr, int[][] pieces) {
+            Map<Integer, Integer> map = new HashMap<>();
+            int len = pieces.length;
+            for (int i = 0; i < len; i++) {
+                map.put(pieces[i][0], i);
+            }
+            for (int i = 0; i < arr.length; ) {
+                if (!map.containsKey(arr[i])) {
                     return false;
                 }
                 int index = map.get(arr[i]);
                 int l = pieces[index].length;
-                for (int k =0;k < l;k++){
-                    if(arr[i + k] != pieces[index][k]){
+                for (int k = 0; k < l; k++) {
+                    if (arr[i + k] != pieces[index][k]) {
                         return false;
                     }
                 }
                 i += l;
+            }
+            return true;
         }
-        return true;
-    }
-        public boolean canFormArray1(int[] arr, int[][] pieces) {
+
+        public boolean canFormArray(int[] arr, int[][] pieces) {
             int n = arr.length;
+            Map<Integer, Integer> map = new HashMap<>();
+            for (int i = 0; i < arr.length; i++) {
+                map.put(arr[i], i);
+            }
             for (int i = 0; i < pieces.length; i++) {
                 int len = pieces[i].length;
-                for (int j = 0; j < len; j++) {
-                    int index = 0;
-                    for (int k = 0; k < n; k++) {
-                        if (pieces[i][j] != arr[k]) {
-                            continue;
-                        } else {
-                            index = k;
-                        }
-                    }
-                    for (int k = index; k < index + len; k++) {
-                        if (k >= n || pieces[i][j] != arr[k]) {
-                            return false;
-                        } else {
-                            j++;
-                        }
+                int num = pieces[i][0];
+                if (!map.containsKey(num)) {
+                    return false;
+                }
+                int index = map.get(num);
+                for (int k = 0; k < len; k++) {
+                    if ((index + k) >= n || pieces[i][k] != arr[index + k]) {
+                        return false;
                     }
                 }
             }
