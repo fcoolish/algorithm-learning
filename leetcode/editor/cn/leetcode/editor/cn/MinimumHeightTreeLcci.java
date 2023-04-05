@@ -23,12 +23,12 @@ class Solution {
     }
 
     private TreeNode buildTree(int[] nums,int left,int right){
-        if(left > right)return null;
-        int mid = left + (right - left)/2;
-        TreeNode root = new TreeNode(nums[mid]);
-        root.left = buildTree(nums,left,mid - 1);
-        root.right = buildTree(nums,mid + 1,right);
-        return root;
+        if(left >  right)return null;
+        int mid = (right - left)/2 + left;
+        TreeNode treeNode = new TreeNode(nums[mid]);
+        treeNode.left = buildTree(nums,left,mid - 1);
+        treeNode.right = buildTree(nums,mid + 1,right);
+        return treeNode;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
