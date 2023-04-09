@@ -39,55 +39,54 @@
 
 package leetcode.editor.cn;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
-public class NYBBNL{
-    public static void main(String[] args){
+public class NYBBNL {
+    public static void main(String[] args) {
         Solution solution = new NYBBNL().new Solution();
     }
     //leetcode submit region begin(Prohibit modification and deletion)
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode() {}
- *     TreeNode(int val) { this.val = val; }
- *     TreeNode(int val, TreeNode left, TreeNode right) {
- *         this.val = val;
- *         this.left = left;
- *         this.right = right;
- *     }
- * }
- */
-class Solution {
-    public TreeNode increasingBST(TreeNode root) {
-        if(root == null)return root;
-        Stack<TreeNode> stack = new Stack<>();
-        List<Integer> list = new ArrayList<>();
-        while (!stack.isEmpty() || root != null){
-            while (root != null){
-                stack.push(root);
-                root = root.left;
-            }
-            root = stack.pop();
-            list.add(root.val);
-            root  = root.right;
-        }
-        root = new TreeNode(list.get(0));
-        TreeNode pre = root;
-        for(int i = 1;i < list.size();i++){
-            TreeNode node = new TreeNode(list.get(i));
-            pre.right = node;
-            pre = node;
-        }
-        return root;
-    }
 
-}
+    /**
+     * Definition for a binary tree node.
+     * public class TreeNode {
+     * int val;
+     * TreeNode left;
+     * TreeNode right;
+     * TreeNode() {}
+     * TreeNode(int val) { this.val = val; }
+     * TreeNode(int val, TreeNode left, TreeNode right) {
+     * this.val = val;
+     * this.left = left;
+     * this.right = right;
+     * }
+     * }
+     */
+    class Solution {
+        public TreeNode increasingBST(TreeNode root) {
+            if (root == null) return root;
+            Stack<TreeNode> stack = new Stack<>();
+            List<Integer> list = new ArrayList<>();
+            while (!stack.isEmpty() || root != null) {
+                while (root != null) {
+                    stack.push(root);
+                    root = root.left;
+                }
+                root = stack.pop();
+                list.add(root.val);
+                root = root.right;
+            }
+            root = new TreeNode(list.get(0));
+            TreeNode pre = root;
+            for (int i = 1; i < list.size(); i++) {
+                TreeNode node = new TreeNode(list.get(i));
+                pre.right = node;
+                pre = node;
+            }
+            return root;
+        }
+
+    }
 //leetcode submit region end(Prohibit modification and deletion)
 
 }
