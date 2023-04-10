@@ -34,6 +34,7 @@
 // Related Topics 树 深度优先搜索 字符串 二叉树 👍 352 👎 0
 
 package leetcode.editor.cn;
+
 public class ConstructStringFromBinaryTree{
     public static void main(String[] args){
         Solution solution = new ConstructStringFromBinaryTree().new Solution();
@@ -56,27 +57,14 @@ public class ConstructStringFromBinaryTree{
  */
 class Solution {
     public String tree2str(TreeNode root) {
-        StringBuilder sb = new StringBuilder();
-        sb.append(root.val);
-        boolean flag = root.left == null ? true:false;
-        buildStr(sb,root.left,false);
-        buildStr(sb,root.right,flag);
-        return sb.toString();
-    }
-
-    public void buildStr(StringBuilder sb,TreeNode node,boolean flag){
-        if(node == null){
-            return;
+        if(root == null)return "";
+        if(root.left == null && root.right == null){
+            return Integer.toString(root.val);
         }
-        if(flag){
-            sb.append("()");
+        if(root.right == null){
+            return new StringBuilder().append(root.val).append("(").append(tree2str(root.left)).append(")").toString();
         }
-        sb.append("(");
-        sb.append(node.val);
-        buildStr(sb,node.left,false);
-        flag = node.left == null ? true:false;
-        buildStr(sb,node.right,flag);
-        sb.append(")");
+        return new StringBuilder().append(root.val).append("(").append(tree2str(root.left)).append(")(").append(tree2str(root.right)).append(")").toString();
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
