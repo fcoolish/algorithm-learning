@@ -30,7 +30,6 @@
 
 package leetcode.editor.cn;
 
-import java.util.Collections;
 import java.util.List;
 
 public class HanotaLcci{
@@ -39,6 +38,7 @@ public class HanotaLcci{
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+
     public void hanota(List<Integer> A, List<Integer> B, List<Integer> C) {
           int N = A.size();
           move(N,A,B,C);

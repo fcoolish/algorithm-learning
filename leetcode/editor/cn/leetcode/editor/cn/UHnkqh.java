@@ -46,6 +46,7 @@
 // Related Topics 递归 链表 👍 110 👎 0
 
 package leetcode.editor.cn;
+
 public class UHnkqh{
     public static void main(String[] args){
         Solution solution = new UHnkqh().new Solution();
@@ -62,6 +63,7 @@ public class UHnkqh{
  * }
  */
 class Solution {
+
     public ListNode reverseList(ListNode head) {
         ListNode pre = null;
         ListNode cur = head;
