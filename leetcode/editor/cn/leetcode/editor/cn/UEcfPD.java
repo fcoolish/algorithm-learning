@@ -57,30 +57,32 @@ public class UEcfPD {
         public int perfectMenu(int[] materials, int[][] cookbooks, int[][] attribute, int limit) {
             maxAns = -1;
             boolean[] exists = new boolean[cookbooks.length];
-            dfs(materials, cookbooks, attribute, limit, exists, 0, 0);
+            dfs(materials,cookbooks,attribute,limit,exists,0,0);
             return maxAns;
         }
 
         private void dfs(int[] materials, int[][] cookbooks, int[][] attribute, int limit, boolean[] exists, int sumx, int sumy) {
-            if (sumy >= limit) maxAns = Math.max(sumx, maxAns);
+            if(sumy >= limit){
+                maxAns = Math.max(maxAns,sumx);
+            }
             int len = cookbooks.length;
-            for (int i = 0; i < len; i++) {
-                if (exists[i]) continue;
+            for(int i =0;i < len;i++){
+                if(exists[i])continue;
                 int[] need = cookbooks[i];
                 boolean can = true;
-                for (int j = 0; j < need.length; j++) {
-                    if (materials[j] < need[j]) {
-                        can = false;
+                for(int j =0;j < need.length;j++){
+                    if(materials[j] < need[j]){
+                        can =false;
                         break;
                     }
                 }
-                if (can) {
+                if(can){
                     exists[i] = true;
-                    for (int j = 0; j < need.length; j++) {
+                    for(int j  = 0;j < need.length;j++){
                         materials[j] -= need[j];
                     }
-                    dfs(materials, cookbooks, attribute, limit, exists, sumx + attribute[i][0], sumy + attribute[i][1]);
-                    for (int j = 0; j < need.length; j++) {
+                    dfs(materials,cookbooks,attribute,limit,exists,sumx + attribute[i][0],sumy + attribute[i][1]);
+                    for(int j  = 0;j < need.length;j++){
                         materials[j] += need[j];
                     }
                     exists[i] = false;
