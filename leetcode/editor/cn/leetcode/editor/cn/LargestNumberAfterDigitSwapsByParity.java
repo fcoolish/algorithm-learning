@@ -33,6 +33,9 @@
 // Related Topics 排序 堆（优先队列） 👍 19 👎 0
 
 package leetcode.editor.cn;
+
+import java.util.PriorityQueue;
+
 public class LargestNumberAfterDigitSwapsByParity{
     public static void main(String[] args){
         Solution solution = new LargestNumberAfterDigitSwapsByParity().new Solution();
@@ -40,7 +43,30 @@ public class LargestNumberAfterDigitSwapsByParity{
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    public int largestInteger(int num) {
+    public int largestInteger(int num){
+        PriorityQueue<Integer> q1 = new PriorityQueue<>((a,b) -> b- a);
+        PriorityQueue<Integer> q2 = new PriorityQueue<>((a,b) -> b- a);
+        String str = String.valueOf(num);
+        for(int i =0;i < str.length();i++){
+            int nn = str.charAt(i) - '0';
+            if(nn % 2 == 0){
+                q2.offer(nn);
+            }else{
+                q1.offer(nn);
+            }
+        }
+        StringBuilder ans = new StringBuilder();
+        for(int i =0;i < str.length();i++){
+            int nn = str.charAt(i) - '0';
+            if(nn % 2 == 0){
+                ans.append(q2.poll());
+            }else{
+                ans.append(q1.poll());
+            }
+        }
+        return Integer.parseInt(ans.toString());
+    }
+    public int largestInteger1(int num) {
         StringBuilder numStr = new StringBuilder();
         numStr.append(num);
         int l = numStr.length();

@@ -61,15 +61,10 @@ class Solution {
             arr[i][1] = i;
         }
         Arrays.sort(arr,(a,b) -> b[0] - a[0]);
-        Integer[][] ans = new Integer[k][2];
-        for(int i =0;i < k;i++){
-            ans[i][0] = arr[i][1];
-            ans[i][1] = arr[i][0];
-        }
-        Arrays.sort(ans,(a,b) -> a[0] - b[0]);
+        Arrays.sort(arr,0,k,(a,b) -> a[1] - b[1]);
         int[] res = new int[k];
         for(int i =0;i < k;i++){
-            res[i] = ans[i][1];
+            res[i] = arr[i][0];
         }
         return res;
     }

@@ -51,16 +51,42 @@
 package leetcode.editor.cn;
 
 import java.util.Arrays;
+import java.util.PriorityQueue;
 
 public class MinimumAmountOfTimeToFillCups{
     public static void main(String[] args){
         Solution solution = new MinimumAmountOfTimeToFillCups().new Solution();
-        int[] arr = {1,4,2};
+        int[] arr = {5,0,0};
         solution.fillCups(arr);
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-        public int fillCups(int[] amount) {
+
+        public int fillCups(int[] amount){
+            PriorityQueue<Integer> queue = new PriorityQueue<>((a,b) -> b - a);
+            for(int num:amount){
+                queue.add(num);
+            }
+            int ans = 0;
+            while (queue.peek() > 0){
+                int n1 = queue.poll();
+                int n2 = queue.poll();
+                if(n1 >= 1 && n2 >= 1){
+                    ans++;
+                    n1--;
+                    n2--;
+                    queue.offer(n1);
+                    queue.offer(n2);
+                }else if(n1 >= 1){
+                    ans++;
+                    n1--;
+                    queue.offer(n1);
+                    queue.offer(n2);
+                }
+            }
+            return ans;
+        }
+        public int fillCups1(int[] amount) {
             Arrays.sort(amount);
             if(amount[0] + amount[1] <= amount[2])return amount[2];
             return (amount[0] + amount[1] - amount[2] + 1) / 2 + amount[2];

@@ -69,6 +69,8 @@ import java.util.*;
 public class TheKWeakestRowsInAMatrix {
     public static void main(String[] args) {
         Solution solution = new TheKWeakestRowsInAMatrix().new Solution();
+        int[] arr = {1,1,0,0,0};
+        int index = solution.getBoard(arr);
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -78,63 +80,36 @@ public class TheKWeakestRowsInAMatrix {
             int len = mat.length;
             Integer[][] res = new Integer[len][2];
             for (int i = 0; i < mat.length; i++) {
-                int index = getIndex(mat[i]);
+                int index = getBoard(mat[i]);
                 res[i] = new Integer[]{i, index};
             }
             Arrays.sort(res, new Comparator<Integer[]>() {
                 @Override
                 public int compare(Integer[] o1, Integer[] o2) {
                     if (o1[1].intValue() == o2[1].intValue()) {
-                        return o2[0] - o1[0];
+                        return o1[0] - o2[0];
                     }
-                    return o2[1] - o1[1];
+                    return o1[1] - o2[1];
                 }
             });
             int[] arr = new int[k];
             for (int i = 0; i < k; i++) {
-                arr[i] = res[len - i - 1][0];
+                arr[i] = res[i][0];
             }
             return arr;
         }
 
-        public int getIndex(int[] arr) {
+        public int getBoard(int[] arr) {
             int l = 0, r = arr.length - 1;
             while (l <= r) {
                 int mid = l + (r - l) / 2;
-                if (arr[mid] > 0) {
-                    l = mid + 1;
-                } else {
+                if (arr[mid] == 0) {
                     r = mid - 1;
+                } else {
+                    l = mid + 1;
                 }
             }
-            return l;
-        }
-
-
-        public int[] kWeakestRows2(int[][] mat, int k) {
-            int len = mat.length;
-            Integer[][] res = new Integer[len][2];
-            for (int i = 0; i < len; i++) {
-                int temp = 0;
-                for (int j = 0; j < mat[i].length; j++) {
-                    if (mat[i][j] == 1) temp++;
-                }
-                res[i] = new Integer[]{i, temp};
-            }
-            Arrays.sort(res, new Comparator<Integer[]>() {
-                @Override
-                public int compare(Integer[] o1, Integer[] o2) {
-                    if (o1[1].intValue() == o2[1].intValue()) {
-                        return o2[0] - o1[0];
-                    }
-                    return o2[1] - o1[1];
-                }
-            });
-            int[] arr = new int[k];
-            for (int i = 0; i < k; i++) {
-                arr[i] = res[len - i - 1][0];
-            }
-            return arr;
+            return l - 1;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
