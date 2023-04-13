@@ -47,7 +47,8 @@ class Solution {
         }
         if(maxpour == 0) return 0;
         int res = Integer.MAX_VALUE;
-        for(int pour = maxpour;pour >= 1;pour--){
+        for(int pour = 1;pour <= maxpour;pour++){
+            if(pour >= res)continue;//剪枝
             int increase = 0;
             for(int i = 0;i < n;i++){
                 int needV = vat[i] % pour == 0 ? vat[i] / pour:vat[i] /pour + 1;
