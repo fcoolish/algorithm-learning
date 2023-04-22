@@ -43,9 +43,26 @@ public class SortTheMatrixDiagonally{
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    public int[][] diagonalSort(int[][] mat) {
-        return null;
-    }
+        public int[][] diagonalSort(int[][] mat) {
+            int m = mat.length,n = mat[0].length;
+            for(int i =0;i < m;i++){
+                for(int j=0;j < n;j++){
+                    for (int k = 1;;k++){
+                        int dx = i + k;
+                        int dy = j + k;
+                        if(dx >= m || dy>= n){
+                            break;
+                        }
+                        if(mat[dx][dy] < mat[i][j]){
+                            int temp = mat[i][j];
+                            mat[i][j] = mat[dx][dy];
+                            mat[dx][dy] = temp;
+                        }
+                    }
+                }
+            }
+            return mat;
+        }
 }
 //leetcode submit region end(Prohibit modification and deletion)
 
