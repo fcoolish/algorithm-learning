@@ -39,10 +39,45 @@ import java.util.List;
 public class FindAllNumbersDisappearedInAnArray{
     public static void main(String[] args){
         Solution solution = new FindAllNumbersDisappearedInAnArray().new Solution();
+        int[] arr = {4,3,2,7,8,2,3,1};
+        solution.findDisappearedNumbers(arr);
+
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    public List<Integer> findDisappearedNumbers(int[] nums) {
+    public List<Integer> findDisappearedNumbers(int[] nums){
+        int n = nums.length;
+        for (int num:nums){
+            int x = (num - 1) % n;
+            nums[x] +=n;
+        }
+        List<Integer> ans = new ArrayList<>();
+        for(int i =0;i < n;i++){
+            if(nums[i] <= n){
+                ans.add(i + 1);
+            }
+        }
+        return ans;
+    }
+    public List<Integer> findDisappearedNumbers2(int[] nums){
+        List<Integer> ans = new ArrayList<>();
+        for(int i= 0;i < nums.length;i++){
+            if(nums[i] != i + 1 && (nums[nums[i] - 1] != nums[i])){
+                int tempA = nums[i];
+                int tempB = nums[nums[i] - 1];
+                nums[i] = tempB;
+                nums[tempA - 1] = tempA;
+                i--;
+            }
+        }
+        for(int i= 0;i < nums.length;i++){
+            if(nums[i] != i + 1){
+                ans.add(i + 1);
+            }
+        }
+        return ans;
+    }
+    public List<Integer> findDisappearedNumbers1(int[] nums) {
         List<Integer> res = new ArrayList<>();
         int n = nums.length;
         int[] count  = new int[n + 1];
