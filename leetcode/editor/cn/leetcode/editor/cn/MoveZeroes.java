@@ -38,25 +38,41 @@ package leetcode.editor.cn;
 public class MoveZeroes {
     public static void main(String[] args) {
         Solution solution = new MoveZeroes().new Solution();
-        int[] nums = new int[]{0,0,1};
+        int[] nums = new int[]{1,0,1};
         solution.moveZeroes(nums);
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        public void moveZeroes(int[] nums) {
-            int index = 0,n = nums.length;
-            for (int i = 0; i < n; i++) {
-                if (nums[i] != 0) {
-                    nums[index++] = nums[i];
+        public void moveZeroes(int[] nums){
+            int l =0, r = 0;
+            while (r < nums.length){
+                if(nums[r] != 0){
+                    if(nums[l] != nums[r]){
+                        int temp = nums[r];
+                        nums[r] = nums[l];
+                        nums[l] = temp;
+                    }
+                    l++;
                 }
+                r++;
             }
-            for (int i = index; i < n; i++) {
+        }
+        public void moveZeroes2(int[] nums) {
+            int index = 0;
+            int n = nums.length;
+            for(int num:nums){
+                if(num == 0){
+                    continue;
+                }
+                nums[index++] = num;
+            }
+            for(int i = index;i < n;i++){
                 nums[i] = 0;
             }
         }
 
-        public void moveZeroes2(int[] nums) {
+        public void moveZeroes1(int[] nums) {
             int n = nums.length;
             for (int i = 0; i < n; i++) {
                 if (nums[i] != 0) {
@@ -68,10 +84,9 @@ public class MoveZeroes {
                 }
                 if (r > i) {
                     for (int j = i ; j < r; j++) {
-                        int temp = nums[j + 1];
-                        nums[j + 1] = nums[j];
-                        nums[j] = temp;
+                        nums[j] = nums[j + 1];
                     }
+                    nums[r] = 0;
                     i--;
                 }
             }
