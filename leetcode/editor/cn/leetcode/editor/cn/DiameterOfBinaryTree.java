@@ -48,12 +48,12 @@ class Solution {
         return ans - 1;
     }
 
-    public int dfs(TreeNode node){
+    private int dfs(TreeNode node){
         if(node == null)return 0;
-        int lr = dfs(node.left);
-        int rr = dfs(node.right);
-        ans = Math.max(ans,lr + rr + 1);
-        return Math.max(lr,rr) + 1;
+        int l = dfs(node.left);
+        int r = dfs(node.right);
+        ans = Math.max(ans,l + r + 1);
+        return Math.max(l,r) + 1;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

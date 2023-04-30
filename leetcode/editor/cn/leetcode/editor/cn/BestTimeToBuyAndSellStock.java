@@ -42,17 +42,30 @@ public class BestTimeToBuyAndSellStock{
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    public int maxProfit(int[] prices) {
-        int minPrice = Integer.MAX_VALUE;
-        int maxProfit = 0;
-        for(int i =0;i < prices.length;i++){
-            if(prices[i] < minPrice){
-                minPrice = prices[i];
-            }else if(prices[i] - minPrice > maxProfit){
-                maxProfit = prices[i] - minPrice;
+    public int maxProfit(int[] prices){
+        int n = prices.length;
+        int[] f = new int[n];
+        f[0] = 0;
+        int pro = 0;
+        for(int i = 1;i < n;i++){
+            f[i] = Math.max(prices[i] - prices[i - 1],prices[i] + f[i - 1] - prices[i - 1]);
+            pro = Math.max(pro,f[i]);
+        }
+        return pro;
+    }
+
+    public int maxProfit1(int[] prices){
+        int n = prices.length;
+        int minP = Integer.MAX_VALUE;
+        int max = 0;
+        for(int i =0;i < n;i++){
+            if(prices[i] < minP){
+                minP = prices[i];
+            }else if(prices[i] - minP > max){
+                max = prices[i] - minP;
             }
         }
-        return maxProfit;
+        return max;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
