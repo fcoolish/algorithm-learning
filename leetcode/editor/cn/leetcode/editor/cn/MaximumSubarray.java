@@ -47,6 +47,7 @@ public class MaximumSubarray{
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+
     public int maxSubArray(int[] nums) {
         int sum = 0,max = nums[0];
         for(int num:nums){

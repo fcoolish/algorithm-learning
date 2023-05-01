@@ -45,7 +45,7 @@ import java.util.Arrays;
 public class LongestHarmoniousSubsequence{
     public static void main(String[] args){
         Solution solution = new LongestHarmoniousSubsequence().new Solution();
-        int[] nums = new int[]{1,3,2,2,5,2,3,7};
+        int[] nums = new int[]{1,3,2,2,2,3};
         solution.findLHS(nums);
     }
     //leetcode submit region begin(Prohibit modification and deletion)

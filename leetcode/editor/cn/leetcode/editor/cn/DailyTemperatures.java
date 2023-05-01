@@ -54,6 +54,10 @@ class Solution {
             }
             stack.push(i);
         }
+        while (!stack.isEmpty()){
+            int tem = stack.pop();
+            temperatures[tem] = 0;
+        }
         return temperatures;
     }
 }

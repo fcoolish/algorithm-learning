@@ -49,7 +49,7 @@ package leetcode.editor.cn;
 
 import java.util.Stack;
 
-public class MinStack1{
+class MinStack1{
     public static void main(String[] args){
         //Solution solution = new MinStack().new Solution();
     }
