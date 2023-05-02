@@ -65,29 +65,92 @@ import java.util.*;
 public class LruCache{
     public static void main(String[] args){
         LRUCache solution = new LruCache().new LRUCache(2);
-        solution.put(2,1);
         solution.put(1,1);
-        solution.put(2,3);
-        solution.put(4,1);
+        solution.put(2,2);
         solution.get(1);
+        solution.put(3,3);
         solution.get(2);
+        solution.put(4,4);
+        solution.get(1);
+        solution.get(3);
+        solution.get(4);
 
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class LRUCache {
 
-    Map<Integer,Integer> map = new HashMap<>();
-    Set<Integer> set = new HashSet<>();
-    int cap = 0;
+    class DLinkNode{
+        int key;
+        int value;
+        DLinkNode pre;
+        DLinkNode next;
+        public DLinkNode(){}
+        public DLinkNode(int key,int value){
+            this.key = key;
+            this.value = value;
+        }
+    }
+    public Map<Integer,DLinkNode> cache = new HashMap<>();
+    public int size;
+    public int capacity;
+    private DLinkNode head,tail;
     public LRUCache(int capacity) {
-        cap = capacity;
+        this.size = 0;
+        this.capacity = capacity;
+        head = new DLinkNode();
+        tail = new DLinkNode();
+        head.next = tail;
+        tail.pre = head;
     }
     
     public int get(int key) {
-        return -1;
+        DLinkNode node = cache.get(key);
+        if(node == null){
+            return -1;
+        }
+        moveToHead(node);
+        return node.value;
     }
     
     public void put(int key, int value) {
+        DLinkNode node = cache.get(key);
+        if(node == null){
+            DLinkNode newNode = new DLinkNode(key,value);
+            cache.put(key,newNode);
+            addToHead(newNode);
+            size++;
+            if(size > capacity){
+                DLinkNode tail = removeTail();
+                cache.remove(tail.key);
+                size--;
+            }
+        }else{
+            node.value = value;
+            moveToHead(node);
+        }
+    }
+
+    private void addToHead(DLinkNode node){
+        node.pre = head;
+        node.next = head.next;
+        head.next.pre = node;
+        head.next = node;
+    }
+
+    private void removeNode(DLinkNode node){
+        node.pre.next = node.next;
+        node.next.pre = node.pre;
+    }
+
+    private void moveToHead(DLinkNode node){
+        removeNode(node);
+        addToHead(node);
+    }
+
+    private DLinkNode removeTail(){
+        DLinkNode node = tail.pre;
+        removeNode(node);
+        return node;
     }
 }
 

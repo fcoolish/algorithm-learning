@@ -74,14 +74,14 @@ public class Solution {
         if(head == null || head.next == null)return false;
         ListNode slow = head;
         ListNode fast = head.next;
-        while (fast != slow){
-            if(fast == null || fast.next == null){
-                return false;
-            }
+        while (fast != null && fast.next != null){
             fast = fast.next.next;
             slow = slow.next;
+            if(slow == fast){
+                return true;
+            }
         }
-        return true;
+        return false;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
