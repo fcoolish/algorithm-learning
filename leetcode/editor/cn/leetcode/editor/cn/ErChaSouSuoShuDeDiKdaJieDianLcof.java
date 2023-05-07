@@ -67,7 +67,7 @@ public class ErChaSouSuoShuDeDiKdaJieDianLcof{
  */
 class Solution {
     int kk = 0,res = 0;
-    public int kthLargest(TreeNode root, int k) {
+    public int kthLargest1(TreeNode root, int k) {
         kk = k;
         dfs(root);
         return res;
@@ -84,8 +84,8 @@ class Solution {
         dfs(node.left);
     }
 
-    public int kthLargest1(TreeNode root, int k) {
-        TreeSet<Integer> q = new TreeSet<>((o1, o2) -> o2-o1);
+    public int kthLargest(TreeNode root, int k) {
+        PriorityQueue<Integer> q = new PriorityQueue<>(k);
         Queue<TreeNode> queue = new ArrayDeque<>();
         queue.offer(root);
         while (!queue.isEmpty()){
@@ -98,10 +98,7 @@ class Solution {
                 queue.offer(node.right);
             }
         }
-        for(int i =0;i < k - 1;i++){
-            q.pollFirst();
-        }
-        return q.first();
+        return q.poll();
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

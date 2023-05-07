@@ -19,6 +19,7 @@ package leetcode.editor.cn;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 public class CongWeiDaoTouDaYinLianBiaoLcof{
     public static void main(String[] args){
@@ -34,7 +35,23 @@ public class CongWeiDaoTouDaYinLianBiaoLcof{
  * }
  */
 class Solution {
+
     public int[] reversePrint(ListNode head) {
+        ListNode cur = head;
+        Stack<Integer> stack = new Stack<>();
+        while (cur != null){
+            stack.add(cur.val);
+            cur = cur.next;
+        }
+        int n = stack.size();
+        int[] ans = new int[n];
+        for(int i =0;i < n;i++){
+            ans[i] = stack.pop();
+        }
+        return ans;
+    }
+
+    public int[] reversePrint1(ListNode head) {
         ListNode cur = head;
         List<Integer> list = new ArrayList<>();
         while (cur != null){
