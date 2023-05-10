@@ -43,7 +43,7 @@ public class YuanQuanZhongZuiHouShengXiaDeShuZiLcof{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
 
-    public int lastRemaining(int n, int m) {
+    public int lastRemaining1(int n, int m) {
             return f(n,m);
         }
 
@@ -52,7 +52,7 @@ class Solution {
         int x = f(n - 1,m);
         return (m + x) % n;
     }
-    public int lastRemaining1(int n, int m) {
+    public int lastRemaining2(int n, int m) {
         List<Integer> list = new ArrayList<>();
         for(int i =0;i < n;i++){
             list.add(i);
@@ -64,6 +64,14 @@ class Solution {
             n--;
         }
         return list.get(0);
+    }
+
+    public int lastRemaining(int n, int m){
+        int index = 0;
+        for(int i = 2;i <= n;i++){
+            index = (m + index) % i;
+        }
+        return index;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

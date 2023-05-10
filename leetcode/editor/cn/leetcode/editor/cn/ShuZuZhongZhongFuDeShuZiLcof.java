@@ -21,8 +21,6 @@
 
 package leetcode.editor.cn;
 
-import java.util.*;
-
 public class ShuZuZhongZhongFuDeShuZiLcof{
     public static void main(String[] args){
         Solution solution = new ShuZuZhongZhongFuDeShuZiLcof().new Solution();
@@ -30,12 +28,12 @@ public class ShuZuZhongZhongFuDeShuZiLcof{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int findRepeatNumber(int[] nums) {
-        int[] arr = new int[100001];
+        boolean[] arr = new boolean[100001];
         for(int num:nums){
-            if(arr[num] >0){
+            if(arr[num]){
                 return num;
             }else{
-                arr[num]++;
+                arr[num] = true;
             }
         }
         return -1;

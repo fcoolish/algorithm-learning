@@ -36,6 +36,7 @@ public class HeWeiSdeLiangGeShuZiLcof{
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+
         public int[] twoSum(int[] nums, int target) {
             int left = 0,right = nums.length - 1;
             while(left < target){
