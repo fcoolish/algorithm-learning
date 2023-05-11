@@ -45,7 +45,25 @@ public class DuiChengDeErChaShuLcof{
  * }
  */
 class Solution {
-    public boolean isSymmetric(TreeNode root) {
+
+    public boolean isSymmetric(TreeNode root){
+        if(root == null) return true;
+        boolean  res = dfs(root.left,root.right);
+        return res ;
+    }
+
+    private boolean dfs (TreeNode ln,TreeNode rn){
+        if(ln== null && rn == null)return true;
+        if(ln == null || rn == null){
+            return false;
+        }
+        if(ln.val != rn.val)return false;
+        boolean r1 = dfs(ln.left,rn.right);
+        boolean r2 = dfs(ln.right,rn.left);
+        return r1 & r2;
+    }
+
+    public boolean isSymmetric1(TreeNode root) {
         if(root == null) return true;
         return check(root,root);
     }
