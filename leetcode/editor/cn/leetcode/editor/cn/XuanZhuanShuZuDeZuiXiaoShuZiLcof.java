@@ -45,19 +45,19 @@ public class XuanZhuanShuZuDeZuiXiaoShuZiLcof{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
         //为什么用high逼近，因为是最小值，向左移动
-        public int minArray(int[] numbers) {
-            int low = 0,high = numbers.length - 1;
-            while (low < high){
-                int mid = low + (high - low)/2;
-              if(numbers[mid] > numbers[high]){
-                  high = mid;
-              }else if(numbers[mid] > numbers[high]){
-                  low = mid + 1;
-              }else{
-                  high--;
-              }
+        public int minArray(int[] numbers){
+            int l = 0,r = numbers.length - 1;
+            while (l <= r){
+                int m = l + (r - l)/2;
+                if(numbers[m] < numbers[r]){
+                    r = m;
+                }else if(numbers[m] > numbers[r]){
+                    l = m + 1;
+                }else{
+                    r--;
+                }
             }
-            return numbers[low];
+            return numbers[l];
         }
 
         public int minArray2(int[] numbers) {
