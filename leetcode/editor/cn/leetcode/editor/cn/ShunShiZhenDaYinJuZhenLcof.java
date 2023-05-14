@@ -30,10 +30,43 @@ package leetcode.editor.cn;
 public class ShunShiZhenDaYinJuZhenLcof{
     public static void main(String[] args){
         Solution solution = new ShunShiZhenDaYinJuZhenLcof().new Solution();
+        int[][]  arr = {{1,2,3},{4,5,6},{7,8,9}};
+        solution.spiralOrder(arr);
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    public int[] spiralOrder(int[][] matrix) {
+
+
+    public int[] spiralOrder(int[][] matrix){
+        if(matrix == null || matrix.length == 0)return new int[]{};
+        int m = matrix.length,n = matrix[0].length;
+        int top = 0,bottom = m - 1;
+        int left = 0,right = n - 1;
+        int index = 0;
+        int[] ans = new int[m * n];
+        while (index < m * n){
+            for(int i = left;i <= right;i++){
+                ans[index++] = matrix[top][i];
+            }
+            for(int i = top + 1;i <= bottom;i++){
+                ans[index++] = matrix[i][right];
+            }
+            if(left < right && top < bottom){
+                for(int i = right - 1;i >= left;i--){
+                    ans[index++] = matrix[bottom][i];
+                }
+                for(int i = bottom - 1;i > top;i--){
+                    ans[index++] = matrix[i][left];
+                }
+                left++;
+                top++;
+                right--;
+                bottom--;
+            }
+        }
+        return ans;
+    }
+    public int[] spiralOrder1(int[][] matrix) {
         if(matrix == null || matrix.length == 0 || matrix[0].length ==0){
             return new int[0];
         }
