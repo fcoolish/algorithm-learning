@@ -81,12 +81,16 @@
 // Related Topics 字符串 👍 472 👎 0
 
 package leetcode.editor.cn;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class BiaoShiShuZhiDeZiFuChuanLcof{
     public static void main(String[] args){
-        Solution solution = new BiaoShiShuZhiDeZiFuChuanLcof().new Solution();
+        //Solution solution = new BiaoShiShuZhiDeZiFuChuanLcof().new Solution();
     }
     //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
+    static class Solution {
         public boolean isNumber(String s) {
             Map<State, Map<CharType, State>> transfer = new HashMap<State, Map<CharType, State>>();
             Map<CharType, State> initialMap = new HashMap<CharType, State>() {{
