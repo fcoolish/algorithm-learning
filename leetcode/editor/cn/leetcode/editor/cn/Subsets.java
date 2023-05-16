@@ -41,7 +41,6 @@ public class Subsets{
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-
         public List<List<Integer>> subsets(int[] nums) {
             int n = nums.length;
             int mask = 1 << n;

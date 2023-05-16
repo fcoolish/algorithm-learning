@@ -37,6 +37,7 @@ public class GenerateParentheses{
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+
     public List<String> generateParenthesis(int n) {
         List<String> ans = new ArrayList<>();
         backtrack(ans,new StringBuilder(),0,0,n);

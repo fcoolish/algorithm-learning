@@ -61,6 +61,7 @@ class Solution {
     public TreeNode sortedArrayToBST(int[] nums) {
         return buildTree(nums,0,nums.length - 1);
     }
+
     public TreeNode buildTree(int[] nums,int left,int right){
         if(left > right) return null;
         int mid = (left + right) / 2;
