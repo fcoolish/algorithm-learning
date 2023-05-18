@@ -39,7 +39,7 @@ public class RotateImage{
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    public void rotate(int[][] matrix) {
+        public void rotate(int[][] matrix) {
         int n = matrix.length;
         for(int i =0;i < n/2;i++){
             for(int j =0;j < n;j++){
