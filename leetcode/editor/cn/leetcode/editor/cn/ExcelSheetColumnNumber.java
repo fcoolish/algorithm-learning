@@ -49,10 +49,11 @@ package leetcode.editor.cn;
 public class ExcelSheetColumnNumber{
     public static void main(String[] args){
         Solution solution = new ExcelSheetColumnNumber().new Solution();
-        solution.titleToNumber("ZY");
+        solution.titleToNumber("FXSHRXW");
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+
     public int titleToNumber(String columnTitle) {
         int ans = 0;
         int n = columnTitle.length();

@@ -62,13 +62,14 @@ public class MissingNumber{
 class Solution {
 
         public int missingNumber(int[] nums) {
+            int ans = 0;
             int n = nums.length;
             for(int i =0;i < n;i++){
-                if(nums[i] != i){
-                    return i;
-                }
+                ans ^= nums[i];
+                ans ^= i;
             }
-            return n;
+            ans ^=n;
+            return ans;
         }
 
 
@@ -85,12 +86,12 @@ class Solution {
 
         public int missingNumber3(int[] nums) {
         int n = nums.length;
-        int[] arr = new int[n + 1];
+        boolean[] arr = new boolean[n + 1];
         for(int num:nums){
-            arr[num]++;
+            arr[num] = true;
         }
         for(int i =0;i < n + 1;i++){
-            if(arr[i] == 0){
+            if(!arr[i]){
                 return i;
             }
         }
