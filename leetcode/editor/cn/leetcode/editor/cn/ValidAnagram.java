@@ -32,13 +32,26 @@
 // Related Topics 哈希表 字符串 排序 👍 752 👎 0
 
 package leetcode.editor.cn;
+
+import java.util.Arrays;
+
 public class ValidAnagram{
     public static void main(String[] args){
         Solution solution = new ValidAnagram().new Solution();
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    public boolean isAnagram(String s, String t) {
+
+
+    public boolean isAnagram(String s, String t){
+        if(s.length() != t.length())return false;
+        char[] sc = s.toCharArray();
+        char[] st = t.toCharArray();
+        Arrays.sort(sc);
+        Arrays.sort(st);
+        return new String(sc).equals(new String(st));
+    }
+    public boolean isAnagram1(String s, String t) {
         if(s.length() != t.length())return false;
         int[] cnt = new int[26];
         int len = s.length();

@@ -50,6 +50,14 @@ import java.util.List;
 public class SortList{
     public static void main(String[] args){
         Solution solution = new SortList().new Solution();
+        ListNode n1 = new ListNode(1);
+        ListNode n2 = new ListNode(3);
+        ListNode n3 = new ListNode(2);
+        ListNode n4 = new ListNode(4);
+        n1.next = n2;
+        n2.next = n3;
+        n3.next = n4;
+        solution.sortList(n1);
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 /**
@@ -78,7 +86,7 @@ class Solution {
         while (fast != tail){
             fast = fast.next;
             slow = slow.next;
-            if(fast.next != tail){
+            if(fast != tail){
                 fast = fast.next;
             }
         }
