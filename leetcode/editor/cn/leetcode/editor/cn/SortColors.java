@@ -76,6 +76,7 @@ class Solution {
             }
         }
     }
+
     public void sortColors1(int[] nums) {
         quickSort(nums,0,nums.length - 1);
     }
