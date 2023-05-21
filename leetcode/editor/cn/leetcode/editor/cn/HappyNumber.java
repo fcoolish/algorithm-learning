@@ -51,6 +51,7 @@ public class HappyNumber{
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+
     public boolean isHappy(int n) {
         Set<Integer> set = new HashSet<>();
         while (n != 1 && !set.contains(n)){

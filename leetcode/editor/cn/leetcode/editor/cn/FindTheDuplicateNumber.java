@@ -47,19 +47,40 @@ package leetcode.editor.cn;
 public class FindTheDuplicateNumber{
     public static void main(String[] args){
         Solution solution = new FindTheDuplicateNumber().new Solution();
+        int[] arr = {1,2,2};
+        solution.findDuplicate(arr);
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    public int findDuplicate(int[] nums) {
+
+    public int findDuplicate1(int[] nums){
+        int n = nums.length;
+        for(int i= 0;i < n;i++){
+            if(nums[i] != i){
+                if(nums[i] == nums[nums[i]]){
+                    return nums[i];
+                }else{
+                    int temp = nums[i];
+                    nums[i] = nums[nums[i]];
+                    nums[temp] = temp;
+                }
+                i--;
+            }
+        }
+        return -1;
+    }
+
+    public int findDuplicate(int[] nums){
         int n = nums.length;
         int l = 0,r = n - 1;
         int ans = -1;
         while (l <= r){
             int mid = l + (r - l)/2;
             int cnt = 0;
-            for(int i =0;i < n;i++){
-                if(nums[i] <=  mid){
+            for(int i = 0;i < n;i++){
+                if(nums[i] <= mid){
                     cnt++;
+                    if(cnt > mid)break;
                 }
             }
             if(cnt <= mid){

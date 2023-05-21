@@ -89,6 +89,7 @@
 // Related Topics 哈希表 链表 双指针 👍 2080 👎 0
 
 package leetcode.editor.cn;
+
 public class IntersectionOfTwoLinkedLists{
     public static void main(String[] args){
         Solution solution = new IntersectionOfTwoLinkedLists().new Solution();
