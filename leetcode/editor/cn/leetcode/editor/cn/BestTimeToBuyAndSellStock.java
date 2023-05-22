@@ -44,14 +44,13 @@ public class BestTimeToBuyAndSellStock{
 class Solution {
     public int maxProfit(int[] prices){
         int n = prices.length;
-        int[] f = new int[n];
-        f[0] = 0;
-        int pro = 0;
+        int min = prices[0];
+        int max = 0;
         for(int i = 1;i < n;i++){
-            f[i] = Math.max(prices[i] - prices[i - 1],prices[i] + f[i - 1] - prices[i - 1]);
-            pro = Math.max(pro,f[i]);
+            min = Math.min(min,prices[i]);
+            max = Math.max(max,prices[i] - min);
         }
-        return pro;
+        return max;
     }
 
     public int maxProfit1(int[] prices){

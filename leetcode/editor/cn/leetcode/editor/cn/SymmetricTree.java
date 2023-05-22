@@ -52,6 +52,7 @@ public class SymmetricTree{
  * }
  */
 class Solution {
+
     public boolean isSymmetric(TreeNode root) {
         if(root == null) return true;
         return check(root,root);
