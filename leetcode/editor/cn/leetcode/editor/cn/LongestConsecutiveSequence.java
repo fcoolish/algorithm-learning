@@ -36,31 +36,29 @@ import java.util.*;
 public class LongestConsecutiveSequence{
     public static void main(String[] args){
         Solution solution = new LongestConsecutiveSequence().new Solution();
-        int[] arr = {100,4,200,1,3,2};
+        int[] arr = {1,2,0,1};
         solution.longestConsecutive(arr);
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-
     public int longestConsecutive(int[] nums){
-        int n = nums.length;
-        if(n <= 1)return n;
+        if(nums.length <= 1)return nums.length;
         Arrays.sort(nums);
         int max = 1;
-        int temMax = 1;
-        for(int i =1;i < n;i++){
-            if(nums[i - 1] == nums[i]){
-                continue;
-            }
-            if((nums[i - 1] + 1) == nums[i]){
-                temMax++;
+        int cnt = 1;
+        for(int i = 1;i < nums.length;i++){
+            if(nums[i - 1] == nums[i])continue;
+            if(nums[i - 1] + 1 == nums[i]){
+                cnt++;
             }else{
-                max = Math.max(max,temMax);
-                temMax = 1;
+                max = Math.max(max,cnt);
+                cnt = 1;
             }
         }
-        return max = Math.max(max,temMax);
+        max = Math.max(max,cnt);
+        return max;
     }
+
     public int longestConsecutive1(int[] nums) {
         int n = nums.length;
         List<Integer> list = new ArrayList<>();

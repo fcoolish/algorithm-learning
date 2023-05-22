@@ -35,9 +35,6 @@
 
 package leetcode.editor.cn;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-
 public class FirstUniqueCharacterInAString{
     public static void main(String[] args){
         Solution solution = new FirstUniqueCharacterInAString().new Solution();
@@ -46,12 +43,12 @@ public class FirstUniqueCharacterInAString{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int firstUniqChar(String s) {
-        Map<Character,Integer> map = new LinkedHashMap<>();
+        int[] arr = new int[26];
         for(int i =0;i < s.length();i++){
-            map.put(s.charAt(i),map.getOrDefault(s.charAt(i),0) + 1);
+            arr[s.charAt(i) - 'a']++;
         }
         for(int i =0;i < s.length();i++){
-           if(map.get(s.charAt(i)) == 1){
+           if(arr[s.charAt(i) - 'a'] == 1){
                return i;
            }
         }
