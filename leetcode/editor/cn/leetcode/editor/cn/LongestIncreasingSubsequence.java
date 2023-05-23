@@ -46,9 +46,6 @@
 
 package leetcode.editor.cn;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class LongestIncreasingSubsequence {
     public static void main(String[] args) {
         Solution solution = new LongestIncreasingSubsequence().new Solution();
@@ -61,10 +58,9 @@ public class LongestIncreasingSubsequence {
 
         public int lengthOfLIS(int[] nums) {
             int n = nums.length;
-            if(nums.length == 0)return 0;
-            int[] dp = new int[n];
             int max = 1;
-            dp[0]= 1;
+            int[] dp = new int[n];
+            dp[0] = 1;
             for(int i = 1;i < n;i++){
                 dp[i] = 1;
                 for(int j = 0;j < i;j++){
@@ -72,37 +68,11 @@ public class LongestIncreasingSubsequence {
                         dp[i] = Math.max(dp[i],dp[j] + 1);
                     }
                 }
-                max = Math.max(max,dp[i]);
+               max =  Math.max(max,dp[i]);
             }
             return max;
         }
 
-
-        //解法二
-        int res = 0;
-        //回溯超时
-        public int lengthOfLIS1(int[] nums) {
-            int n = nums.length;
-            List<Integer> op = new ArrayList<>();
-            for (int num : nums) {
-                op.add(num);
-            }
-            backtrack(n, op, new ArrayList<>(), 0);
-            return res;
-        }
-
-        public void backtrack(int n, List<Integer> op, List<Integer> list, int index) {
-            if (index == n) {
-                res = Math.max(res, list.size());
-                return;
-            }
-            backtrack(n, op, list, index + 1);
-            if (list.size() == 0 || (list.size() > 0 && op.get(index) > list.get(list.size() - 1))) {
-                list.add(op.get(index));
-                backtrack(n, op, list, index + 1);
-                list.remove(list.size() - 1);
-            }
-        }
     }
 //leetcode submit region end(Prohibit modification and deletion)
 
