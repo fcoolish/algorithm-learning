@@ -78,51 +78,46 @@ public class LruCache{
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class LRUCache {
-
-    class DLinkNode{
+    private class DLinkNode{
         int key;
         int value;
         DLinkNode pre;
         DLinkNode next;
-        public DLinkNode(){}
-        public DLinkNode(int key,int value){
+        private DLinkNode(int key,int value){
             this.key = key;
             this.value = value;
         }
+        private  DLinkNode(){};
     }
-    public Map<Integer,DLinkNode> cache = new HashMap<>();
-    public int size;
-    public int capacity;
-    private DLinkNode head,tail;
-    public LRUCache(int capacity) {
-        this.size = 0;
+    Map<Integer,DLinkNode> map ;
+    DLinkNode head  = new DLinkNode();
+    DLinkNode tail  = new DLinkNode();
+    int capacity = 0;
+    public LRUCache(int capacity){
+        this.map = new HashMap<>();
         this.capacity = capacity;
-        head = new DLinkNode();
-        tail = new DLinkNode();
         head.next = tail;
         tail.pre = head;
     }
     
-    public int get(int key) {
-        DLinkNode node = cache.get(key);
+    public int get(int key){
+        DLinkNode node = map.get(key);
         if(node == null){
             return -1;
         }
         moveToHead(node);
         return node.value;
     }
-    
-    public void put(int key, int value) {
-        DLinkNode node = cache.get(key);
+
+    public void put(int key, int value){
+        DLinkNode node = map.get(key);
         if(node == null){
-            DLinkNode newNode = new DLinkNode(key,value);
-            cache.put(key,newNode);
-            addToHead(newNode);
-            size++;
-            if(size > capacity){
-                DLinkNode tail = removeTail();
-                cache.remove(tail.key);
-                size--;
+            DLinkNode nn = new DLinkNode(key,value);
+            map.put(key,nn);
+            addToHead(nn);
+            if(map.size() > capacity){
+                DLinkNode deNode = removeTail();
+                map.remove(deNode.key);
             }
         }else{
             node.value = value;
@@ -130,28 +125,28 @@ class LRUCache {
         }
     }
 
-    private void addToHead(DLinkNode node){
-        node.pre = head;
-        node.next = head.next;
+     public void addToHead(DLinkNode node){
+         node.next = head.next;
+         node.pre = head;
         head.next.pre = node;
         head.next = node;
-    }
+      }
 
-    private void removeNode(DLinkNode node){
-        node.pre.next = node.next;
-        node.next.pre = node.pre;
-    }
+        public void moveToHead(DLinkNode node){
+            removeNode(node);
+            addToHead(node);
+        }
 
-    private void moveToHead(DLinkNode node){
-        removeNode(node);
-        addToHead(node);
-    }
+        public void removeNode(DLinkNode node){
+            node.next.pre = node.pre;
+            node.pre.next = node.next;
+        }
 
-    private DLinkNode removeTail(){
-        DLinkNode node = tail.pre;
-        removeNode(node);
-        return node;
-    }
+        public DLinkNode removeTail(){
+            DLinkNode pre = tail.pre;
+            removeNode(pre);
+            return pre;
+        }
 }
 
 /**
