@@ -38,31 +38,32 @@ public class LongestSubstringWithAtLeastKRepeatingCharacters {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        public int longestSubstring(String s, int k) {
-            int ret = 0;
+
+        public int longestSubstring(String s, int k){
             int n = s.length();
-            for (int t = 1; t <= 26; t++) {
-                int l = 0, r = 0;
-                int[] cnt = new int[26];
-                int tot = 0;
-                int sum = 0;
-                while (r < n) {
+            int max = 0;
+            for(int t = 1;t <= 26;t++){
+                char[] cnt = new char[26];
+                int l = 0,r = 0;
+                int sum = 0,tot = 0;
+                while (r < n){
                     cnt[s.charAt(r) - 'a']++;
-                    if (cnt[s.charAt(r) - 'a'] == 1)tot++;
-                    if (cnt[s.charAt(r) - 'a'] == k)sum++;
-                    while (tot > t) {
+                    if(cnt[s.charAt(r) - 'a'] == 1)tot++;
+                    if(cnt[s.charAt(r) - 'a'] == k)sum++;
+                    while (t < tot){
                         cnt[s.charAt(l) - 'a']--;
-                        if (cnt[s.charAt(l) - 'a'] == k - 1)sum--;
-                        if (cnt[s.charAt(l) - 'a'] == 0)tot--;
+                        if(cnt[s.charAt(l) - 'a'] == 0)tot--;
+                        if(cnt[s.charAt(l) - 'a'] == k - 1)sum--;
                         l++;
                     }
-                    if (sum == tot) {
-                        ret = Math.max(ret, r - l + 1);
+                    if(sum == tot){
+                        max = Math.max(max,r - l + 1);
                     }
                     r++;
                 }
+
             }
-            return ret;
+            return max;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
