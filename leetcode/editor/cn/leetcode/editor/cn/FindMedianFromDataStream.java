@@ -52,9 +52,9 @@ public class FindMedianFromDataStream{
 class MedianFinder {
 
     PriorityQueue<Integer> queMin;
-    PriorityQueue<Integer> queMax = new PriorityQueue<>((a,b) -> b - a);
+    PriorityQueue<Integer> queMax;
 
-        public MedianFinder() {
+   public MedianFinder() {
             queMin = new PriorityQueue<>((a,b) -> b - a);
             queMax = new PriorityQueue<>((a,b) -> a - b);
     }

@@ -46,7 +46,36 @@ public class SearchA2dMatrixIi{
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    public boolean searchMatrix(int[][] matrix, int target) {
+
+    public boolean searchMatrix(int[][] matrix, int target){
+            int i = matrix.length - 1,j = 0;
+            while (i >= 0  && j < matrix[0].length){
+                if(matrix[i][j] == target){
+                    return true;
+                }else if(matrix[i][j] > target){
+                    i--;
+                }else{
+                    j++;
+                }
+            }
+            return false;
+        }
+
+    public boolean searchMatrix2(int[][] matrix, int target){
+        int i = 0,j = matrix[0].length - 1;
+        while (i < matrix.length && j >=0){
+            if(matrix[i][j] == target){
+                return true;
+            }else if(matrix[i][j] > target){
+                j--;
+            }else{
+                i++;
+            }
+        }
+        return false;
+    }
+
+    public boolean searchMatrix1(int[][] matrix, int target) {
         int m = matrix.length;
         int n = matrix[0].length;
         for(int i = 0;i < m;i++){
