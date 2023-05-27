@@ -53,7 +53,6 @@ public class SlidingWindowMaximum{
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-
     public int[] maxSlidingWindow(int[] nums, int k){
         if(nums.length <= 1)return nums;
         int n = nums.length;
