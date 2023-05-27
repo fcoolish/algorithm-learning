@@ -32,10 +32,7 @@
 
 package leetcode.editor.cn;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 public class MergeIntervals{
     public static void main(String[] args){
@@ -45,28 +42,21 @@ public class MergeIntervals{
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    public int[][] merge(int[][] intervals) {
-        if(intervals.length == 0){
-            return new int[0][2];
-        }
-        Arrays.sort(intervals, new Comparator<int[]>() {
-            @Override
-            public int compare(int[] o1, int[] o2) {
-                return o1[0] - o2[0];
-            }
-        });
-        List<int[]> mergerd=  new ArrayList<>();
-        for(int i =0;i < intervals.length;i++){
-            int L = intervals[i][0],R = intervals[i][1];
-            if(mergerd.size() == 0 || mergerd.get(mergerd.size() - 1)[1] < L){
-                mergerd.add(new int[]{L,R});
+    public int[][] merge(int[][] intervals){
+        List<int[]> list = new ArrayList<>();
+        Arrays.sort(intervals,(a,b) -> a[0] - b[0]);
+        int n = intervals.length;
+        for(int i = 0;i < n;i++){
+            if(!list.isEmpty()  &&  list.get(list.size() - 1)[1] >= intervals[i][0]){
+                int[] nn = list.get(list.size() - 1);
+                nn[1] = Math.max(intervals[i][1],nn[1]);
             }else{
-                mergerd.get(mergerd.size() - 1)[1] = Math.max(mergerd.get(mergerd.size() - 1)[1],R);
+                list.add(new int[]{intervals[i][0],intervals[i][1]});
             }
         }
-        return mergerd.toArray(new int[mergerd.size()][]);
+        return list.toArray(new int[list.size()][]);
     }
-}
+    }
 //leetcode submit region end(Prohibit modification and deletion)
 
 }
