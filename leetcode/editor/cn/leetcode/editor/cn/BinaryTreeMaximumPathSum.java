@@ -64,6 +64,7 @@ class Solution {
 
     int ans = -1001;
     public int maxPathSum(TreeNode root) {
+        if(root == null)return 0;
         dfs(root,0);
         return ans;
     }

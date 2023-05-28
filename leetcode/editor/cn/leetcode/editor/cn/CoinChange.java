@@ -40,29 +40,29 @@
 
 package leetcode.editor.cn;
 
-import java.util.Arrays;
-
 public class CoinChange{
     public static void main(String[] args){
         Solution solution = new CoinChange().new Solution();
+        int[] arr = {1,2,5};
+        solution.coinChange(arr,11);
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
 
-        public int coinChange(int[] coins,int amount) {
+        public int coinChange(int[] coins,int amount){
             int n = coins.length;
-            int max = amount + 1;
             int[] dp = new int[amount + 1];
-            Arrays.fill(dp,max);
             dp[0] = 0;
-            for(int i = 1;i <= amount;i++){
-                for(int j = 0;j < n;j++){
+            for(int i = 1;i <=amount;i++){
+                int min = amount + 1;
+                for(int j =0;j < n;j++){
                     if(coins[j] <= i){
-                        dp[i] = Math.min(dp[i],dp[i - coins[j]] + 1);
+                        min = Math.min(min,dp[i - coins[j]] + 1);
                     }
                 }
+                dp[i] = min;
             }
-            return dp[amount] > amount ? - 1:dp[amount];
+            return dp[amount] == (amount + 1) ? -1:dp[amount];
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)

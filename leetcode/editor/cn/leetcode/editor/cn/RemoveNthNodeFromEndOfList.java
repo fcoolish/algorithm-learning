@@ -67,6 +67,7 @@ public class RemoveNthNodeFromEndOfList{
  * }
  */
 class Solution {
+
     public ListNode removeNthFromEnd(ListNode head, int n) {
         ListNode vnode = new ListNode( - 1);
         vnode.next = head;
