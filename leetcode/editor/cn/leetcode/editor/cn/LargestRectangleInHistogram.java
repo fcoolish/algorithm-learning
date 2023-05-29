@@ -41,36 +41,37 @@ import java.util.Deque;
 public class LargestRectangleInHistogram{
     public static void main(String[] args){
         Solution solution = new LargestRectangleInHistogram().new Solution();
-        int[] arr = {2,1,5,6,2,3};
+        int[] arr = {6,7,5,2,4,5,9,3};
         solution.largestRectangleArea(arr);
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    public int largestRectangleArea(int[] heights) {
-        int max = 0;
+
+    public int largestRectangleArea(int[] heights){
         int n = heights.length;
-        int[] l = new int[n];
-        int[] r = new int[n];
-        Deque<Integer> mStack = new ArrayDeque<>();
+        int[] left = new int[n];
+        int[] right = new int[n];
+        Deque<Integer> stack = new ArrayDeque<>();
         for(int i = 0;i < n;i++){
-            while (!mStack.isEmpty() && heights[mStack.peek()] >= heights[i]){
-                mStack.pop();
+            while (!stack.isEmpty() && heights[stack.peek()] >= heights[i]){
+                stack.pop();
             }
-            l[i] = mStack.isEmpty() ? - 1:mStack.peek();
-            mStack.push(i);
+            left[i] = (stack.isEmpty() ? -1:stack.peek());
+            stack.push(i);
         }
-        mStack.clear();
+        stack.clear();
         for(int i = n - 1;i >= 0;i--){
-            while (!mStack.isEmpty() && heights[mStack.peek()] >= heights[i]){
-                mStack.pop();
+            while (!stack.isEmpty() && heights[stack.peek()] >= heights[i]){
+                stack.pop();
             }
-            r[i] = mStack.isEmpty() ? n:mStack.peek();
-            mStack.push(i);
+            right[i] = (stack.isEmpty() ? n:stack.peek());
+            stack.push(i);
         }
-        for(int i = 0;i < n;i++){
-            max = Math.max(max,(r[i] - l[i] - 1) * heights[i]);
+        int ans = 0;
+        for(int i =0;i < n;i++){
+            ans = Math.max(ans,(right[i] - left[i] - 1) * heights[i]);
         }
-        return max;
+        return ans;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

@@ -41,30 +41,32 @@
 
 package leetcode.editor.cn;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PlusOne{
     public static void main(String[] args){
         Solution solution = new PlusOne().new Solution();
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    public int[] plusOne(int[] digits) {
-        int n = digits.length;
-        int num = 1;
-        for(int i = n - 1;i >= 0;i--){
-            if(digits[i] == 9 && num > 0){
-                digits[i] = 0;
-                num = 1;
-            }else{
-                int res = digits[i] + num;
-                digits[i] = res;
-                num = 0;
-            }
+
+    public int[] plusOne(int[] digits){
+        int index = digits.length - 1;
+        int ret = 1;
+        List<Integer> list = new ArrayList<>();
+        while (index >=0 || ret > 0){
+            int num = index >= 0 ? digits[index]:0;
+            index--;
+            int sum = num + ret;
+            list.add(0,sum % 10);
+            ret = sum /10;
         }
-        if(num > 0){
-            digits = new int[n + 1];
-            digits[0] = 1;
+        int[] ans = new int[list.size()];
+        for(int i =0;i < list.size();i++){
+            ans[i] = list.get(i);
         }
-        return digits;
+        return ans;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

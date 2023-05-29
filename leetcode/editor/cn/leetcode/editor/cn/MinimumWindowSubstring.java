@@ -66,32 +66,32 @@ class Solution {
 
     Map<Character,Integer> tmap = new HashMap<>();
     Map<Character,Integer> smap = new HashMap<>();
-    public String minWindow(String s, String t) {
-        int sl = s.length(),tl = t.length();
-        for(int i =0;i < tl;i++){
-            tmap.put(t.charAt(i),tmap.getOrDefault(t.charAt(i),0) + 1);
-        }
-        int ansL = -1,ansR = -1;
-        int len = Integer.MAX_VALUE;
-        int l = 0,r = 0;
-        while (r < sl){
-            if(r < sl && tmap.containsKey(s.charAt(r))){
-                smap.put(s.charAt(r),smap.getOrDefault(s.charAt(r),0) + 1);
-            }
-            while (check() && l <= r){
-                if(r - l + 1< len){
-                    len = r - l + 1;
-                    ansL = l;
-                    ansR = r + 1;
-                }
-                if(tmap.containsKey(s.charAt(l))){
-                    smap.put(s.charAt(l),smap.getOrDefault(s.charAt(l),0) - 1);
-                }
-                l++;
-            }
-            r++;
-        }
-        return ansL == -1 ? "":s.substring(ansL,ansR);
+
+    public String minWindow(String s, String t){
+           int n = s.length();
+           for(int i =0;i < t.length();i++){
+               tmap.put(t.charAt(i),tmap.getOrDefault(t.charAt(i),0) + 1);
+           }
+           int len = Integer.MAX_VALUE,l = 0,r = -1;
+           int ansL = -1,ansR = -1;
+           while (r < n){
+               r++;
+               if(r < n && tmap.containsKey(s.charAt(r))){
+                   smap.put(s.charAt(r),smap.getOrDefault(s.charAt(r),0) + 1);
+               }
+               while (check() && l <= r){
+                    if(r - l + 1 < len){
+                        len = r - l + 1;
+                        ansL = l;
+                        ansR = l + len;
+                    }
+                    if(tmap.containsKey(s.charAt(l))){
+                       smap.put(s.charAt(l),smap.getOrDefault(s.charAt(l),0) - 1);
+                    }
+                    l++;
+               }
+           }
+           return ansL == -1?"":s.substring(ansL,ansR);
     }
 
     private boolean check(){
