@@ -66,7 +66,6 @@ class Solution {
             if(Character.isDigit(s.charAt(i))){
                 num = num * 10 + s.charAt(i) - '0';
             }
-
             if(!Character.isDigit(s.charAt(i)) && s.charAt(i) !=' ' || i == n - 1){
                 switch (preSign){
                     case '+':
@@ -84,7 +83,6 @@ class Solution {
                 }
                 preSign = s.charAt(i);
                 num = 0;
-
             }
         }
         int ans = 0;
