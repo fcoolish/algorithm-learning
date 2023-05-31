@@ -75,11 +75,11 @@ class Solution {
     public int peakIndexInMountainArray(int[] arr) {
         int length = arr.length;
         int l = 0,r =length - 1,res = 0;
-        while (l <=r){
+        while (l <r){
             int mid = l + (r - l)/2;
             if(arr[mid] > arr[mid + 1]){
                 res = mid;
-                r = mid - 1;
+                r = mid;
             }else{
                 l = mid  + 1;
             }

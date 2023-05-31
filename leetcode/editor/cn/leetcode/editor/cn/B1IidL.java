@@ -86,11 +86,11 @@ public class B1IidL {
         public int peakIndexInMountainArray(int[] arr) {
             int length = arr.length - 1;
             int l = 1, r = length,res = 0;
-            while (l <= r) {
+            while (l < r) {
                 int mid = (r - l) / 2 + l;
                 if(arr[mid] > arr[mid + 1]){
                     res = mid;
-                    r = mid - 1;
+                    r = mid;
                 }else{
                     l = mid + 1;
                 }

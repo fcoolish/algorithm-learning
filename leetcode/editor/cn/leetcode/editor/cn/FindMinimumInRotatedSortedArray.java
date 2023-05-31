@@ -57,21 +57,24 @@ package leetcode.editor.cn;
 public class FindMinimumInRotatedSortedArray{
     public static void main(String[] args){
         Solution solution = new FindMinimumInRotatedSortedArray().new Solution();
+        int[] arr = {4,5,6,7,0,1,2};
+        solution.findMin(arr);
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+
     public int findMin(int[] numbers){
-            int l = 0,r = numbers.length - 1;
-            while (l < r){
-                int m = l + (r - l)/2;
-                if(numbers[m] < numbers[r]){
-                    r--;
-                }else if(numbers[m] > numbers[r]){
-                    l = m + 1;
-                }
+        int l = 0,r = numbers.length - 1;
+        while (l < r){
+            int mid = l + (r -l)/2;
+            if(numbers[mid] < numbers[r]){
+                r = mid;
+            }else{
+                l = mid + 1;
             }
-            return numbers[l];
         }
+        return numbers[r];
+    }
 }
 //leetcode submit region end(Prohibit modification and deletion)
 
