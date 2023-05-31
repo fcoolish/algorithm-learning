@@ -51,22 +51,21 @@ import java.util.Deque;
 public class BasicCalculatorIi{
     public static void main(String[] args){
         Solution solution = new BasicCalculatorIi().new Solution();
-        int res = solution.calculate("3+2*2");
+        int res = solution.calculate("3+20*2");
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
 
-
     public int calculate(String s){
         int n = s.length();
-        Character preSign = '+';
         int num = 0;
+        Character preSign = '+';
         Deque<Integer> stack = new ArrayDeque<>();
-        for(int i =0;i < n;i++){
+        for(int i  =0;i < n;i++){
             if(Character.isDigit(s.charAt(i))){
                 num = num * 10 + s.charAt(i) - '0';
             }
-            if(!Character.isDigit(s.charAt(i)) && s.charAt(i) !=' ' || i == n - 1){
+            if(!Character.isDigit(s.charAt(i)) && s.charAt(i) != ' ' || i == n - 1){
                 switch (preSign){
                     case '+':
                         stack.push(num);
@@ -90,6 +89,7 @@ class Solution {
             ans += stack.pop();
         }
         return ans;
+
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
