@@ -69,7 +69,7 @@ import java.util.*;
 public class TheKWeakestRowsInAMatrix {
     public static void main(String[] args) {
         Solution solution = new TheKWeakestRowsInAMatrix().new Solution();
-        int[] arr = {1,1,0,0,0};
+        int[] arr = {1,1,1,0,0};
         int index = solution.getBoard(arr);
     }
 
@@ -109,7 +109,7 @@ public class TheKWeakestRowsInAMatrix {
                     l = mid + 1;
                 }
             }
-            return l - 1;
+            return l;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
