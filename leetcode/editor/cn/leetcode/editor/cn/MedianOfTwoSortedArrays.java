@@ -42,7 +42,7 @@ public class MedianOfTwoSortedArrays{
     public static void main(String[] args){
         Solution solution = new MedianOfTwoSortedArrays().new Solution();
         int[] arr = {};
-        int[] arr2 = {1,3};
+        int[] arr2 = {1,3,4,5};
         solution.findMedianSortedArrays(arr,arr2);
     }
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -52,7 +52,7 @@ class Solution {
         int l1 = nums1.length,l2 = nums2.length;
         int index = 0;
         int val = l1 + l2;
-        int[] newArr = new int[val/2 + 2];
+        int[] newArr = new int[val/2 + 1];
         int m = 0,n = 0;
         while (m < l1 && n < l2 && index < (val/2 + 1)){
             if(nums1[m] < nums2[n]){
@@ -73,31 +73,6 @@ class Solution {
         return (newArr[val/2] + newArr[val/2 - 1])/2.0;
     }
 
-    //todo 双指针版未完成
-    public double findMedianSortedArrays1(int[] nums1, int[] nums2) {
-        int l1 = nums1.length,l2 = nums2.length;
-        int index = 0;
-        int val = l1 + l2;
-        int m = 0,n = 0;
-        while (m < l1 && n < l2){
-            if(nums1[m] < nums2[n]){
-                m++;
-            }else{
-                n++;
-            }
-            index++;
-        }
-        if(index > val/2){
-            if(val % 2  != 0){
-                return Math.min(nums2[n],nums1[m]);
-            }else{
-                return (nums2[n] + nums1[m])/2;
-            }
-        }else if(index < val){
-           return m == l1 ? nums2[n + val - index] :nums1[m + val - index];
-        }
-        return -1;
-    }
 }
 //leetcode submit region end(Prohibit modification and deletion)
 

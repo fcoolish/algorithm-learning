@@ -40,6 +40,7 @@ public class MaximumProductSubarray{
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+
     public int maxProduct(int[] nums) {
         int maxF = nums[0],minF = nums[0];
         int ans = nums[0];

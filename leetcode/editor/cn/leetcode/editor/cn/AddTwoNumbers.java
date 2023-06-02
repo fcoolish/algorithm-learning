@@ -68,30 +68,24 @@ public class AddTwoNumbers{
  * }
  */
 class Solution {
-    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        ListNode vn = new ListNode(-1);
-        ListNode pre = vn;
-        int temp = 0;
-        while (l1 != null || l2 != null || temp > 0){
-            int num1 = l1 == null ? 0: l1.val;
-            int num2 = l2 == null ? 0: l2.val;
-            int sum = num1 + num2 + temp;
-            if(sum >= 0){
-                temp = sum / 10;
-                ListNode cur = new ListNode(sum % 10);
-                pre.next = cur;
-                pre = cur;
-            }
-            if(l1 != null){
-                l1 = l1.next;
-            }
-            if(l2 != null){
-                l2 = l2.next;
-            }
-        }
-        return vn.next;
-    }
 
+
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2){
+        ListNode dum = new ListNode(-1);
+        ListNode cur = dum;
+        int temp =0;
+        while (l1 !=null || l2 != null || temp != 0){
+            int n1 = l1 == null ? 0:l1.val;
+            int n2 = l2 == null ? 0:l2.val;
+            int sum = n1 + n2 + temp;
+            cur.next = new ListNode(sum%10);
+            temp = sum / 10;
+            cur = cur.next;
+            l1 = l1 == null? l1: l1.next;
+            l2 = l2 == null? l2: l2.next;
+        }
+        return dum.next;
+    }
 }
 //leetcode submit region end(Prohibit modification and deletion)
 

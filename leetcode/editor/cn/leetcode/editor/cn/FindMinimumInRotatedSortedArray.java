@@ -73,7 +73,7 @@ class Solution {
                 l = mid + 1;
             }
         }
-        return numbers[r];
+        return numbers[l];
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

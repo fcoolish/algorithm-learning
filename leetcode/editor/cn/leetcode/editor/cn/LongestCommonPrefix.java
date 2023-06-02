@@ -49,7 +49,7 @@ class Solution {
         for(int i= 1 ;i <= min;i++){
             boolean match = true;
             String str = strs[0].substring(0,i);
-            for(int j= 0;j < l;j++){
+            for(int j= 1;j < l;j++){
                 if(!strs[j].substring(0,i).equals(str)){
                     match = false;
                     break;

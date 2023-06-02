@@ -37,37 +37,39 @@ package leetcode.editor.cn;
 public class JumpGame{
     public static void main(String[] args){
         Solution solution = new JumpGame().new Solution();
-        int[] arr = {0,2,3};
+        int[] arr = {3,2,1,0,4};
         solution.canJump(arr);
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
 
+
+
     public boolean canJump(int[] nums){
-       int n = nums.length;
-       int max = 0;
-       for (int i =0;i < n;i++){
-           if(i <= max){
-               max = Math.max(max,i + nums[i]);
-           }
-           if(max >= n - 1)return true;
-       }
-       return false;
+        int max = nums[0];
+        int n = nums.length;
+        for(int i =0;i < n;i++){
+            if(i <= max){
+                max = Math.max(max,i + nums[i]);
+                if(max >= n - 1)return true;
+            }
+        }
+        return false;
     }
-    public boolean canJump1(int[] nums) {
+    public boolean canJump1(int[] nums){
         int n = nums.length;
         boolean[] dp = new boolean[n];
         dp[0] = true;
-        for(int i = 0;i < n;i++){
+        for(int i =0;i < n;i++){
             if(!dp[i])continue;
-            int index = Math.min(i + nums[i],n - 1);
-            for(int j = i + 1;j <= index;j++){
+            int num = nums[i];
+            for(int j = i;j <= Math.min(i + num,n - 1);j++){
                 dp[j] = true;
             }
         }
         return dp[n - 1];
     }
-}
+    }
 //leetcode submit region end(Prohibit modification and deletion)
 
 }

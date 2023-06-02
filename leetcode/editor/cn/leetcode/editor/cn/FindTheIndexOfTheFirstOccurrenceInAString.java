@@ -38,7 +38,21 @@ public class FindTheIndexOfTheFirstOccurrenceInAString{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int strStr(String haystack, String needle) {
-        return 0;
+        int lk = haystack.length();
+        int nk = needle.length();
+        if(nk > lk)return -1;
+        int li = 0;
+        while (li < lk){
+            while (li < lk && haystack.charAt(li) != needle.charAt(0)){
+                li++;
+            }
+            if(li == lk)return -1;
+            if(haystack.substring(li,Math.min(li + nk,lk)).equals(needle)){
+                return li;
+            }
+            li++;
+        }
+        return -1;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
