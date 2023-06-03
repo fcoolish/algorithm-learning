@@ -59,11 +59,12 @@ public class ThreeSum{
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    public List<List<Integer>> threeSum(int[] nums) {
-        int n = nums.length;
-        Arrays.sort(nums);
+
+    public List<List<Integer>> threeSum(int[] nums){
         List<List<Integer>> ans = new ArrayList<>();
-        for(int i = 0;i < n;i++){
+        Arrays.sort(nums);
+        int n = nums.length;
+        for(int i =0;i < n;i++){
             if(i > 0 && nums[i] == nums[i - 1]){
                 continue;
             }
@@ -80,11 +81,11 @@ class Solution {
                     break;
                 }
                 if(nums[j] + nums[k] == target){
-                    List<Integer> list = new ArrayList<>();
-                    list.add(nums[i] );
-                    list.add(nums[j]);
-                    list.add(nums[k]);
-                    ans.add(list);
+                    List<Integer> temp = new ArrayList<>();
+                    temp.add(nums[i]);
+                    temp.add(nums[j]);
+                    temp.add(nums[k]);
+                    ans.add(temp);
                 }
             }
         }

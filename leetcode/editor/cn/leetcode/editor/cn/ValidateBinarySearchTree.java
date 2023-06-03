@@ -71,13 +71,14 @@ class Solution {
 
     TreeNode pre = null;
     boolean ans = true;
-    public boolean isValidBST(TreeNode root) {
+    public boolean isValidBST(TreeNode root){
+        if(root == null)return true;
         dfs(root);
         return ans;
     }
 
     private void dfs(TreeNode node){
-        if(node == null) return;
+        if(node == null || !ans) return;
         dfs(node.left);
         if(pre == null){
             pre = node;

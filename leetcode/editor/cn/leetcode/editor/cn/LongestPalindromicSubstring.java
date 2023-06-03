@@ -34,41 +34,37 @@ package leetcode.editor.cn;
 public class LongestPalindromicSubstring{
     public static void main(String[] args){
         Solution solution = new LongestPalindromicSubstring().new Solution();
+        solution.longestPalindrome("aaaa");
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    public String longestPalindrome(String s) {
+
+        String ans = "";
+        public String longestPalindrome(String s){
+        ans = String.valueOf(s.charAt(0));
         int n = s.length();
-        int maxL = 1,index = 0;
-        for(int i = 0;i < n;i++){
-            int l = i - 1,r =  i + 1;
-            while (l >= 0 && r < n && s.charAt(l) == s.charAt(r)){
-                if(maxL < (r - l + 1)){
-                    maxL = r - l + 1;
-                    index = l;
-                }
-                l--;
-                r++;
-            }
+        for(int i =1;i < n;i++){
+            longStr(i - 1,i + 1,s);
         }
-        for(int i = 0;i < n - 1;i++){
+        for(int i =0;i < n - 1;i++){
             if(s.charAt(i) == s.charAt(i + 1)){
-                if(maxL < 2){
-                    maxL = 2;
-                    index = i;
+                if(ans.length() < 2){
+                    ans = s.substring(i,i + 2);
                 }
-                int l = i - 1,r = i + 2;
-                while (l >= 0 && r < n && s.charAt(l) == s.charAt(r)){
-                    if(maxL < (r - l + 1)){
-                        maxL = r - l + 1;
-                        index = l;
-                    }
-                    l--;
-                    r++;
-                }
+                longStr(i - 1,i + 2,s);
             }
         }
-        return s.substring(index,index + maxL);
+        return ans;
+    }
+
+        private void longStr(int l, int r, String s){
+        while (l >=0 && r < s.length() && s.charAt(l) == s.charAt(r)){
+            if(r -l + 1> ans.length()){
+                ans = s.substring(l,r + 1);
+            }
+            l--;
+            r++;
+        }
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

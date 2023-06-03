@@ -46,10 +46,11 @@ import java.util.List;
 public class LongestSubstringWithoutRepeatingCharacters{
     public static void main(String[] args){
         Solution solution = new LongestSubstringWithoutRepeatingCharacters().new Solution();
-        solution.lengthOfLongestSubstring("pwwkew");
+        solution.lengthOfLongestSubstring("abcabcbb");
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+
     public int lengthOfLongestSubstring(String s) {
         List<Character> list = new ArrayList<>();
             int sl = s.length();
