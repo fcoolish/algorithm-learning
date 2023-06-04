@@ -84,10 +84,38 @@ package leetcode.editor.cn;
 public class StringToIntegerAtoi{
     public static void main(String[] args){
         Solution solution = new StringToIntegerAtoi().new Solution();
+        solution.myAtoi("42");
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-        public int myAtoi(String str) {
+
+        public int myAtoi(String str){
+            int n = str.length();
+            int idx = 0;
+            while (idx < n && str.charAt(idx) == ' '){
+                idx++;
+            }
+            if(idx == n)return 0;
+            boolean neg = false;
+            if(str.charAt(idx) == '-'){
+                neg = true;
+                idx++;
+            }else if(str.charAt(idx) == '+'){
+                neg = false;
+                idx++;
+            }
+            int ans = 0;
+            while (idx < n && Character.isDigit(str.charAt(idx))){
+                int dig = str.charAt(idx) - '0';
+                if(ans > (Integer.MAX_VALUE - dig)/10){
+                    return neg ? Integer.MIN_VALUE:Integer.MAX_VALUE;
+                }
+                ans = ans * 10 + dig;
+                idx++;
+            }
+            return  neg ? -ans:ans;
+        }
+        public int myAtoi1(String str) {
             char[] chars = str.toCharArray();
             int n = chars.length;
             int idx = 0;
