@@ -51,28 +51,22 @@ public class UUsW3B{
 class Solution {
     public List<List<Integer>> combine(int n, int k) {
         List<List<Integer>> ans = new ArrayList<>();
-        List<Integer> input = new ArrayList<>();
-        for(int i = 1;i <= n;i++){
-            input.add(i);
-        }
-        dfs(n,k,input,new ArrayList<>(),ans,0);
+        dfs(n,k,new ArrayList<>(),ans,1);
         return ans;
     }
 
-    public void dfs(int n,int k,List<Integer> input,List<Integer> list,List<List<Integer>> ans,int index){
+    public void dfs(int n,int k,List<Integer> list,List<List<Integer>> ans,int index){
         if(list.size() + n - index + 1 < k){//剪枝
             return;
         }
-        if(index == n){
-            if(list.size() == k){
-                ans.add(new ArrayList<>(list));
-            }
+        if(list.size() == k){
+            ans.add(new ArrayList<>(list));
             return;
         }
-        list.add(input.get(index));
-        dfs(n,k,input,list,ans,index + 1);
-        list.remove(input.get(index));
-        dfs(n,k,input,list,ans,index + 1);
+        list.add(index);
+        dfs(n,k,list,ans,index + 1);
+        list.remove(list.size() - 1);
+        dfs(n,k,list,ans,index + 1);
 
     }
 }
