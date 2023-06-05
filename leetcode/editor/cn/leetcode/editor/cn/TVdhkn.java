@@ -46,7 +46,23 @@ public class TVdhkn{
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    public List<List<Integer>> subsets(int[] nums) {
+
+    public List<List<Integer>> subsets(int[] nums){
+        List<List<Integer>> ans = new ArrayList<>();
+        int n = nums.length;
+        List<Integer> temp = new ArrayList<>();
+        for(int i =0;i < (1<<n);i++){
+            temp.clear();
+            for(int j =0;j < n;j++){
+                if(((1<< j) & i) != 0){
+                    temp.add(nums[j]);
+                }
+            }
+            ans.add(new ArrayList<>(temp));
+        }
+        return ans;
+    }
+    public List<List<Integer>> subsets1(int[] nums) {
         int n = nums.length;
         List<Integer> op = new ArrayList<>();
         for(int num:nums){
