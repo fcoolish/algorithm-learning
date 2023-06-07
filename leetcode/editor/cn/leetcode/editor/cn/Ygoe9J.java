@@ -72,15 +72,13 @@ public class Ygoe9J {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         int tar = 0;
-
-        public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        public List<List<Integer>> combinationSum1(int[] candidates, int target) {
             List<List<Integer>> res = new ArrayList<>();
             int n = candidates.length;
             tar = target;
             dfs(n, candidates, 0, new ArrayList<>(), res, 0);
             return res;
         }
-
         private void dfs(int n, int[] can, int sum, List<Integer> list, List<List<Integer>> ans, int index) {
             if (n == index || sum > tar) return;
             if (sum == tar) {//边界条件
