@@ -62,20 +62,6 @@ class Solution {
         }
         return ans;
     }
-    public int[] dailyTemperatures1(int[] temperatures) {
-        int n = temperatures.length;
-        for(int i =0;i < n;i++){
-            int num = 0;
-            for(int j = i + 1;j < n;j++){
-                if(temperatures[j] > temperatures[i]){
-                    num = j - i;
-                    break;
-                }
-            }
-            temperatures[i] = num;
-        }
-        return temperatures;
-    }
 }
 //leetcode submit region end(Prohibit modification and deletion)
 
