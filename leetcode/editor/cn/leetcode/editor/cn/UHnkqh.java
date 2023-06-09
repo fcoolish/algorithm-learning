@@ -64,7 +64,7 @@ public class UHnkqh{
  */
 class Solution {
 
-    public ListNode reverseList(ListNode head) {
+    public ListNode reverseList1(ListNode head) {
         ListNode pre = null;
         ListNode cur = head;
         while (cur != null){
