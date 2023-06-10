@@ -63,7 +63,25 @@ public class NYBBNL {
      * }
      */
     class Solution {
-        public TreeNode increasingBST(TreeNode root) {
+        TreeNode pre = null;
+        public TreeNode increasingBST(TreeNode root){
+            if(root == null)return root;
+            TreeNode dum = new TreeNode(-1);
+            pre = dum;
+            dfs(root);
+            return dum.right;
+        }
+
+        public void dfs(TreeNode root){
+            if(root == null)return;
+            dfs(root.left);
+            pre.right = root;
+            root.left = null;
+            pre = root;
+            dfs(root.right);
+        }
+
+        public TreeNode increasingBST1(TreeNode root) {
             if (root == null) return root;
             Stack<TreeNode> stack = new Stack<>();
             List<Integer> list = new ArrayList<>();
