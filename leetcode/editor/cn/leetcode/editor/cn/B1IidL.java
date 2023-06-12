@@ -76,16 +76,15 @@ package leetcode.editor.cn;
 public class B1IidL {
     public static void main(String[] args) {
         Solution solution = new B1IidL().new Solution();
-        int[] arr = {1,3,5,4,2};
-        solution.peakIndexInMountainArray(arr);
+        int[] arr = {1,2,3,4,5};
+        //solution.peakIndexInMountainArray(arr,3);
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-
         public int peakIndexInMountainArray(int[] arr) {
             int length = arr.length - 1;
-            int l = 1, r = length,res = 0;
+            int l = 0, r = length,res = 0;
             while (l < r) {
                 int mid = (r - l) / 2 + l;
                 if(arr[mid] > arr[mid + 1]){
