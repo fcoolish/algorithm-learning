@@ -1,6 +1,8 @@
 //
+// 
 // 有 n 个城市，其中一些彼此相连，另一些没有相连。如果城市 a 与城市 b 直接相连，且城市 b 与城市 c 直接相连，那么城市 a 与城市 c 间接相连
 //。 
+// 
 // 
 //
 // 省份 是一组直接或间接相连的城市，组内不含其他没有相连的城市。 
@@ -39,41 +41,36 @@
 // isConnected[i][j] == isConnected[j][i] 
 // 
 //
-// 
-//
-// 
-// 注意：本题与主站 547 题相同： https://leetcode-cn.com/problems/number-of-provinces/ 
-//
-// Related Topics 深度优先搜索 广度优先搜索 并查集 图 👍 50 👎 0
+// Related Topics 深度优先搜索 广度优先搜索 并查集 图 👍 998 👎 0
 
 package leetcode.editor.cn;
-public class BLyHh0{
+public class NumberOfProvinces{
     public static void main(String[] args){
-        Solution solution = new BLyHh0().new Solution();
+        Solution solution = new NumberOfProvinces().new Solution();
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    public int findCircleNum(int[][] isConnected) {
-        int cities = isConnected.length;
-        boolean[] visited = new boolean[cities];
-        int provinces = 0;
-        for(int i =0;i < cities;i++){
-            if(!visited[i]){
-                dfs(isConnected,visited,cities,i);
-                provinces++;
+        public int findCircleNum(int[][] isConnected) {
+            int cities = isConnected.length;
+            boolean[] visited = new boolean[cities];
+            int provinces = 0;
+            for(int i =0;i < cities;i++){
+                if(!visited[i]){
+                    dfs(isConnected,visited,cities,i);
+                    provinces++;
+                }
             }
+            return provinces;
         }
-        return provinces;
-    }
 
-    private void dfs(int[][] isConnected,boolean[] visited,int cities,int i){
-        for(int j =0;j < cities;j++){
-            if(isConnected[i][j] == 1 && !visited[j]){
-                visited[j] = true;
-                dfs(isConnected, visited, cities, j);
+        private void dfs(int[][] isConnected,boolean[] visited,int cities,int i){
+            for(int j =0;j < cities;j++){
+                if(isConnected[i][j] == 1 && !visited[j]){
+                    visited[j] = true;
+                    dfs(isConnected, visited, cities, j);
+                }
             }
         }
-    }
 }
 //leetcode submit region end(Prohibit modification and deletion)
 
