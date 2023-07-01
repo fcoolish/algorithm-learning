@@ -70,8 +70,42 @@ public class VvXgSW{
  * }
  */
 class Solution {
-    public ListNode mergeKLists(ListNode[] lists) {
 
+    public ListNode mergeKLists(ListNode[] lists) {
+        int n = lists.length;
+        return merge(lists,0,n - 1);
+    }
+
+    public ListNode merge(ListNode[] lists,int l ,int r) {
+        if(l == r)return lists[l];
+        if(l > r)return null;
+        int mid = l + (r - l)/2;
+        return mergeTwo(merge(lists,l,mid),merge(lists,mid + 1,r));
+    }
+
+    private ListNode mergeTwo(ListNode l1,ListNode l2){
+        ListNode dum = new ListNode(-1);
+        ListNode pre = dum;
+        while (l1 != null && l2 != null){
+            if(l1.val > l2.val){
+                pre.next = l2;
+                l2 = l2.next;
+            }else{
+                pre.next = l1;
+                l1 = l1.next;
+            }
+            pre = pre.next;
+        }
+        pre.next = l1 == null ? l2:l1;
+        return dum.next;
+    }
+
+    public ListNode mergeKLists1(ListNode[] lists) {
+        ListNode rnode= null;
+        for(int i =0;i < lists.length;i++){
+            rnode = mergeTwo(rnode,lists[i]);
+        }
+        return rnode;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
