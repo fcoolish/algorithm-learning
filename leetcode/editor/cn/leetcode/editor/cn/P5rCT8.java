@@ -58,8 +58,16 @@ public class P5rCT8{
  * }
  */
 class Solution {
+    TreeNode target = null;
     public TreeNode inorderSuccessor(TreeNode root, TreeNode p) {
-        return null;
+        if(root == null) return null;
+        if(root.val > p.val){
+            target = root;
+            inorderSuccessor(root.left,p);
+        }else{
+            inorderSuccessor(root.right,p);
+        }
+        return target;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
