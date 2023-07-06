@@ -55,12 +55,26 @@ public class VabMRr{
 class Solution {
     public List<Integer> findAnagrams(String s, String p) {
         List<Integer> ans = new ArrayList<>();
-        int index = 0;
-        int len = s.length();
-        char[] chars = p.toCharArray();
-        Arrays.sort(chars);
-        String nstr = new String(chars);
-        return null;
+        if(s.length() < p.length())return ans;
+        int sl = s.length();
+        int pl = p.length();
+        int[] sc = new int[26];
+        int[] pc = new int[26];
+        for(int i =0;i < pl;i++){
+            sc[s.charAt(i) - 'a']++;
+            pc[p.charAt(i) - 'a']++;
+        }
+        if(Arrays.equals(sc,pc)){
+            ans.add(0);
+        }
+        for(int i = 0;i < sl - pl;i++){
+            sc[s.charAt(i) - 'a']--;
+            sc[s.charAt(i + pl) - 'a']++;
+            if(Arrays.equals(sc,pc)){
+                ans.add(i + 1);
+            }
+        }
+        return ans;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
