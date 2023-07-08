@@ -45,9 +45,6 @@
 
 package leetcode.editor.cn;
 
-import java.util.HashSet;
-import java.util.Set;
-
 public class PathSum{
     public static void main(String[] args){
         Solution solution = new PathSum().new Solution();
@@ -74,34 +71,28 @@ public class PathSum{
  */
 class Solution {
 
-    public boolean hasPathSum(TreeNode root, int targetSum) {
+    boolean res = false;
+    public boolean hasPathSum(TreeNode root, int targetSum){
+        dfs(root,targetSum);
+        return res;
+    }
+
+    private void dfs(TreeNode node,int sum){
+        if(node == null || res)return;
+        if(node.left == null && node.right == null && node.val == sum){
+            res = true;
+            return;
+        }
+        dfs(node.left,sum - node.val);
+        dfs(node.right,sum - node.val);
+    }
+
+    public boolean hasPathSum2(TreeNode root, int targetSum) {
         if(root == null)return false;
         if(root.left == null &root.right == null){
             return root.val == targetSum;
         }
         return hasPathSum(root.left,targetSum - root.val) || hasPathSum(root.right,targetSum - root.val);
-    }
-
-    Set<Integer> set = new HashSet<>();
-    public boolean hasPathSum1(TreeNode root, int targetSum) {
-        if(root == null)return false;
-        dfs(root,0);
-        return set.contains(targetSum);
-    }
-
-    private void dfs(TreeNode root,int sum){
-        if(root.left == null && root.right == null){
-            set.add(sum + root.val);
-            return;
-        }
-        sum += root.val;
-        if(root.left != null){
-            dfs(root.left,sum);
-
-        }
-        if(root.right != null){
-            dfs(root.right,sum);
-        }
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
