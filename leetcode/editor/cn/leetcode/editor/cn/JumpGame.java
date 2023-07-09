@@ -37,15 +37,14 @@ package leetcode.editor.cn;
 public class JumpGame{
     public static void main(String[] args){
         Solution solution = new JumpGame().new Solution();
-        int[] arr = {3,2,1,0,4};
+        int[] arr = {2,3,1,1,4};
         solution.canJump(arr);
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
 
 
-
-    public boolean canJump(int[] nums){
+    public boolean canJump2(int[] nums){
         int max = nums[0];
         int n = nums.length;
         for(int i =0;i < n;i++){
@@ -56,7 +55,7 @@ class Solution {
         }
         return false;
     }
-    public boolean canJump1(int[] nums){
+    public boolean canJump(int[] nums){
         int n = nums.length;
         boolean[] dp = new boolean[n];
         dp[0] = true;

@@ -52,75 +52,105 @@ package leetcode.editor.cn;
 
 import java.util.*;
 
-public class MaximumWidthOfBinaryTree{
-    public static void main(String[] args){
+public class MaximumWidthOfBinaryTree {
+    public static void main(String[] args) {
         Solution solution = new MaximumWidthOfBinaryTree().new Solution();
         TreeNode node = new TreeNode(5);
         TreeNode node2 = new TreeNode(3);
         TreeNode node3 = new TreeNode(6);
         node.left = node2;
         node.right = node3;
-        solution.widthOfBinaryTree(node);
+        //solution.widthOfBinaryTree(node);
     }
     //leetcode submit region begin(Prohibit modification and deletion)
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode() {}
- *     TreeNode(int val) { this.val = val; }
- *     TreeNode(int val, TreeNode left, TreeNode right) {
- *         this.val = val;
- *         this.left = left;
- *         this.right = right;
- *     }
- * }
- */
-class Solution {
 
-    //超时
-    public int widthOfBinaryTree(TreeNode root) {
-        if(root == null)return 0;
-        int ans = 0;
-        Queue<TreeNode> queue = new ArrayDeque<>();
-        queue.offer(root);
-        while (!queue.isEmpty()){
-            int size = queue.size();
-            int l = -1,r = -1;
-            for(int i = 0;i < size;i++){
-                TreeNode node = queue.poll();
-                if(node.val != -101){
-                    if(l == -1){
-                        l = i;
-                        r = i;
-                    }else{
-                        r = i;
+    /**
+     * Definition for a binary tree node.
+     * public class TreeNode {
+     * int val;
+     * TreeNode left;
+     * TreeNode right;
+     * TreeNode() {}
+     * TreeNode(int val) { this.val = val; }
+     * TreeNode(int val, TreeNode left, TreeNode right) {
+     * this.val = val;
+     * this.left = left;
+     * this.right = right;
+     * }
+     * }
+     */
+    class Solution {
+
+        public int widthOfBinaryTree(TreeNode root){
+            if(root == null)return 0;
+            Queue<TreeNode> queue = new ArrayDeque<>();
+            queue.offer(root);
+            Map<TreeNode,Integer> map = new HashMap<>();
+            map.put(root,1);
+            int ans = 0;
+            while (!queue.isEmpty()){
+                int start = map.get(queue.peek());
+                int size = queue.size();
+                while (size > 0){
+                    TreeNode cur = queue.poll();
+                    size--;
+                    int index = map.get(cur);
+                    if(cur.left != null){
+                        queue.offer(cur.left);
+                        map.put(cur.left,2 * index);
                     }
-                    ans = Math.max(r - l + 1,ans);
-                }
-                if(node.left != null){
-                    queue.offer(node.left);
-                }else{
-                    TreeNode nn = new TreeNode(-101);
-                    queue.offer(nn);
-                }
-                if(node.right != null){
-                    queue.offer(node.right);
-                }else{
-                    TreeNode nn = new TreeNode(-101);
-                    queue.offer(nn);
+                    if(cur.right != null){
+                        queue.offer(cur.right);
+                        map.put(cur.right,2 * index + 1);
+                    }
+                    if(size == 0){
+                        ans = Math.max(ans,index - start + 1);
+                    }
                 }
             }
-            if(l == -1 && r == -1){
-                return ans;
-            }
+            return ans;
         }
-        return ans;
-    }
 
-}
+        //超时
+        public int widthOfBinaryTree1(TreeNode root) {
+            if (root == null) return 0;
+            int ans = 0;
+            Queue<TreeNode> queue = new ArrayDeque<>();
+            queue.offer(root);
+            while (!queue.isEmpty()) {
+                int size = queue.size();
+                int l = -1, r = -1;
+                for (int i = 0; i < size; i++) {
+                    TreeNode node = queue.poll();
+                    if (node.val != -101) {
+                        if (l == -1) {
+                            l = i;
+                            r = i;
+                        } else {
+                            r = i;
+                        }
+                        ans = Math.max(r - l + 1, ans);
+                    }
+                    if (node.left != null) {
+                        queue.offer(node.left);
+                    } else {
+                        TreeNode nn = new TreeNode(-101);
+                        queue.offer(nn);
+                    }
+                    if (node.right != null) {
+                        queue.offer(node.right);
+                    } else {
+                        TreeNode nn = new TreeNode(-101);
+                        queue.offer(nn);
+                    }
+                }
+                if (l == -1 && r == -1) {
+                    return ans;
+                }
+            }
+            return ans;
+        }
+    }
 //leetcode submit region end(Prohibit modification and deletion)
 
 }

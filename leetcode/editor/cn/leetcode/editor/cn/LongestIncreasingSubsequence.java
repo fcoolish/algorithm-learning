@@ -55,7 +55,6 @@ public class LongestIncreasingSubsequence {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-
         public int lengthOfLIS(int[] nums) {
             int n = nums.length;
             int max = 1;
