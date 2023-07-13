@@ -50,14 +50,16 @@ import java.util.List;
 public class LowestCommonAncestorOfABinaryTree{
     public static void main(String[] args){
         Solution solution = new LowestCommonAncestorOfABinaryTree().new Solution();
-        TreeNode node = new TreeNode(3);
-        TreeNode node2 = new TreeNode(5);
-        TreeNode node3 = new TreeNode(1);
-        TreeNode node4 = new TreeNode(6);
+        TreeNode node = new TreeNode(1);
+        TreeNode node2 = new TreeNode(2);
+        TreeNode node3 = new TreeNode(3);
+        TreeNode node4 = new TreeNode(4);
+        TreeNode node5 = new TreeNode(5);
         node.left = node2;
         node.right = node3;
-        node2.right = node4;
-        solution.lowestCommonAncestor(node,node3,node4);
+        node2.left = node4;
+        node2.right = node5;
+        TreeNode res  = solution.lowestCommonAncestor(node,node4,node5);
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 /**
@@ -78,12 +80,11 @@ class Solution {
         TreeNode rn = lowestCommonAncestor(root.right,p,q);
         if(ln != null && rn !=null){
             return root;
-        }else if(ln == null){
-            return rn;
-        }else if(rn == null){
+        }else if(ln != null){
             return ln;
+        }else {
+            return rn;
         }
-        return null;
     }
 
     //以下思路超时
