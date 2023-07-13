@@ -46,7 +46,18 @@ public class SkFtm2{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int singleNonDuplicate(int[] nums) {
-        return 0;
+        int l = 0;
+        int n = nums.length;
+        int r = n - 1;
+        while (l < r){
+            int mid = l + (r - l)/2;
+            if(nums[mid] == nums[mid ^ 1]){
+                l = mid + 1;
+            }else{
+                r = mid;
+            }
+        }
+        return nums[l];
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
