@@ -55,6 +55,10 @@
 // Related Topics 字符串 👍 2082 👎 0
 
 package leetcode.editor.cn;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class ZigzagConversion{
     public static void main(String[] args){
         Solution solution = new ZigzagConversion().new Solution();
@@ -62,7 +66,25 @@ public class ZigzagConversion{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public String convert(String s, int numRows) {
-        return "";
+        int n = s.length(),r = numRows;
+        if(r == 1 || n < r)return s;
+        List<StringBuilder> rows = new ArrayList<>();
+        for(int i =0;i < numRows;i++){
+            rows.add(new StringBuilder());
+        }
+        int i =0,flag = -1;
+        for(char c:s.toCharArray()){
+            rows.get(i).append(c);
+            if(i == 0 || i == numRows - 1){
+                flag = -flag;
+            }
+            i += flag;
+        }
+        StringBuilder res = new StringBuilder();
+        for(StringBuilder row:rows){
+            res.append(row);
+        }
+        return res.toString();
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

@@ -39,7 +39,7 @@ public class TrappingRainWater{
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-        public int trap(int[] height) {
+        public int trap1(int[] height) {
         int n = height.length;
         int[] leftN = new int[n];
         int[] rightN = new int[n];
