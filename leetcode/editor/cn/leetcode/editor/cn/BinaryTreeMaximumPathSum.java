@@ -65,14 +65,14 @@ class Solution {
     int ans = -1001;
     public int maxPathSum(TreeNode root) {
         if(root == null)return 0;
-        dfs(root,0);
+        dfs(root);
         return ans;
     }
 
-    private int dfs(TreeNode node,int sum){
+    private int dfs(TreeNode node){
         if(node == null)return 0;
-        int l = Math.max(dfs(node.left,sum),0);
-        int r = Math.max(dfs(node.right,sum),0);
+        int l = Math.max(dfs(node.left),0);
+        int r = Math.max(dfs(node.right),0);
         int num = l + r + node.val;
         ans = Math.max(ans,num);
         return node.val + Math.max(l,r);
