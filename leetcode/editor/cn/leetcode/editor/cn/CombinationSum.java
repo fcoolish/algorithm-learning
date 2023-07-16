@@ -56,7 +56,8 @@ public class CombinationSum{
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+
+        public List<List<Integer>> combinationSum(int[] candidates, int target) {
         List<List<Integer>> ans = new ArrayList<>();
         int n = candidates.length;
         dfs(candidates,n,0,new ArrayList<>(),ans,0,target);
@@ -64,7 +65,7 @@ class Solution {
     }
 
     private void dfs(int[] candidates,int n,int sum,List<Integer> list,List<List<Integer>> ans,int index,int target){
-        if( index == n || sum > target)return;
+        if(index == n || sum > target)return;
         if(sum == target){
             ans.add(new ArrayList<>(list));
             return;

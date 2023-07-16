@@ -60,6 +60,7 @@ public class PascalsTriangle {
             }
             return lists;
         }
+
     }
 //leetcode submit region end(Prohibit modification and deletion)
 
