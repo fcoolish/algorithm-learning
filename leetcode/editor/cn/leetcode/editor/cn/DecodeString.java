@@ -54,8 +54,7 @@
 
 package leetcode.editor.cn;
 
-import java.util.Collections;
-import java.util.LinkedList;
+import java.util.*;
 
 public class DecodeString{
     public static void main(String[] args){
@@ -66,7 +65,7 @@ public class DecodeString{
 class Solution {
 
     int ptr = 0;
-    public String decodeString(String s) {
+    public String decodeString1(String s) {
         int n = s.length();
         LinkedList<String> stk = new LinkedList<>();
         while (ptr < n){
@@ -96,7 +95,38 @@ class Solution {
         return getString(stk);
     }
 
-    private String getDigits(String s){
+    public String decodeString(String s){
+        int n = s.length();
+        Deque<String> deque = new ArrayDeque<>();
+        while (ptr < n){
+            char c = s.charAt(ptr);
+            if(Character.isDigit(c)){
+                String dig = getDigits(s);
+                deque.addLast(dig);
+            }else if(Character.isLetter(c) || c == '['){
+                deque.addLast(String.valueOf(c));
+                ptr++;
+            }else {
+                ptr++;
+                LinkedList<String> sub = new LinkedList<>();
+                while (!"[".equals(deque.peekLast())){
+                    sub.add(deque.pollLast());
+                }
+                Collections.reverse(sub);
+                deque.removeLast();
+                String str = getString1(sub);
+                int rc = Integer.parseInt(deque.pollLast());
+                StringBuilder rr = new StringBuilder();
+                while (rc-- > 0){
+                    rr.append(str);
+                }
+                deque.addLast(rr.toString());
+            }
+        }
+        return getString(deque);
+    }
+
+    private String getDigits1(String s){
         StringBuilder ret = new StringBuilder();
         while (Character.isDigit(s.charAt(ptr))){
             ret.append(s.charAt(ptr++));
@@ -104,13 +134,30 @@ class Solution {
         return ret.toString();
     }
 
-    private String getString(LinkedList<String> v){
+    private String getDigits(String s){
+        StringBuilder res = new StringBuilder();
+        while (ptr < s.length() && Character.isDigit(s.charAt(ptr))){
+            res.append(s.charAt(ptr));
+            ptr++;
+        }
+        return res.toString();
+    }
+
+    private String getString1(LinkedList<String> v){
             StringBuilder ret = new StringBuilder();
            for(String s:v){
                ret.append(s);
            }
             return ret.toString();
         }
+
+    private String getString(Deque<String> v){
+        StringBuilder res = new StringBuilder();
+        for (String vv:v){
+            res.append(vv);
+        }
+        return res.toString();
+    }
 }
 //leetcode submit region end(Prohibit modification and deletion)
 
