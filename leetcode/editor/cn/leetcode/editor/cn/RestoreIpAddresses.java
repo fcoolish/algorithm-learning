@@ -53,10 +53,11 @@ public class RestoreIpAddresses{
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+
         List<String> res = new ArrayList<>();
         List<String> ip = new ArrayList<>();
 
-        public List<String> restoreIpAddresses(String s) {
+        public List<String> restoreIpAddresses1(String s) {
             if(s.length() < 4 || s.length() > 12){
                 return res;
             }
@@ -73,7 +74,7 @@ class Solution {
             }
             for(int i = idx;i < s.length();i++){
                 String tmp = s.substring(idx,i + 1);
-                if((tmp.length() > 1) && tmp.startsWith("0") || Integer.parseInt(tmp) > 255 || ip.size() >= 4){
+                if(tmp.length() > 1 && tmp.startsWith("0") || Integer.parseInt(tmp) > 255 || ip.size() >= 4){
                     return;
                 }
                 ip.add(tmp);

@@ -41,7 +41,7 @@ public class SingleElementInASortedArray{
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-        public int singleNonDuplicate(int[] nums) {
+        public int singleNonDuplicate1(int[] nums) {
             int l = 0;
             int n = nums.length;
             int r = n - 1;
@@ -55,7 +55,7 @@ class Solution {
             }
             return nums[l];
         }
-}
+    }
 //leetcode submit region end(Prohibit modification and deletion)
 
 }

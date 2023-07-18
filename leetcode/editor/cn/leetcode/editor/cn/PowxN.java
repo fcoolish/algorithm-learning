@@ -46,7 +46,7 @@ public class PowxN{
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    public double myPow(double x, int n) {
+    public double myPow1(double x, int n) {
         if(n == 0) return 1;
         double ans = 1.0;
         long cnt = n > 0 ? n:-(long)n;
@@ -60,7 +60,22 @@ class Solution {
         }
         return n > 0 ? ans:1/ans;
     }
-}
+
+    public double myPow(double x, int n){
+        if(n == 0)return 1;
+        if(n == 1) return x;
+        long cnt = n;
+        return n > 0 ? getValue(x,cnt):1.0/getValue(x,-cnt);
+    }
+
+    public double getValue(double x,long cnt){
+        if(cnt == 0){
+            return 1;
+        }
+        double y = getValue(x,cnt/2);
+        return cnt % 2 == 0 ? y * y :y * y * x;
+    }
+    }
 //leetcode submit region end(Prohibit modification and deletion)
 
 }
