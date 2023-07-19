@@ -53,7 +53,8 @@ public class TargetSum{
 class Solution {
         int tar = 0;
         int ans = 0;
-        public int findTargetSumWays(int[] nums,int target) {
+
+        public int findTargetSumWays1(int[] nums,int target) {
             int n = nums.length;
             tar = target;
             backtrack(n,nums,0,0);

@@ -46,16 +46,16 @@ class MinStack {
         stack1 = new Stack<>();
         min1 = new Stack<>();
     }
-    
-    public void push(int x) {
-        stack1.push(x);
+
+   public void push(int x){
         if(min1.isEmpty() || min1.peek() > x){
             min1.push(x);
         }else{
             min1.push(min1.peek());
         }
-    }
-    
+        stack1.push(x);
+   }
+
     public void pop() {
         stack1.pop();
         min1.pop();
