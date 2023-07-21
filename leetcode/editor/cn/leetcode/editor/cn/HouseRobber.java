@@ -41,7 +41,7 @@ public class HouseRobber{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
 
-    public int rob(int[] nums) {
+    public int rob1(int[] nums) {
         int n = nums.length;
         if(n == 0)return 0;
         if(n == 1)return nums[0];
@@ -53,6 +53,7 @@ class Solution {
         }
         return dp[n - 1];
     }
+
 }
 //leetcode submit region end(Prohibit modification and deletion)
 

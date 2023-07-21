@@ -43,6 +43,7 @@ package leetcode.editor.cn;
 public class IsSubsequence{
     public static void main(String[] args){
         Solution solution = new IsSubsequence().new Solution();
+        solution.isSubsequence("abc","ahbgdc");
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
@@ -59,7 +60,7 @@ class Solution {
             }
             return i == sl;
     }
-}
+    }
 //leetcode submit region end(Prohibit modification and deletion)
 
 }
