@@ -53,6 +53,7 @@ public class BLyHh0{
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+
     public int findCircleNum(int[][] isConnected) {
         int cities = isConnected.length;
         boolean[] visited = new boolean[cities];

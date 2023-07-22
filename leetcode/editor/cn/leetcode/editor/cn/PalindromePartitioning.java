@@ -42,7 +42,8 @@ public class PalindromePartitioning{
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    public List<List<String>> partition(String s) {
+
+    public List<List<String>> partition1(String s) {
         int n = s.length();
         List<List<String>> res= new ArrayList<>();
         if(n == 0)return  res;
