@@ -68,8 +68,25 @@ public class BinaryTreeUpsideDown{
  * }
  */
 class Solution {
+    TreeNode head = null;
     public TreeNode upsideDownBinaryTree(TreeNode root) {
-        return null;
+        if(root == null) return root;
+        dfs(root,null);
+        return head;
+    }
+
+    public void dfs(TreeNode root,TreeNode pre){
+        if(root == null)return;
+        dfs(root.left,root);
+        if(head == null){
+            head = root;
+        }
+        if(pre != null){
+            pre.left = null;
+            root.left = pre.right;
+            pre.right = null;
+            root.right = pre;
+        }
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

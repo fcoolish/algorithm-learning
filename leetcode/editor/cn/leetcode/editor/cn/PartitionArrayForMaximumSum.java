@@ -42,13 +42,23 @@ package leetcode.editor.cn;
 public class PartitionArrayForMaximumSum{
     public static void main(String[] args){
         Solution solution = new PartitionArrayForMaximumSum().new Solution();
-        int[] arr = {1,4,1,5,7,3,6,1,9,9,3};
-        solution.maxSumAfterPartitioning(arr,4);
+        int[] arr = {1,4,1};
+        solution.maxSumAfterPartitioning(arr,2);
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    public int maxSumAfterPartitioning(int[] arr, int k) {
-        return 0;
+
+    public int maxSumAfterPartitioning(int[] arr, int k){
+        int n = arr.length;
+        int[] dp = new int[n + 1];
+        for(int i = 1;i <=n;i++){
+            int mx = 0;
+            for(int j = i;j > Math.max(0,i - k);j--){
+                mx = Math.max(mx,arr[j - 1]);
+                dp[i] = Math.max(dp[i],dp[j - 1] + mx * (i - j  + 1));
+            }
+        }
+        return dp[n];
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
