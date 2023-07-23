@@ -52,7 +52,7 @@ public class ReverseInteger{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
 
-    public int reverse(int x){
+    public int reverse1(int x){
         int res = 0;
         while (x != 0){
             if(res > Integer.MAX_VALUE/10 || res < Integer.MIN_VALUE/10){
@@ -63,6 +63,22 @@ class Solution {
         }
         return res;
     }
+
+    public int reverse(int x){
+        if(x == 0)return x;
+        int ans = 0;
+        while (x != 0){
+            if(ans < Integer.MIN_VALUE/10 || ans > Integer.MAX_VALUE/10){
+                return 0;
+            }
+            int dg = x % 10;
+            x /= 10;
+            ans = ans * 10 + dg;
+        }
+        return ans;
+    }
+
+
 }
 //leetcode submit region end(Prohibit modification and deletion)
 

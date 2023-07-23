@@ -42,8 +42,7 @@ public class ClimbingStairs{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
 
-
-        public int climbStairs(int n) {
+    public int climbStairs2(int n) {
             if(n <= 2)return n;
             int p =  1,q = 2,r = 0;
             for(int i =3;i <=n;i++){

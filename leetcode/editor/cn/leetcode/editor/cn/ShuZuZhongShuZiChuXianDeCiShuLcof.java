@@ -26,13 +26,20 @@
 // Related Topics 位运算 数组 👍 813 👎 0
 
 package leetcode.editor.cn;
+
+import java.util.*;
+
 public class ShuZuZhongShuZiChuXianDeCiShuLcof{
     public static void main(String[] args){
         Solution solution = new ShuZuZhongShuZiChuXianDeCiShuLcof().new Solution();
+        List<String> list = new ArrayList<>();
+        int[] arr = {34,95,50,12,25,100,21,3,25,16,76,73,93,46,18};
+        solution.singleNumbers(arr);
+
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    public int[] singleNumbers(int[] nums) {
+    public int[] singleNumbers1(int[] nums) {
         int ret = 0;
         for(int num:nums){
             ret ^= num;
@@ -51,6 +58,29 @@ class Solution {
         }
         return new int[]{a,b};
     }
+
+        public int[] singleNumbers(int[] nums){
+            int ret = 0;
+            for(int num:nums){
+                ret ^=num;
+            }
+            int div = 1;
+            while ((div & ret) == 0){
+                div = div << 1;
+            }
+            int a = 0;
+            int b = 0;
+            for(int num:nums){
+                if((div & num) != 0){
+                    a ^=num;
+                }else{
+                    b ^=num;
+                }
+            }
+            return new int[]{a,b};
+        }
+
+
 }
 //leetcode submit region end(Prohibit modification and deletion)
 

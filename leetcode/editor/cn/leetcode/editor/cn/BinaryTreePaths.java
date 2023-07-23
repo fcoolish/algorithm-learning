@@ -90,14 +90,11 @@ public class BinaryTreePaths {
             return ans;
         }
 
-
-
         public List<String> binaryTreePaths1(TreeNode root) {
             List<String> ans = new ArrayList<>();
             getPath(root, new StringBuilder(), ans);
             return ans;
         }
-
 
         public void getPath(TreeNode node,StringBuilder str,List<String> res){
             if(node == null){

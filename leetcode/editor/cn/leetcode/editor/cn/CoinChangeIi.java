@@ -52,15 +52,28 @@
 // Related Topics 数组 动态规划 👍 1113 👎 0
 
 package leetcode.editor.cn;
+
 public class CoinChangeIi{
     public static void main(String[] args){
         Solution solution = new CoinChangeIi().new Solution();
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    public int change(int amount, int[] coins) {
+    public int change1(int amount, int[] coins) {
         int len = amount + 1;
         int[] dp = new int[len];
+        dp[0] = 1;
+        for(int coin:coins){
+            for(int i = coin;i <= amount;i++){
+                dp[i] += dp[i - coin];
+            }
+        }
+        return dp[amount];
+    }
+
+    public int change(int amount, int[] coins){
+        int n = amount + 1;
+        int[] dp = new int[n];
         dp[0] = 1;
         for(int coin:coins){
             for(int i = coin;i <= amount;i++){

@@ -32,9 +32,11 @@
 // Related Topics 树 深度优先搜索 广度优先搜索 二叉树 👍 982 👎 0
 
 package leetcode.editor.cn;
+
 public class MinimumDepthOfBinaryTree{
     public static void main(String[] args){
         Solution solution = new MinimumDepthOfBinaryTree().new Solution();
+        int[] arr = {2,3,6,1,9,2};
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 /**
@@ -53,7 +55,7 @@ public class MinimumDepthOfBinaryTree{
  * }
  */
 class Solution {
-    public int minDepth(TreeNode root) {
+    public int minDepth1(TreeNode root) {
         if(root == null){
             return 0;
         }else if(root.left == null){
@@ -63,6 +65,17 @@ class Solution {
         }
         return Math.min(minDepth(root.left),minDepth(root.right)) + 1;
     }
+
+    public int minDepth(TreeNode root){
+        if(root == null)return 0;
+        if(root.left == null){
+            return minDepth(root.right) + 1;
+        }else if(root.right == null){
+            return minDepth(root.left) + 1;
+        }
+        return Math.min(minDepth(root.left),minDepth(root.right)) + 1;
+    }
+
 }
 //leetcode submit region end(Prohibit modification and deletion)
 

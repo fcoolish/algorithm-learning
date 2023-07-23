@@ -57,7 +57,7 @@ public class QueueReconstructionByHeight{
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    public int[][] reconstructQueue(int[][] people) {
+    public int[][] reconstructQueue1(int[][] people) {
         Arrays.sort(people, new Comparator<int[]>() {
             @Override
             public int compare(int[] o1, int[] o2) {
@@ -67,14 +67,13 @@ class Solution {
                 return o2[0] - o1[0];
             }
         });
-        int n = people.length;
         List<int[]> list = new ArrayList<>();
         for(int[] person:people){
             list.add(person[1],person);
         }
         return list.toArray(new int[list.size()][]);
     }
-}
+    }
 //leetcode submit region end(Prohibit modification and deletion)
 
 }
