@@ -69,6 +69,7 @@ public class PathSumIi{
 class Solution {
 
     List<List<Integer>> ans = new ArrayList<>();
+
     public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
         dfs(root,targetSum,new ArrayList<>());
         return ans;

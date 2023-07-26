@@ -61,6 +61,7 @@ public class ConstructBinaryTreeFromPreorderAndInorderTraversal{
 class Solution {
 
     private Map<Integer,Integer> map = new HashMap<>();
+
     public TreeNode buildTree(int[] preorder, int[] inorder) {
         int n = preorder.length;
         for(int i =0;i < n;i++){

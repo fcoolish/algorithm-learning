@@ -37,7 +37,6 @@ public class PartitionEqualSubsetSum{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
 
-
     public boolean canPartition(int[] nums){
         int n = nums.length;
         if(n < 2)return false;
