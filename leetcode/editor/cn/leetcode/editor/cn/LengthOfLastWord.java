@@ -40,13 +40,14 @@
 // Related Topics 字符串 👍 530 👎 0
 
 package leetcode.editor.cn;
+
 public class LengthOfLastWord{
     public static void main(String[] args){
         Solution solution = new LengthOfLastWord().new Solution();
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    public int lengthOfLastWord(String s) {
+    public int lengthOfLastWord1(String s) {
         int count = 0;
         int l = s.length();
         for(int i = l - 1;i >= 0;i--){
@@ -60,6 +61,27 @@ class Solution {
         }
         return count;
     }
+
+    public int lengthOfLastWord(String s){
+        int res = -1;
+        StringBuilder str = new StringBuilder();
+        int n = s.length();
+        for(int i = n - 1;i >= 0;i--){
+            if(s.charAt(i) == ' '){
+                if(str.length() > 0){
+                    return str.length();
+                }
+            }else{
+                str.append(s.charAt(i));
+            }
+            if(i == 0 && str.length() > 0){
+                return str.length();
+            }
+        }
+        return res;
+    }
+
+
 }
 //leetcode submit region end(Prohibit modification and deletion)
 

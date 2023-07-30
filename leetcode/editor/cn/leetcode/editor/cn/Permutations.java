@@ -47,6 +47,7 @@ public class Permutations{
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+
     public List<List<Integer>> permute(int[] nums) {
         List<List<Integer>> ans = new ArrayList<>();
         List<Integer> list = new ArrayList<>();

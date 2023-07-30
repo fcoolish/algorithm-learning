@@ -69,6 +69,7 @@ class Solution {
 
     int sum = 0;
     long target = 0;
+
     public int pathSum(TreeNode root, int targetSum) {
         if(root == null)return 0;
         target = targetSum;
