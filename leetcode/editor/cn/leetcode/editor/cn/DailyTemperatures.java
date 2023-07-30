@@ -56,7 +56,7 @@ class Solution {
         }
         return temperatures;
     }
-}
+    }
 //leetcode submit region end(Prohibit modification and deletion)
 
 }
