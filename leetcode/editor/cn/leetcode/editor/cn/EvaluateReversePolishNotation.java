@@ -81,7 +81,7 @@ import java.util.Stack;
 public class EvaluateReversePolishNotation{
     public static void main(String[] args){
         Solution solution = new EvaluateReversePolishNotation().new Solution();
-        String[] strs = {"2","1","+","3","*"};
+        String[] strs = {"4","13","5","/","+"};
         solution.evalRPN(strs);
     }
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -111,6 +111,7 @@ class Solution {
         }
         return ans;
     }
+
 }
 //leetcode submit region end(Prohibit modification and deletion)
 

@@ -35,7 +35,7 @@ package leetcode.editor.cn;
 public class Sqrtx{
     public static void main(String[] args){
         Solution solution = new Sqrtx().new Solution();
-        solution.mySqrt(8);
+        solution.mySqrt(4);
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
