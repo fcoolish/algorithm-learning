@@ -44,7 +44,7 @@ public class SearchInsertPosition{
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-        public int searchInsert(int[] nums, int target) {
+      public int searchInsert1(int[] nums, int target) {
             int n = nums.length - 1;
             int l = 0, r= n;
             while (l <= r){
@@ -59,6 +59,19 @@ class Solution {
             }
             return l;
         }
+
+      public int searchInsert(int[] nums, int target){
+          int l = 0,r = nums.length;
+          while (l < r){
+              int mid = l + (r - l)/2;
+              if(nums[mid] < target){
+                  l = mid + 1;
+              }else{
+                  r = mid;
+              }
+          }
+          return l;
+      }
 
 }
 //leetcode submit region end(Prohibit modification and deletion)
