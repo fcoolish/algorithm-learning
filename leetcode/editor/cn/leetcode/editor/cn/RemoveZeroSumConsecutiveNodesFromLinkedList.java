@@ -39,6 +39,10 @@
 // Related Topics 哈希表 链表 👍 295 👎 0
 
 package leetcode.editor.cn;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class RemoveZeroSumConsecutiveNodesFromLinkedList{
     public static void main(String[] args){
         Solution solution = new RemoveZeroSumConsecutiveNodesFromLinkedList().new Solution();
@@ -56,8 +60,20 @@ public class RemoveZeroSumConsecutiveNodesFromLinkedList{
  */
 class Solution {
     public ListNode removeZeroSumSublists(ListNode head) {
-
-        return null;
+        ListNode dum = new ListNode(0);
+        dum.next = head;
+        Map<Integer,ListNode> seen = new HashMap<>();
+        int prefix = 0;
+        for(ListNode node = dum;node != null;node = node.next){
+            prefix +=node.val;
+            seen.put(prefix,node);
+        }
+        prefix = 0;
+        for(ListNode node = dum;node != null;node = node.next){
+            prefix += node.val;
+            node.next = seen.get(prefix).next;
+        }
+        return dum.next;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
