@@ -55,6 +55,9 @@ class Solution {
         }
         return ans;
     }
+
+
+    //性能低
     public int subarraySum1(int[] nums, int k) {
         int n = nums.length;
         int ans = 0;
@@ -70,7 +73,6 @@ class Solution {
         }
         return ans;
     }
-
     }
 //leetcode submit region end(Prohibit modification and deletion)
 
