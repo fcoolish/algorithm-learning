@@ -46,8 +46,6 @@ public class GroupAnagrams{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public List<List<String>> groupAnagrams(String[] strs) {
-        List<List<String>> ans = new ArrayList<>();
-        int n = strs.length;
         Map<String ,List<String>> map = new HashMap<>();
         for(String str:strs){
             char[] chars = str.toCharArray();
@@ -57,10 +55,7 @@ class Solution {
             list.add(str);
             map.put(newStr,list);
         }
-        for(List<String> val:map.values()){
-            ans.add(val);
-        }
-        return ans;
+        return new ArrayList<>(map.values());
     }
 
 }
